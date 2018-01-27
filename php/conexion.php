@@ -4,7 +4,7 @@
 	*		Conexión a Base de Datos para proyecto bemtec.
 	*
 	* 	@author: Diego Jardón
-	* 	@creationDate: 27-Jan-2017
+	* 	@creationDate: 27-Jan-2018
   * 	@version: 1.0
 	*
 	*/
