@@ -15,14 +15,14 @@
 	require("constantes.php");
 	require("cors.php");
 
-	$data = json_decode(file_get_contents("php://input"));
+	/*$data = json_decode(file_get_contents("php://input"));
 	$usuarioUsuario = mysql_real_escape_string($data->usuarioUsuario);
-	$passwordUsuario = mysql_real_escape_string($data->passwordUsuario);
+	$passwordUsuario = mysql_real_escape_string($data->passwordUsuario);*/
 
-	//$usuarioUsuario = "admin";
-  //$passwordUsuario = "admin123";
+	$usuarioUsuario = "dynosaur1218@hotmail.com";
+  $passwordUsuario = "admin123";
 
-	$result = mysql_query("SELECT idUsuario, emailUsuario, perfilUsuario, estatusUsuario FROM usuario WHERE usuarioUsuario = '".$usuarioUsuario."' AND passwordUsuario = '".$passwordUsuario."'",$link);
+	$result = mysql_query("SELECT idUsuario, institucionUsuario, estatusUsuario FROM usuario WHERE usuarioUsuario = '".$usuarioUsuario."' AND passwordUsuario = '".$passwordUsuario."'",$link);
 
 	if($result === FALSE){
 			$resultado["response"] = Constantes::ERROR;
@@ -31,10 +31,6 @@
 		if($totalUsu == 1){
 			$info = mysql_fetch_assoc($result);
 			$resultado["id"] = $info["idUsuario"];
-			$resultado["email"] = $info["emailUsuario"];
-			$resultado["perfil"] = $info["perfilUsuario"];
-			$resultado["estatus"] = $info["estatusUsuario"];
-
 			$resultado["response"] = Constantes::EXITO;
 
 			$_SESSION['login']='ok';
@@ -44,10 +40,10 @@
 
 			// Tomamos el tiempo en el que se inicio sesion
 			$_SESSION['start'] = time();
-      // Finalizar la sesion en 30 minutos, apartir del tiempo de inicio
+      // Finalizar la sesion en 6 horas, apartir del tiempo de inicio
 			// Minutos: (m * 60) donde m son los minutos
 			// Dias : (n * 24 * 60 * 60 ) donde n son los dias
-      $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
+      $_SESSION['expire'] = $_SESSION['start'] + (720 * 60);
 
 		}else{
 			$resultado["response"] = Constantes::ERROR_USUARIO_Y_O_PASSWORD_INCORRECTOS;

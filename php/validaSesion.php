@@ -22,6 +22,7 @@
     }else{
 			$resultado["sesion"] = 1;
 			$resultado["usuarioUsuario"] = $_SESSION['usuarioUsuario'];
+			$resultado["estatusUsuario"] = $_SESSION['estatusUsuario']; 
 		}
 	}
 
