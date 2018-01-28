@@ -59,25 +59,16 @@
     //enviar correo electronico con url para finalizar el registro
 
 		$urlRegistro = "http://www.bemtec.mx/bemtec/php/validaRegistro.php?id=" . $llave;
-		$anioActual = date("Y");
+		
+  	$para = $emailUsuario;
+   	$titulo = 'Estas por concluir tu registro en BemTec';
 
-  	 $para = $emailUsuario;
-   	 $titulo = 'Estas por concluir tu registro en BemTec';
-   	 $mensaje = '<html>'.
-   	'<head></head>'.
-   	'<body><h3>Registro en BemTec</h3><br/>'.
-  	'<p>Da clic en el siguiente enlace para finalizar tu registro: </p><br/>'.
-   	'<a href="'.$urlRegistro.'">'.$urlRegistro.'</a>'.
-   	'<br/><br/>'.
-   	'Muchas Gracias'.
-   	'<br/><br/>'.
-   	'<h4>BemTec '.$anioActual.'.</h4>'.
-   	'</body>'.
-   	'</html>';
-   		$cabeceras = 'MIME-Version: 1.0' . "\r\n";
-   		$cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-   		$cabeceras .= 'From: BemTec<no-reply@bemtec.mx>';
-   		$enviado = mail($para, $titulo, $mensaje, $cabeceras);
+    $mensaje = generaCorreo($urlRegistro);
+
+   	$cabeceras = 'MIME-Version: 1.0' . "\r\n";
+   	$cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+   	$cabeceras .= 'From: BemTec<no-reply@bemtec.mx>';
+   	$enviado = mail($para, $titulo, $mensaje, $cabeceras);
 	}else{
 		$resultado["response"] = Constantes::ERROR_USUARIO_EXISTENTE;
 	}
