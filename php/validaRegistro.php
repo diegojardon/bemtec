@@ -22,11 +22,6 @@
 	$totalFilas = mysql_num_rows($result);
   $info = mysql_fetch_assoc($result);
 
-  //$usuarioUsuario = desencriptar($info["keyUsuarioKey"]);
-
-  //echo "TOTAL DE FILAS: " . $totalFilas. "<br/>";
-  //echo "NOMBRE DE USUARIO DESENCRIPTADO: " . $usuarioUsuario;
-
   if($totalFilas > 0){
 
     $usuarioUsuario = desencriptar($info["keyUsuarioKey"]);

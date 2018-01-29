@@ -40,10 +40,12 @@
 
 			// Tomamos el tiempo en el que se inicio sesion
 			$_SESSION['start'] = time();
-      // Finalizar la sesion en 6 horas, apartir del tiempo de inicio
-			// Minutos: (m * 60) donde m son los minutos
-			// Dias : (n * 24 * 60 * 60 ) donde n son los dias
+
+      // Finalizar la sesion en 6 horas, apartir del tiempo de inicio (720 minutos)
       $_SESSION['expire'] = $_SESSION['start'] + (720 * 60);
+
+			//Se inserta un registro en la tabla de accesos
+			
 
 		}else{
 			$resultado["response"] = Constantes::ERROR_USUARIO_Y_O_PASSWORD_INCORRECTOS;
