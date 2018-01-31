@@ -209,12 +209,12 @@ a:hover{
 	background: rgba(0, 0, 0, 0.1);
 }
 .btn-danger{
-	background-color: #9C3;
-	border-color: #9C3;
+	/*background-color: #9C3;
+	border-color: #9C3;*/
 }
 .btn-danger:hover,.btn-danger:active, .btn-danger.active, .open > .dropdown-toggle.btn-danger{
-	background-color: #90BF34;
-	border-color: #90BF34;
+	/*background-color: #90BF34;
+	border-color: #90BF34;*/
 }
 .page-header .page-header-inner:before{
 	background-color: #90BF34 ;

@@ -28,6 +28,9 @@
     <!-- Color CSS Styles  -->
     <link rel="stylesheet" type="text/css" href="assets/css/colors/green.css" media="screen" />
 
+    <!-- CSS con estilos de modal login y registro -->
+    <link rel="stylesheet" type="text/css" href="assets/css/loginStyles.css" media="screen" />
+
     <!-- Favicon-->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -81,7 +84,7 @@
                   <a class="nav-link" href="ayuda.html" role="button" aria-haspopup="true" aria-expanded="false">Ayuda</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link" href="#" role="button" aria-haspopup="true" aria-expanded="false">Login/Registro</a>
+                  <a class="nav-link" href="#" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#login-modal">Login/Registro</a>
                 </li>
                 <!--<li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Que tal {Nombre}!</a>
@@ -158,6 +161,86 @@
       </div><!-- Container Ends -->
     </section><!-- Service Main Section Ends -->
 
+
+    <!-- INICIA # MODAL LOGIN -->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        	<div class="modal-dialog">
+      			<div class="modal-content">
+
+              <!-- Begin # DIV Form -->
+              <div id="div-forms">
+
+                <!-- Begin # Login Form -->
+                <form id="login-form">
+      		          <div class="modal-body">
+                        <div style="padding-top: 10px; padding-bottom: 10px;">
+                          <center>
+                            <h3 style="color:#769e26x"><a href="#" id="login_login_btn">Inicia Sesión</a> o <a href="#" id="login_register_btn">Regístrate</a></h3>
+                          </center>
+                        </div>
+  				    		      <input id="login_username" class="form-control" type="text" placeholder="Correo electrónico" required>
+      				    		  <input id="login_password" class="form-control" type="password" placeholder="Contraseña" required>
+          		    	</div>
+    				        <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+                        </div>
+      				    	    <div>
+                            <button id="login_lost_btn" type="button" class="btn btn-link">Olvidaste tu contraseña?</button>
+                        </div>
+      				      </div>
+                </form>
+                <!-- End # Login Form -->
+
+                <!-- Begin | Lost Password Form -->
+                <form id="lost-form" style="display:none;">
+          	       <div class="modal-body">
+                     <div style="padding-top: 10px; padding-bottom: 10px;">
+                       <center>
+                         <h3 style="color:#769e26x"><a href="#">Recupera Contraseña</a></h3>
+                       </center>
+                     </div>
+  		    				     <input id="lost_email" class="form-control" type="text" placeholder="Correo electrónico" required>
+                   </div>
+      		    		 <div class="modal-footer">
+                       <div>
+                         <center>
+                           <button type="submit" class="btn btn-success">Enviar</button>
+                           <button type="button" id="lost_login_btn" class="btn btn-danger">Cancelar</button>
+                         </center>
+                       </div>
+      		    		</div>
+              </form>
+              <!-- End | Lost Password Form -->
+
+              <!-- Begin | Register Form -->
+              <form id="register-form" style="display:none;">
+                  <div class="modal-body">
+                    <div style="padding-top: 10px; padding-bottom: 10px;">
+                      <center>
+                        <h3 style="color:#769e26x"><a href="#" id="register_register_btn">Regístrate</a></h3>
+                      </center>
+                    </div>
+  		    				    <input id="register_email" class="form-control" type="text" placeholder="Correo electrónico" required>
+                  </div>
+      		    		<div class="modal-footer">
+                      <div>
+                        <center>
+                          <button type="submit" class="btn btn-success">Registrar</button>
+                          <button type="button" id="register_login_btn" class="btn btn-danger">Cancelar</button>
+                        </center>
+                      </div>
+      		    		</div>
+              </form>
+              <!-- End | Register Form -->
+          </div>
+          <!-- End # DIV Form -->
+  			</div>
+  		</div>
+  	</div>
+    <!-- END # MODAL LOGIN -->
+
+
     <!-- Footer Section -->
     <footer class="navbar-fixed-bottom">
       <!-- Copyright -->
@@ -225,6 +308,9 @@
      <!-- All JS plugin Triggers -->
     <script src="assets/js/main.js"></script>
     <!--<script src="assets/js/color-switcher.js"></script>-->
+
+    <!-- Script con funcionalidad de modal login y registro -->
+    <script src="assets/js/login.js"></script>
 
   </body>
 </html>
