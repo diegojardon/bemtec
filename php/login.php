@@ -45,7 +45,11 @@
       $_SESSION['expire'] = $_SESSION['start'] + (720 * 60);
 
 			//Se inserta un registro en la tabla de accesos
-			
+
+			$query = "INSERT INTO accion (`idAccion`,`idUsuario`,`idTipoAccion`,`fechaAccion`)
+					  VALUES (NULL, '$info['idUsuario']', 2 , NOW())";
+
+			$result = mysql_query($query);
 
 		}else{
 			$resultado["response"] = Constantes::ERROR_USUARIO_Y_O_PASSWORD_INCORRECTOS;

@@ -18,6 +18,7 @@
 
 	$data = json_decode(file_get_contents("php://input"));
 	$usuarioUsuario = mysql_real_escape_string($data->usuarioUsuario);
+  $passwordUsuario = mysql_real_escape_string($data->passwordUsuario);
 	$institucionUsuario = mysql_real_escape_string($data->institucionUsuario);
 
 	//Datos Usuario
@@ -35,7 +36,7 @@
 
     //Generamos un password aleatorio de 8 caracteres y digitos
 
-    $passwordUsuario = generaPassword();
+    //$passwordUsuario = generaPassword();
 
 		$query = "INSERT INTO usuario (`idUsuario`,`usuarioUsuario`,`passwordUsuario`,`institucionUsuario`,`estatusUsuario`)
 				  VALUES (NULL, '$usuarioUsuario', '$passwordUsuario', '$institucionUsuario', 0)";
@@ -59,7 +60,7 @@
     //enviar correo electronico con url para finalizar el registro
 
 		$urlRegistro = "http://www.bemtec.mx/bemtec/php/validaRegistro.php?id=" . $llave;
-		
+
   	$para = $emailUsuario;
    	$titulo = 'Estas por concluir tu registro en BemTec';
 
