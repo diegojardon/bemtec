@@ -35,6 +35,12 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+
+    <!-- Controller -->
+    <script src="../controller/loginRegisterController.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
@@ -87,19 +93,13 @@
                   <a class="nav-link" href="#" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#login-modal">Login</a>
                 </li>
                 <li class="nav-item dropdown" ng-if="app.sesion == 1">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-angle-up"/>&nbsp;Bienvenid@!</a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="">Logout</a>
-                  </div>
-                </li>
-                <!--<li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Que tal {Nombre}!</a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="">Logout</a>
-                  </div>
-                </li>-->
-                <li class="nav-item dropdown">
                   <a class="nav-link" href="calculadora.html" role="button" aria-haspopup="true" aria-expanded="false">Calcular</a>
+                </li>
+                <li class="nav-item dropdown" ng-if="app.sesion == 1">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Que tal!&nbsp;&nbsp;<i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#" ng-click="cierraSesion()">Logout</a>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -228,9 +228,9 @@
                       </center>
                     </div>
   		    				    <input id="register_email" class="form-control" type="text" placeholder="Correo electrónico" required>
-                      <input id="register_email" class="form-control" type="password" placeholder="Contraseña" required>
-                      <input id="register_email" class="form-control" type="password" placeholder="Confirmar contraseña" required>
-                      <input id="register_email" class="form-control" type="text" placeholder="Institución" required>
+                      <input id="register_password" class="form-control" type="password" placeholder="Contraseña" required>
+                      <input id="register_confirm" class="form-control" type="password" placeholder="Confirmar contraseña" required>
+                      <input id="register_institution" class="form-control" type="text" placeholder="Institución" required>
                   </div>
       		    		<div class="modal-footer">
                       <div>
@@ -321,8 +321,6 @@
     <!-- Script con funcionalidad de modal login y registro -->
     <script src="assets/js/login.js"></script>
 
-    <!-- Angular -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
 
   </body>
 </html>

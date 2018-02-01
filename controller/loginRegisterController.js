@@ -29,7 +29,7 @@ app.controller("loginRegisterController", function($scope, $http){
 			console.log(data);
 			if(data.response != 0){
 				location.reload(true);
-				window.location.href = "../view/home.html";
+				window.location.href = "../view/index.html";
 			}
 		})
 		.error(function(data){

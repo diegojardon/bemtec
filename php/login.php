@@ -15,12 +15,12 @@
 	require("constantes.php");
 	require("cors.php");
 
-	/*$data = json_decode(file_get_contents("php://input"));
+	$data = json_decode(file_get_contents("php://input"));
 	$usuarioUsuario = mysql_real_escape_string($data->usuarioUsuario);
-	$passwordUsuario = mysql_real_escape_string($data->passwordUsuario);*/
+	$passwordUsuario = mysql_real_escape_string($data->passwordUsuario);
 
-	$usuarioUsuario = "dynosaur1218@hotmail.com";
-  $passwordUsuario = "admin123";
+	/*$usuarioUsuario = "dynosaur1218@hotmail.com";
+  $passwordUsuario = "diego123";*/
 
 	$result = mysql_query("SELECT idUsuario, institucionUsuario, estatusUsuario FROM usuario WHERE usuarioUsuario = '".$usuarioUsuario."' AND passwordUsuario = '".$passwordUsuario."'",$link);
 
@@ -46,8 +46,10 @@
 
 			//Se inserta un registro en la tabla de accesos
 
+			$idUsuario = $info['idUsuario'];
+
 			$query = "INSERT INTO accion (`idAccion`,`idUsuario`,`idTipoAccion`,`fechaAccion`)
-					  VALUES (NULL, '$info['idUsuario']', 2 , NOW())";
+					  VALUES (NULL, '$idUsuario', 2 , NOW())";
 
 			$result = mysql_query($query);
 
