@@ -43,7 +43,7 @@
     </script>
     <![endif]-->
   </head>
-  <body>
+  <body ng-app="app" ng-controller="loginRegisterController as app">
 
   <!-- Header area wrapper starts -->
     <header id="header-wrap">
@@ -83,8 +83,14 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link" href="ayuda.html" role="button" aria-haspopup="true" aria-expanded="false">Ayuda</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link" href="#" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#login-modal">Login/Registro</a>
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
+                  <a class="nav-link" href="#" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#login-modal">Login</a>
+                </li>
+                <li class="nav-item dropdown" ng-if="app.sesion == 1">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-angle-up"/>&nbsp;Bienvenid@!</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="">Logout</a>
+                  </div>
                 </li>
                 <!--<li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Que tal {Nombre}!</a>
@@ -178,12 +184,12 @@
                             <h3 style="color:#769e26x"><a href="#" id="login_login_btn">Inicia Sesión</a> o <a href="#" id="login_register_btn">Regístrate</a></h3>
                           </center>
                         </div>
-  				    		      <input id="login_username" class="form-control" type="text" placeholder="Correo electrónico" required>
-      				    		  <input id="login_password" class="form-control" type="password" placeholder="Contraseña" required>
+  				    		      <input id="login_username" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
+      				    		  <input id="login_password" class="form-control" type="password" placeholder="Contraseña" required ng-model="usuario.password">
           		    	</div>
     				        <div class="modal-footer">
                         <div>
-                            <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+                            <button type="submit" class="btn btn-success btn-lg btn-block" ng-click="iniciaSesion(usuario)">Login</button>
                         </div>
       				    	    <div>
                             <button id="login_lost_btn" type="button" class="btn btn-link">Olvidaste tu contraseña?</button>
@@ -314,6 +320,9 @@
 
     <!-- Script con funcionalidad de modal login y registro -->
     <script src="assets/js/login.js"></script>
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
 
   </body>
 </html>

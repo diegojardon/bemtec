@@ -54,7 +54,7 @@ app.controller("loginRegisterController", function($scope, $http){
 	}
 
 	$scope.registraUsuario = function(usuario){
-		$http.post("http://www.bemtec.mx/zgr/bemtec/altaUsuario.php", {'usuarioUsuario': usuario.usuario, 'passwordUsuario': usuario.password,
+		$http.post("http://www.bemtec.mx/bemtec/altaUsuario.php", {'usuarioUsuario': usuario.usuario, 'passwordUsuario': usuario.password,
 		'institucionUsuario': usuario.institucion})
 		.success(function(data){
 			console.log("RESPONSE: " + data.response);
