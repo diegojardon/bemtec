@@ -181,7 +181,7 @@
       		          <div class="modal-body">
                         <div style="padding-top: 10px; padding-bottom: 10px;">
                           <center>
-                            <h3 style="color:#769e26x"><a href="#" id="login_login_btn">Inicia Sesión</a> o <a href="#" id="login_register_btn">Regístrate</a></h3>
+                            <h3 style="color:#769e26x"><a href="#" id="login_login_btn">Inicia Sesión</a> o <a href="#" id="login_register_btn">Regístrate aquí</a></h3>
                           </center>
                         </div>
   				    		      <input id="login_username" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
@@ -206,13 +206,13 @@
                          <h3 style="color:#769e26x"><a href="#">Recupera Contraseña</a></h3>
                        </center>
                      </div>
-  		    				     <input id="lost_email" class="form-control" type="text" placeholder="Correo electrónico" required>
+  		    				     <input id="lost_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
                    </div>
       		    		 <div class="modal-footer">
                        <div>
                          <center>
-                           <button type="submit" class="btn btn-success">Enviar</button>
-                           <button type="button" id="lost_login_btn" class="btn btn-danger">Cancelar</button>
+                           <button type="button" class="btn btn-success" ng-click="recuperaPassword(usuario.usuario)">Enviar</button>
+                           <button type="button" id="lost_login_btn" class="btn btn-danger" onclick="$('#login-modal').modal('hide');">Cancelar</button>
                          </center>
                        </div>
       		    		</div>
@@ -227,16 +227,16 @@
                         <h3 style="color:#769e26x"><a href="#" id="register_register_btn">Regístrate</a></h3>
                       </center>
                     </div>
-  		    				    <input id="register_email" class="form-control" type="text" placeholder="Correo electrónico" required>
-                      <input id="register_password" class="form-control" type="password" placeholder="Contraseña" required>
+  		    				    <input id="register_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
+                      <input id="register_password" class="form-control" type="password" placeholder="Contraseña" required ng-model="usuario.password">
                       <input id="register_confirm" class="form-control" type="password" placeholder="Confirmar contraseña" required>
-                      <input id="register_institution" class="form-control" type="text" placeholder="Institución" required>
+                      <input id="register_institution" class="form-control" type="text" placeholder="Institución" required ng-model="usuario.institucion">
                   </div>
       		    		<div class="modal-footer">
                       <div>
                         <center>
-                          <button type="submit" class="btn btn-success">Registrar</button>
-                          <button type="button" id="register_login_btn" class="btn btn-danger">Cancelar</button>
+                          <button type="button" class="btn btn-success" ng-click="registraUsuario(usuario)">Registrar</button>
+                          <button type="button" id="register_login_btn" class="btn btn-danger" onclick="$('#login-modal').modal('hide');">Cancelar</button>
                         </center>
                       </div>
       		    		</div>

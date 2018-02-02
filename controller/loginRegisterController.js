@@ -54,19 +54,22 @@ app.controller("loginRegisterController", function($scope, $http){
 	}
 
 	$scope.registraUsuario = function(usuario){
-		$http.post("http://www.bemtec.mx/bemtec/altaUsuario.php", {'usuarioUsuario': usuario.usuario, 'passwordUsuario': usuario.password,
+		$http.post("http://www.bemtec.mx/bemtec/php/altaUsuario.php", {'usuarioUsuario': usuario.usuario, 'passwordUsuario': usuario.password,
 		'institucionUsuario': usuario.institucion})
 		.success(function(data){
 			console.log("RESPONSE: " + data.response);
 			if(data.response == 0){
 					//Redirigir a pantalla para confirmación del código recibido por correo
 					//document.location.href = "mensajeConfirmacion.html";
+					alert("Se envio un correo electrónico para confirmar tu registro.");
+					$("#login-modal").modal('hide');
 			}else{
 				alert("Error! Ya existe un usuario con ese nombre.");
 				$scope.mensaje = "Error! Ya existe un usuario con ese nombre.";
 			}
 		})
 		.error(function(data){
+			console.log(data);
 			document.location.href = "404.html";
 		});
 	}
@@ -77,6 +80,7 @@ app.controller("loginRegisterController", function($scope, $http){
 			console.log("RESPONSE: " + data.response);
 			if(data.response == 0){
 					alert("Se ha enviado la contraseña al correo electrónico especificado.");
+					$("#login-modal").modal('hide');
 			}else{
 					alert("Error al recuperar la contraseña!");
 			}
