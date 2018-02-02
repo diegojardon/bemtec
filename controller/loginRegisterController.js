@@ -22,6 +22,32 @@ app.controller("loginRegisterController", function($scope, $http){
 		console.log(data);
 	})
 
+	$http.get("http://www.bemtec.mx/bemtec/php/contarTotales.php")
+	.success(function(data){
+
+		for(i=0; i<5; i++){
+			if(data[i].idTipoAccion == 1){
+				//Total de visitas
+				console.log("ENTRO A TOTAL VISITAS");
+				app.totalVisitas = data[i].total;
+			}
+			if(data[i].idTipoAccion == 3 || data[i].idTipoAccion == 4){
+				//Total de calculos
+				console.log("ENTRO A TOTAL CALCULOS");
+				app.totalCalculos += data[i].total;
+			}
+			if(data[i].idTipoAccion == 5){
+				//Total de registros
+				console.log("ENTRO A TOTAL REGISTROS");
+				app.totalRegistros = data[i].total;
+			}
+		}
+
+	})
+	.error(function(data){
+		console.log(data);
+	})
+
 	$scope.cierraSesion = function(){
 		$http.post("http://www.bemtec.mx/bemtec/php/logout.php")
 		.success(function(data){
