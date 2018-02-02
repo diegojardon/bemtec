@@ -192,6 +192,87 @@
     </div><!-- Container Ends -->
   </section><!-- Service Main Section Ends -->
 
+  <!-- INICIA # MODAL LOGIN -->
+  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+              <!-- Begin # Login Form -->
+              <form id="login-form">
+                  <div class="modal-body">
+                      <div style="padding-top: 10px; padding-bottom: 10px;">
+                        <center>
+                          <h3 style="color:#769e26x"><a href="#" id="login_login_btn">Inicia Sesión</a> o <a href="#" id="login_register_btn">Regístrate aquí</a></h3>
+                        </center>
+                      </div>
+                      <input id="login_username" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
+                      <input id="login_password" class="form-control" type="password" placeholder="Contraseña" required ng-model="usuario.password">
+                  </div>
+                  <div class="modal-footer">
+                      <div>
+                          <button type="submit" class="btn btn-success btn-lg btn-block" ng-click="iniciaSesion(usuario)">Login</button>
+                      </div>
+                      <div>
+                          <button id="login_lost_btn" type="button" class="btn btn-link">Olvidaste tu contraseña?</button>
+                      </div>
+                  </div>
+              </form>
+              <!-- End # Login Form -->
+
+              <!-- Begin | Lost Password Form -->
+              <form id="lost-form" style="display:none;">
+                 <div class="modal-body">
+                   <div style="padding-top: 10px; padding-bottom: 10px;">
+                     <center>
+                       <h3 style="color:#769e26x"><a href="#">Recupera Contraseña</a></h3>
+                     </center>
+                   </div>
+                     <input id="lost_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
+                 </div>
+                 <div class="modal-footer">
+                     <div>
+                       <center>
+                         <button type="button" class="btn btn-success" ng-click="recuperaPassword(usuario.usuario)">Enviar</button>
+                         <button type="button" id="lost_login_btn" class="btn btn-danger" onclick="$('#login-modal').modal('hide');">Cancelar</button>
+                       </center>
+                     </div>
+                </div>
+            </form>
+            <!-- End | Lost Password Form -->
+
+            <!-- Begin | Register Form -->
+            <form id="register-form" style="display:none;">
+                <div class="modal-body">
+                  <div style="padding-top: 10px; padding-bottom: 10px;">
+                    <center>
+                      <h3 style="color:#769e26x"><a href="#" id="register_register_btn">Regístrate</a></h3>
+                    </center>
+                  </div>
+                    <input id="register_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
+                    <input id="register_password" class="form-control" type="password" placeholder="Contraseña" required ng-model="usuario.password">
+                    <input id="register_confirm" class="form-control" type="password" placeholder="Confirmar contraseña" required>
+                    <input id="register_institution" class="form-control" type="text" placeholder="Institución" required ng-model="usuario.institucion">
+                </div>
+                <div class="modal-footer">
+                    <div>
+                      <center>
+                        <button type="button" class="btn btn-success" ng-click="registraUsuario(usuario)">Registrar</button>
+                        <button type="button" id="register_login_btn" class="btn btn-danger" onclick="$('#login-modal').modal('hide');">Cancelar</button>
+                      </center>
+                    </div>
+                </div>
+            </form>
+            <!-- End | Register Form -->
+        </div>
+        <!-- End # DIV Form -->
+      </div>
+    </div>
+  </div>
+  <!-- END # MODAL LOGIN -->
+
     <!-- Footer Section -->
     <footer class="fixed-bottom">
       <!-- Copyright -->
