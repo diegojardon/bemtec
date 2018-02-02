@@ -28,9 +28,20 @@
     <!-- Color CSS Styles  -->
     <link rel="stylesheet" type="text/css" href="assets/css/colors/green.css" media="screen" />
 
+    <!-- CSS con estilos de modal login y registro -->
+    <link rel="stylesheet" type="text/css" href="assets/css/loginStyles.css" media="screen" />
+
+    <link rel="stylesheet" type="text/css" href="assets/css/pieChart.css" media="screen" />
+
     <!-- Favicon-->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+
+    <!-- Controller -->
+    <script src="../controller/loginRegisterController.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -40,7 +51,7 @@
     </script>
     <![endif]-->
   </head>
-  <body>
+  <body ng-app="app" ng-controller="loginRegisterController as app">
 
   <!-- Header area wrapper starts -->
     <header id="header-wrap">
@@ -80,17 +91,17 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link active" href="ayuda.html" role="button" aria-haspopup="true" aria-expanded="false">Ayuda</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link" href="#" role="button" aria-haspopup="true" aria-expanded="false">Login/Registro</a>
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
+                  <a class="nav-link" href="#" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#login-modal">Login</a>
                 </li>
-                <!--<li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Que tal {Nombre}!</a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="portfolio-col-3.html">Logout</a>
-                  </div>
-                </li>-->
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-if="app.sesion == 1">
                   <a class="nav-link" href="calculadora.html" role="button" aria-haspopup="true" aria-expanded="false">Calcular</a>
+                </li>
+                <li class="nav-item dropdown" ng-if="app.sesion == 1">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Que tal!&nbsp;&nbsp;<i class="fa fa-angle-down"></i></a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#" ng-click="cierraSesion()">Logout</a>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -184,6 +195,11 @@
      <!-- All JS plugin Triggers -->
     <script src="assets/js/main.js"></script>
     <!--<script src="assets/js/color-switcher.js"></script>-->
+
+    <!-- Script con funcionalidad de modal login y registro -->
+    <script src="assets/js/login.js"></script>
+
+    <script src="assets/js/pieChart.js"></script>
 
   </body>
 </html>

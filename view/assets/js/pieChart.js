@@ -5,13 +5,13 @@ $(function(){
   ]);
 
   $("#doughnutChartRegister").drawDoughnutChart([
-    { title: "Total de registros",         value : 120,  color: "#9c3" },
-    { title: "",        value : 20,   color: "#FFF" }
+    { title: "Total de registros",         value : 325,  color: "#9c3" },
+    { title: "",        value : 55,   color: "#FFF" }
   ]);
 
   $("#doughnutChartCalculations").drawDoughnutChart([
-    { title: "Total de cálculos",         value : 120,  color: "#9c3" },
-    { title: "",        value : 20,   color: "#FFF" }
+    { title: "Total de cálculos",         value : 1987,  color: "#9c3" },
+    { title: "",        value :332,   color: "#FFF" }
   ]);
 
 });
@@ -165,20 +165,20 @@ $(function(){
         return cmd;
     };
     function pathMouseEnter(e) {
-      var order = $(this).data().order;
+      /*var order = $(this).data().order;
       $tip.text(data[order].title + ": " + data[order].value)
           .fadeIn(200);
-      settings.onPathEnter.apply($(this),[e,data]);
+      settings.onPathEnter.apply($(this),[e,data]);*/
     }
     function pathMouseLeave(e) {
-      $tip.hide();
-      settings.onPathLeave.apply($(this),[e,data]);
+    /*  $tip.hide();
+      settings.onPathLeave.apply($(this),[e,data]);*/
     }
     function pathMouseMove(e) {
-      $tip.css({
+      /*$tip.css({
         top: e.pageY + settings.tipOffsetY,
         left: e.pageX - $tip.width() / 2 + settings.tipOffsetX
-      });
+      });*/
     }
     function drawPieSegments (animationDecimal) {
       var startRadius = -PI / 2,//-90 degree
@@ -220,7 +220,7 @@ $(function(){
     function drawDoughnutText(animationDecimal, segmentTotal) {
       $summaryNumber
         .css({opacity: animationDecimal})
-        .text((segmentTotal * animationDecimal).toFixed(0));
+        .text((segmentTotal * animationDecimal).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
     function animateFrame(cnt, drawData) {
       var easeAdjustedAnimationPercent =(settings.animation)? CapValue(easingFunction(cnt), null, 0) : 1;

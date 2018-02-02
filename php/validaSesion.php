@@ -21,8 +21,9 @@
 			//header('Location: ../web/view/login.html');
     }else{
 			$resultado["sesion"] = 1;
+			$resultado["idUsuario"] = $_SESSION['idUsuario'];
 			$resultado["usuarioUsuario"] = $_SESSION['usuarioUsuario'];
-			$resultado["estatusUsuario"] = $_SESSION['estatusUsuario']; 
+			$resultado["estatusUsuario"] = $_SESSION['estatusUsuario'];
 		}
 	}
 
