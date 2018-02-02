@@ -89,13 +89,13 @@
                   <a class="nav-link" href="equipo.html" role="button" aria-haspopup="true" aria-expanded="false">Sobre el equipo</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link active" href="ayuda.html" role="button" aria-haspopup="true" aria-expanded="false">Ayuda</a>
+                  <a class="nav-link" href="ayuda.html" role="button" aria-haspopup="true" aria-expanded="false">Ayuda</a>
                 </li>
                 <li class="nav-item dropdown" ng-if="app.sesion == 0">
                   <a class="nav-link" href="#" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#login-modal">Login</a>
                 </li>
                 <li class="nav-item dropdown" ng-if="app.sesion == 1">
-                  <a class="nav-link" href="calculadoraHome.html" role="button" aria-haspopup="true" aria-expanded="false">Calcular</a>
+                  <a class="nav-link active" href="calculadoraHome.html" role="button" aria-haspopup="true" aria-expanded="false">Calcular</a>
                 </li>
                 <li class="nav-item dropdown" ng-if="app.sesion == 1">
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Que tal!&nbsp;&nbsp;<i class="fa fa-angle-down"></i></a>
@@ -119,10 +119,17 @@
       <div class="container">
         <div class="row">
           <h1 class="section-title wow fadeIn animated" data-wow-delay=".2s">
-           Ayuda
+           Cálculo de las NOM
           </h1>
-          <p class="section-subcontent">Descarga el manual de uso para realizar los cálculos de las normativas NOM 008 ENER 2001 y NOM 020 ENER 2011.</p>
-          <img src="images/icon_pdf.jpg" alt="" height="90" width="90" class="img-responsive center-block" />
+          <br/>
+          <div class="col-sm-3 col-md-3"></div>
+          <div class="col-sm-3 col-md-3">
+            <a href=""><img src="images/BEM-TEC-NOM-008-2001.png" alt="" height="200" width="200" class="img-responsive center-block" /></a>
+          </div>
+          <div class="col-sm-3 col-md-3">
+            <a href=""><img src="images/BEM-TEC-NOM-008-2011.png" alt="" height="200" width="200" class="img-responsive center-block" /></a>
+          </div>
+
         </div>
 
       </div><!-- Container Ends -->
