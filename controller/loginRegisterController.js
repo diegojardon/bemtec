@@ -25,22 +25,57 @@ app.controller("loginRegisterController", function($scope, $http){
 	$http.get("http://www.bemtec.mx/bemtec/php/contarTotales.php")
 	.success(function(data){
 
-		for(i=0; i<5; i++){
-			if(data[i].idTipoAccion == 1){
-				//Total de visitas
-				console.log("ENTRO A TOTAL VISITAS");
-				app.totalVisitas = data[i].total;
+		var hayGraficas = document.getElementById("doughnutChartVisits");
+
+		if(hayGraficas != null){
+			var totalVisitas = 0;
+			var totalRegistros = 0;
+			var totalCalculos = 0;
+
+			for(i=0; i<5; i++){
+				if(data[i].idTipoAccion == 1){
+					//Total de visitas
+					totalVisitas = parseInt(data[i].total);
+				}
+				if(data[i].idTipoAccion == 3 || data[i].idTipoAccion == 4){
+					//Total de calculos
+					totalCalculos += parseInt(data[i].total);
+				}
+				if(data[i].idTipoAccion == 5){
+					//Total de registros
+					totalRegistros = parseInt(data[i].total);
+				}
 			}
-			if(data[i].idTipoAccion == 3 || data[i].idTipoAccion == 4){
-				//Total de calculos
-				console.log("ENTRO A TOTAL CALCULOS");
-				app.totalCalculos += data[i].total;
-			}
-			if(data[i].idTipoAccion == 5){
-				//Total de registros
-				console.log("ENTRO A TOTAL REGISTROS");
-				app.totalRegistros = data[i].total;
-			}
+
+			console.log("VISITAS: " + totalVisitas);
+			console.log("REGISTROS " + totalRegistros);
+			console.log("CALCULOS: " + totalCalculos);
+
+			var contraparteVisitas = totalVisitas / 6;
+			var contraparteRegistros = totalRegistros / 6;
+			var contraparteCalculos = totalCalculos / 6;
+
+			if(contraparteVisitas == 0)
+				contraparteVisitas = 1;
+			if(contraparteRegistros == 0)
+				contraparteRegistros = 1;
+			if(contraparteRegistros == 0)
+				contraparteRegistros = 1;
+
+			$("#doughnutChartVisits").drawDoughnutChart([
+				{ title: "Total de visitas",         value : totalVisitas,  color: "#9c3" },
+				{ title: "",        value : (totalVisitas / 6),   color: "#FFF" }
+			]);
+
+			$("#doughnutChartRegister").drawDoughnutChart([
+				{ title: "Total de registros",         value : totalRegistros,  color: "#9c3" },
+				{ title: "",        value : (totalRegistros / 6),   color: "#FFF" }
+			]);
+
+			$("#doughnutChartCalculations").drawDoughnutChart([
+				{ title: "Total de cálculos",         value : totalCalculos,  color: "#9c3" },
+				{ title: "",        value :(totalCalculos / 6),   color: "#FFF" }
+			]);
 		}
 
 	})
@@ -113,6 +148,20 @@ app.controller("loginRegisterController", function($scope, $http){
 		})
 		.error(function(data){
 			document.location.href = "404.html";
+		});
+	}
+
+	$scope.registraAccion = function(idTipoAccion){
+		$http.post("http://www.bemtec.mx/bemtec/php/altaAccion.php", {'idTipoAccion': idTipoAccion})
+		.success(function(data){
+			console.log("RESPONSE: " + data.response);
+			if(data.response == 0){
+					//Redirigir a pantalla para confirmación del código recibido por correo
+					//document.location.href = "mensajeConfirmacion.html";
+					console.log("VISITA REGISTRADA EXITOSAMENTE");
+			}else{
+
+			}
 		});
 	}
 

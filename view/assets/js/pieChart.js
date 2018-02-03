@@ -1,20 +1,3 @@
-$(function(){
-  $("#doughnutChartVisits").drawDoughnutChart([
-    { title: "Total de visitas",         value : 120,  color: "#9c3" },
-    { title: "",        value : 20,   color: "#FFF" }
-  ]);
-
-  $("#doughnutChartRegister").drawDoughnutChart([
-    { title: "Total de registros",         value : 325,  color: "#9c3" },
-    { title: "",        value : 55,   color: "#FFF" }
-  ]);
-
-  $("#doughnutChartCalculations").drawDoughnutChart([
-    { title: "Total de cálculos",         value : 1987,  color: "#9c3" },
-    { title: "",        value :332,   color: "#FFF" }
-  ]);
-
-});
 /*!
  * jquery.drawDoughnutChart.js
  * Version: 0.4.1(Beta)

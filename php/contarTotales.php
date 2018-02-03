@@ -28,7 +28,23 @@
        $resultado[$i]["total"] = $info["total"];
        $i++;
      }
-     $resultado["response"] = Constantes::EXITO;
+
+     //Contabilizamos el total de usuarios registrados
+     $result = mysql_query("SELECT count(*) AS total FROM usuario", $link);
+
+     $totalReg = mysql_num_rows($result);
+
+     if($totalReg >= 1){
+       $info = mysql_fetch_assoc($result);
+       $resultado[$i]["idTipoAccion"] = "5"; //Registro
+       $resultado[$i]["total"] = $info["total"];
+
+       $resultado["response"] = Constantes::EXITO;
+
+     }else {
+       $resultado["response"] = Constantes::ERROR;
+     }
+
   }else{
      $resultado["total"] = $totalReg;
      $resultado["response"] = Constantes::ERROR;

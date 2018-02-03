@@ -2870,6 +2870,12 @@ h2.widget-title {
     color: #ff2a40;
     font-size: 10rem;
 }
+
+.error-section h2 {
+    color: #ff2a40;
+    font-size: 7rem;
+}
+
 .col-md-12.text-xs-center > h4 {
 }
 .error-section h4 {

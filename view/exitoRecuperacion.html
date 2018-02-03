@@ -43,6 +43,7 @@
     <!-- Controller -->
     <script src="../controller/loginRegisterController.js"></script>
 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
@@ -109,115 +110,69 @@
         </nav>
         <!-- Navbar Ends -->
       </section>
-    <!-- Start Content -->
     </header>
     <!-- Header-wrap Section End -->
 
-    <!-- Service Block-1 Section -->
-    <section id="service-block-main" class="section">
-      <!-- Container Starts -->
+    <section class="error-section section split">
       <div class="container">
         <div class="row">
-          <h1 class="section-title wow fadeIn animated" data-wow-delay=".2s">
-           ¡Bienvenidos!
-          </h1>
-          <p class="section-subcontent">Con esta herramienta podrás calcular la ganancia de calor al interior de tu proyecto, el cual dependerá de los materiales escogidos para la envolvente de la edificación, esto te permitirá tomar la mejor decisión respecto a los mismos.
-            Al ingresar podrás seleccionar entre la NOM-020-ENER-2011 (para edificaciones residenciales) o la NOM-008-ENER-2001(para edificaciones no residenciales), recuerda que los resultados son informativos y que si deseas obtener el dictamen de verificación deberás dirigirte
-            a una Unidad de Verificación acreditada por la <a href="https://www.gob.mx/conuee">Conuee</a>.</p>
-          <div class="col-sm-6 col-md-4">
-            <!-- Service-Block-1 Item Starts -->
-            <div class="service-item wow fadeInUpQuick animated" data-wow-delay=".5s">
-              <div class="col-sm-12 col-md-12">
-                <div id="doughnutChartVisits" class="chart"></div>
-              </div>
-              <br/><br/><br/><br/>
-              <h2 style="margin-top:5px;">
-                Total de visitas
-              </h2>
-            </div>
-            <!-- Service-Block-1 Item Ends -->
-          </div>
-
-          <div class="col-sm-6 col-md-4">
-            <!-- Service-Block-1 Item Starts -->
-            <div class="service-item wow fadeInUpQuick animated" data-wow-delay=".8s">
-              <div class="col-sm-12 col-md-12">
-                <div id="doughnutChartRegister" class="chart"></div>
-              </div>
-              <br/><br/><br/><br/>
-              <h2 style="margin-top:5px;">
-                Total de personas registradas
-              </h2>
-            </div>
-            <!-- Service-Block-1 Item Ends -->
-          </div>
-
-          <div class="col-sm-6 col-md-4">
-            <!-- Service-Block-1 Item Starts -->
-            <div class="service-item wow fadeInUpQuick animated" data-wow-delay="1.1s">
-              <div class="col-sm-12 col-md-12">
-                <div id="doughnutChartCalculations" class="chart"></div>
-              </div>
-              <br/><br/><br/><br/>
-              <h2 style="margin-top:5px;">
-                Total de cálculos realizados
-              </h2>
-            </div>
-            <!-- Service-Block-1 Item Ends -->
+          <div class="col-md-12 text-xs-center wow fadeInLeft" data-wow-delay="0.1s">
+            <h2><i class="fa fa-envelope"></i></h2>
+            <h4>La contraseña fue enviada exitosamente al correo especificado!</h4>
+            <a href="index.html" class="mt-30 btn btn-outline btn-lg"><i class="fa fa-home"></i> Regresar al home</a>
           </div>
         </div>
-      </div><!-- Container Ends -->
-    </section><!-- Service Main Section Ends -->
-
+      </div>
+    </section>
 
     <!-- INICIA # MODAL LOGIN -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        	<div class="modal-dialog">
-      			<div class="modal-content">
+          <div class="modal-dialog">
+            <div class="modal-content">
 
               <!-- Begin # DIV Form -->
               <div id="div-forms">
 
                 <!-- Begin # Login Form -->
                 <form id="login-form">
-      		          <div class="modal-body">
+                    <div class="modal-body">
                         <div style="padding-top: 10px; padding-bottom: 10px;">
                           <center>
                             <h3 style="color:#769e26x"><a href="#" id="login_login_btn">Inicia Sesión</a> o <a href="#" id="login_register_btn">Regístrate aquí</a></h3>
                           </center>
                         </div>
-  				    		      <input id="login_username" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
-      				    		  <input id="login_password" class="form-control" type="password" placeholder="Contraseña" required ng-model="usuario.password">
-          		    	</div>
-    				        <div class="modal-footer">
+                        <input id="login_username" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
+                        <input id="login_password" class="form-control" type="password" placeholder="Contraseña" required ng-model="usuario.password">
+                    </div>
+                    <div class="modal-footer">
                         <div>
                             <button type="submit" class="btn btn-success btn-lg btn-block" ng-click="iniciaSesion(usuario)">Login</button>
                         </div>
-      				    	    <div>
+                        <div>
                             <button id="login_lost_btn" type="button" class="btn btn-link">Olvidaste tu contraseña?</button>
                         </div>
-      				      </div>
+                    </div>
                 </form>
                 <!-- End # Login Form -->
 
                 <!-- Begin | Lost Password Form -->
                 <form id="lost-form" style="display:none;">
-          	       <div class="modal-body">
+                   <div class="modal-body">
                      <div style="padding-top: 10px; padding-bottom: 10px;">
                        <center>
                          <h3 style="color:#769e26x"><a href="#">Recupera Contraseña</a></h3>
                        </center>
                      </div>
-  		    				     <input id="lost_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
+                       <input id="lost_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
                    </div>
-      		    		 <div class="modal-footer">
+                   <div class="modal-footer">
                        <div>
                          <center>
                            <button type="button" class="btn btn-success" ng-click="recuperaPassword(usuario.usuario)">Enviar</button>
                            <button type="button" id="lost_login_btn" class="btn btn-danger" onclick="$('#login-modal').modal('hide');">Cancelar</button>
                          </center>
                        </div>
-      		    		</div>
+                  </div>
               </form>
               <!-- End | Lost Password Form -->
 
@@ -229,28 +184,27 @@
                         <h3 style="color:#769e26x"><a href="#" id="register_register_btn">Regístrate</a></h3>
                       </center>
                     </div>
-  		    				    <input id="register_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
+                      <input id="register_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
                       <input id="register_password" class="form-control" type="password" placeholder="Contraseña" required ng-model="usuario.password">
                       <input id="register_confirm" class="form-control" type="password" placeholder="Confirmar contraseña" required>
                       <input id="register_institution" class="form-control" type="text" placeholder="Institución" required ng-model="usuario.institucion">
                   </div>
-      		    		<div class="modal-footer">
+                  <div class="modal-footer">
                       <div>
                         <center>
                           <button type="button" class="btn btn-success" ng-click="registraUsuario(usuario)">Registrar</button>
                           <button type="button" id="register_login_btn" class="btn btn-danger" onclick="$('#login-modal').modal('hide');">Cancelar</button>
                         </center>
                       </div>
-      		    		</div>
+                  </div>
               </form>
               <!-- End | Register Form -->
           </div>
           <!-- End # DIV Form -->
-  			</div>
-  		</div>
-  	</div>
+        </div>
+      </div>
+    </div>
     <!-- END # MODAL LOGIN -->
-
 
     <!-- Footer Section -->
     <footer class="navbar-fixed-bottom">
@@ -292,14 +246,9 @@
       <i class="fa fa-angle-up">
       </i>
     </a>
-
     <div class="bottom"> <a href="#" class="settings"></a> </div>
 
-      <!-- Hidden button for registering a visit -->
-    <button type="hidden" id="visita" ng-click="registraAccion(1)"/>
-
     <!-- JavaScript & jQuery Plugins -->
-
     <!-- jQuery Load -->
     <script src="assets/js/jquery-min.js"></script>
     <!-- Bootstrap JS -->
@@ -322,25 +271,12 @@
     <script src="assets/js/jquery.vide.js"></script>
      <!-- All JS plugin Triggers -->
     <script src="assets/js/main.js"></script>
+
     <!--<script src="assets/js/color-switcher.js"></script>-->
 
     <!-- Script con funcionalidad de modal login y registro -->
     <script src="assets/js/login.js"></script>
 
     <script src="assets/js/pieChart.js"></script>
-
-
-
-    <script type="text/javascript">
-
-
-
-    $(document).ready(function() {
-        //Insertamos una acción de visita
-        $( "#visita" ).trigger( "click" );
-    });
-
-    </script>
-
   </body>
 </html>
