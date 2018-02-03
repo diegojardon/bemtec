@@ -18,9 +18,7 @@
 	$data = json_decode(file_get_contents("php://input"));
 	$claveEntidad = mysql_real_escape_string($data->claveEntidad);
 
-	$claveEntidad = "01";
-
-	$result = mysql_query("SELECT cve_mun,nom_cab FROM municipio WHERE cve_ent = '".$claveEntidad."'",$link);
+	$result = mysql_query("SELECT cve_mun,nom_mun FROM municipio WHERE cve_ent = '".$claveEntidad."'",$link);
 
 	if($result === FALSE){
 			$resultado["response"] = Constantes::ERROR;
@@ -30,7 +28,7 @@
 		   $i=0;
 			 while($info = mysql_fetch_assoc($result)){
 				 $resultado[$i]["claveMunicipio"] = $info["cve_mun"];
-				 $resultado[$i]["nombreMunicipio"] = $info["nom_cab"];
+				 $resultado[$i]["nombreMunicipio"] = $info["nom_mun"];
 				 $i++;
 			 }
 

@@ -10,6 +10,7 @@ app.controller("loginRegisterController", function($scope, $http){
 		app.sesion = data.sesion;
 		app.usuarioUsuario = data.usuarioUsuario;
 		app.estatusUsuario = data.estatusUsuario;
+		app.nombreNormaEnergetica = data.nombreNormaEnergetica;
 		if(app.sesion == 0){
 			/*alert("Es necesario que inicies sesión para visualizar el contenido completo");
 			document.location.href = "home.html";*/
@@ -158,6 +159,19 @@ app.controller("loginRegisterController", function($scope, $http){
 					//Redirigir a pantalla para confirmación del código recibido por correo
 					//document.location.href = "mensajeConfirmacion.html";
 					console.log("VISITA REGISTRADA EXITOSAMENTE");
+			}else{
+
+			}
+		});
+	}
+
+	$scope.consultaMunicipio = function(claveEntidad){
+		$http.post("http://www.bemtec.mx/bemtec/php/consultaMunicipios.php", {'claveEntidad': claveEntidad})
+		.success(function(data){
+			console.log("RESPONSE: " + data.response);
+			if(data.response == 0){
+					app.municipios = data;
+					console.log("Municipios obtenidos exitosamente!");
 			}else{
 
 			}

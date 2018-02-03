@@ -31,6 +31,12 @@
   $result = mysql_query($query);
 
   if($result === TRUE){
+
+    if($idTipoAccion == 3)
+      $_SESSION['nombreNormaEnergetica']="NOM 008-ENER 2001";
+    if($idTipoAccion == 4)
+      $_SESSION['nombreNormaEnergetica']="NOM 020-ENER 2011";
+
      $resultado["response"] = Constantes::EXITO;
   }else{
     $resultado["response"] = Constantes::ERROR;

@@ -118,6 +118,7 @@
       <!-- Container Starts -->
       <div class="container">
         <div class="row">
+          <h5 style="font-weight: 550;"><u>CÁLCULO PRESUPUESTO ENERGÉTICO {{app.nombreNormaEnergetica}}</u></h5>
           <h2 class="section-title wow fadeIn animated" data-wow-delay=".2s">
            1.- Datos Generales
          </h2>
@@ -143,17 +144,17 @@
             </center>
             <br/>
             <input type="text" class="form-control separacion-input" id="nombreEdificio" placeholder="Nombre del edificio" required/>
-            <select id="estado" class="form-control separacion-input">
-              <option value="0">Selecciona un estado...</option>
-              <option value="1">Aguascalientes</option>
-              <option value="2">Baja California</option>
-              <option value="3">Baja California Sur</option>
-              <option value="4">Campeche</option>
-              <option value="5">Coahuila</option>
-              <option value="6">Colima</option>
-              <option value="7">Chiapas</option>
-              <option value="8">Chihuahua</option>
-              <option value="9">Ciudad de México</option>
+            <select id="estado" class="form-control separacion-input" ng-model="app.idEstado" ng-change="consultaMunicipio(app.idEstado)">
+              <option selected value="">Selecciona un estado...</option>
+              <option value="01">Aguascalientes</option>
+              <option value="02">Baja California</option>
+              <option value="03">Baja California Sur</option>
+              <option value="04">Campeche</option>
+              <option value="05">Coahuila</option>
+              <option value="06">Colima</option>
+              <option value="07">Chiapas</option>
+              <option value="08">Chihuahua</option>
+              <option value="09">Ciudad de México</option>
               <option value="10">Durango</option>
               <option value="11">Guanajuato</option>
               <option value="12">Guerrero</option>
@@ -178,8 +179,9 @@
               <option value="31">Yucatán</option>
               <option value="32">Zacatecas</option>
             </select>
-            <select id="ciudades" class="form-control separacion-input">
-              <option value="0">Selecciona la ciudad...</option>
+            <select id="municipios" class="form-control separacion-input" ng-model="app.idMunicipio">
+              <option selected value="">Selecciona el municipio...</option>
+              <option ng-repeat="municipio in app.municipios" value="{{municipio.claveMunicipio}}">{{municipio.nombreMunicipio}}</option>
             </select>
             <input type="text" class="form-control separacion-input" id="latitud" placeholder="Latitud" required/>
             <br/>
@@ -338,7 +340,7 @@
     <script src="assets/js/jquery.vide.js"></script>
      <!-- All JS plugin Triggers -->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/color-switcher.js"></script>
+    <!--<script src="assets/js/color-switcher.js"></script>-->
 
     <!-- Script con funcionalidad de modal login y registro -->
     <script src="assets/js/login.js"></script>
