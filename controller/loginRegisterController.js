@@ -121,9 +121,8 @@ app.controller("loginRegisterController", function($scope, $http){
 			console.log("RESPONSE: " + data.response);
 			if(data.response == 0){
 					//Redirigir a pantalla para confirmación del código recibido por correo
-					//document.location.href = "mensajeConfirmacion.html";
-					alert("Se envio un correo electrónico para confirmar tu registro.");
 					$("#login-modal").modal('hide');
+					document.location.href = "registroIncompleto.html";
 			}else{
 				alert("Error! Ya existe un usuario con ese nombre.");
 				$scope.mensaje = "Error! Ya existe un usuario con ese nombre.";
@@ -140,10 +139,10 @@ app.controller("loginRegisterController", function($scope, $http){
 		.success(function(data){
 			console.log("RESPONSE: " + data.response);
 			if(data.response == 0){
-					alert("Se ha enviado la contraseña al correo electrónico especificado.");
 					$("#login-modal").modal('hide');
+					document.location.href = "exitoRecuperacion.html";
 			}else{
-					alert("Error al recuperar la contraseña!");
+					document.location.href = "404.html";
 			}
 		})
 		.error(function(data){

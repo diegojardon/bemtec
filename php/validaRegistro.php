@@ -34,15 +34,18 @@
 
 		if($result === TRUE){
       //Enviamos a pantalla indicando el exito en la confirmacion del registro
-
+			header("Location: http://www.bemtec.mx/bemtec/view/exitoRegistro.html");
+			die();
 		}else{
       //Enviamos a pantalla de error
-
+			header("Location: http://www.bemtec.mx/bemtec/view/404.html");
+			die();
 		}
 
 	}else{
 		//Enviamos a pantalla de error
-
+		header("Location: http://www.bemtec.mx/bemtec/view/404.html");
+		die();
 	}
 
 ?>
