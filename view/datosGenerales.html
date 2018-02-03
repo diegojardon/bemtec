@@ -118,16 +118,72 @@
       <!-- Container Starts -->
       <div class="container">
         <div class="row">
-          <h1 class="section-title wow fadeIn animated" data-wow-delay=".2s">
-           Cálculo de las NOM
-          </h1>
+          <h2 class="section-title wow fadeIn animated" data-wow-delay=".2s">
+           1.- Datos Generales
+         </h2>
           <br/>
-          <div class="col-sm-3 col-md-3"></div>
-          <div class="col-sm-3 col-md-3">
-            <a href=""><img src="images/BEM-TEC-NOM-008-2001.png" alt="" height="200" width="200" class="img-responsive center-block" /></a>
+          <div class="col-sm-1 col-md-1"></div>
+          <div class="col-sm-4 col-md-4">
+            <center>
+              <h5>
+                1.1 Propietario
+              </h5>
+            </center>
+            <br/>
+            <input type="text" class="form-control separacion-input" id="nombre" placeholder="Nombre" required/>
+            <input type="text" class="form-control separacion-input" id="direccion" placeholder="Dirección" required/>
+            <input type="text" class="form-control separacion-input" id="ciudad" placeholder="Ciudad" required/>
           </div>
-          <div class="col-sm-3 col-md-3">
-            <a href=""><img src="images/BEM-TEC-NOM-008-2011.png" alt="" height="200" width="200" class="img-responsive center-block" /></a>
+          <div class="col-sm-1 col-md-1"></div>
+          <div class="col-sm-4 col-md-4">
+            <center>
+              <h5>
+                1.2 Obra
+              </h5>
+            </center>
+            <br/>
+            <input type="text" class="form-control separacion-input" id="nombreEdificio" placeholder="Nombre del edificio" required/>
+            <select id="estado" class="form-control separacion-input">
+              <option value="0">Selecciona un estado...</option>
+              <option value="1">Aguascalientes</option>
+              <option value="2">Baja California</option>
+              <option value="3">Baja California Sur</option>
+              <option value="4">Campeche</option>
+              <option value="5">Coahuila</option>
+              <option value="6">Colima</option>
+              <option value="7">Chiapas</option>
+              <option value="8">Chihuahua</option>
+              <option value="9">Ciudad de México</option>
+              <option value="10">Durango</option>
+              <option value="11">Guanajuato</option>
+              <option value="12">Guerrero</option>
+              <option value="13">Hidalgo</option>
+              <option value="14">Jalisco</option>
+              <option value="15">México</option>
+              <option value="16">Michoacán</option>
+              <option value="17">Morelos</option>
+              <option value="18">Nayarit</option>
+              <option value="19">Nuevo León</option>
+              <option value="20">Oaxaca</option>
+              <option value="21">Puebla</option>
+              <option value="22">Querétaro</option>
+              <option value="23">Quintana Roo</option>
+              <option value="24">San Luis Potosí</option>
+              <option value="25">Sinaloa</option>
+              <option value="26">Sonora</option>
+              <option value="27">Tabasco</option>
+              <option value="28">Tamaulipas</option>
+              <option value="29">Tlaxcala</option>
+              <option value="30">Veracruz</option>
+              <option value="31">Yucatán</option>
+              <option value="32">Zacatecas</option>
+            </select>
+            <select id="ciudades" class="form-control separacion-input">
+              <option value="0">Selecciona la ciudad...</option>
+            </select>
+            <input type="text" class="form-control separacion-input" id="latitud" placeholder="Latitud" required/>
+            <br/>
+            <button type="button" class="btn btn-success" style="float:right;">SIGUIENTE</button>
           </div>
 
         </div>
@@ -217,7 +273,7 @@
     <!-- END # MODAL LOGIN -->
 
     <!-- Footer Section -->
-    <footer class="navbar-fixed-bottom">
+    <footer class="fixed-bottom">
       <!-- Copyright -->
       <div id="copyright">
         <div class="container">
@@ -282,7 +338,7 @@
     <script src="assets/js/jquery.vide.js"></script>
      <!-- All JS plugin Triggers -->
     <script src="assets/js/main.js"></script>
-    <!--<script src="assets/js/color-switcher.js"></script>-->
+    <script src="assets/js/color-switcher.js"></script>
 
     <!-- Script con funcionalidad de modal login y registro -->
     <script src="assets/js/login.js"></script>
