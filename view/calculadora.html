@@ -130,17 +130,18 @@
       <div class="container">
         <div class="row">
           <h5 style="font-weight: 550;"><u>CÁLCULO PRESUPUESTO ENERGÉTICO {{app.nombreNormaEnergetica}}</u></h5>
-          <h3 class="section-title wow fadeIn animated" data-wow-delay=".2s">
-           2.- Cálculo del coeficiente global de transferencia de calor de las porciones de la envolvente
-         </h3>
+          <h4 class="section-title2 wow fadeIn animated" data-wow-delay=".2s">
+           Cálculo del coeficiente global de transferencia de calor de las porciones de la envolvente
+         </h4>
           <br/>
 
           <!-- Inicio de Tabs -->
           <div id="default-tab">
 
             <ul class="nav nav-tabs" role="tablist">
-              <li class="nav-item"><a class="nav-link active show" href="#norte" aria-controls="norte" role="tab" data-toggle="tab" aria-selected="true">2.1 Norte</a></li>
-              <li class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab" aria-selected="false">2.2 Sur</a></li>
+              <li class="nav-item"><a class="nav-link active show" href="#datosGenerales" aria-controls="datosGenerales" role="tab" data-toggle="tab" aria-selected="true">1. Datos Generales</a></li>
+              <li class="nav-item"><a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab" aria-selected="false">2.1 Norte</a></li>
+              <li class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab">2.2 Sur</a></li>
               <li class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab">2.3 Este</a></li>
               <li class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab">2.4 Oeste</a></li>
               <li class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab">2.5 Techo</a></li>
@@ -148,7 +149,76 @@
             </ul>
 
             <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active show" id="norte">
+
+              <div role="tabpanel" class="tab-pane active show" id="datosGenerales">
+                <br/>
+                <div class="col-sm-1 col-md-1"></div>
+                <div class="col-sm-4 col-md-4">
+                  <center>
+                    <h5>
+                      1.1 Propietario
+                    </h5>
+                  </center>
+                  <br/>
+                  <input type="text" class="form-control separacion-input" id="nombre" placeholder="Nombre" required/>
+                  <input type="text" class="form-control separacion-input" id="direccion" placeholder="Dirección" required/>
+                  <input type="text" class="form-control separacion-input" id="ciudad" placeholder="Ciudad" required/>
+                </div>
+                <div class="col-sm-1 col-md-1"></div>
+                <div class="col-sm-4 col-md-4">
+                  <center>
+                    <h5>
+                      1.2 Obra
+                    </h5>
+                  </center>
+                  <br/>
+                  <input type="text" class="form-control separacion-input" id="nombreEdificio" placeholder="Nombre del edificio" required/>
+                  <select id="estado" class="form-control separacion-input" ng-model="app.idEstado" ng-change="consultaMunicipio(app.idEstado)">
+                    <option selected value="">Selecciona un estado...</option>
+                    <option value="01">Aguascalientes</option>
+                    <option value="02">Baja California</option>
+                    <option value="03">Baja California Sur</option>
+                    <option value="04">Campeche</option>
+                    <option value="05">Coahuila</option>
+                    <option value="06">Colima</option>
+                    <option value="07">Chiapas</option>
+                    <option value="08">Chihuahua</option>
+                    <option value="09">Ciudad de México</option>
+                    <option value="10">Durango</option>
+                    <option value="11">Guanajuato</option>
+                    <option value="12">Guerrero</option>
+                    <option value="13">Hidalgo</option>
+                    <option value="14">Jalisco</option>
+                    <option value="15">México</option>
+                    <option value="16">Michoacán</option>
+                    <option value="17">Morelos</option>
+                    <option value="18">Nayarit</option>
+                    <option value="19">Nuevo León</option>
+                    <option value="20">Oaxaca</option>
+                    <option value="21">Puebla</option>
+                    <option value="22">Querétaro</option>
+                    <option value="23">Quintana Roo</option>
+                    <option value="24">San Luis Potosí</option>
+                    <option value="25">Sinaloa</option>
+                    <option value="26">Sonora</option>
+                    <option value="27">Tabasco</option>
+                    <option value="28">Tamaulipas</option>
+                    <option value="29">Tlaxcala</option>
+                    <option value="30">Veracruz</option>
+                    <option value="31">Yucatán</option>
+                    <option value="32">Zacatecas</option>
+                  </select>
+                  <select id="municipios" class="form-control separacion-input" ng-model="app.idMunicipio">
+                    <option selected value="">Selecciona el municipio...</option>
+                    <option ng-repeat="municipio in app.municipios" value="{{municipio.claveMunicipio}}">{{municipio.nombreMunicipio}}</option>
+                  </select>
+                  <input type="text" class="form-control separacion-input" id="latitud" placeholder="Latitud" required/>
+                  <br/>
+                  <button type="button" class="btn btn-success" style="float:right;">SIGUIENTE</button>
+                </div>
+              </div>
+
+              <div role="tabpanel" class="tab-pane fade" id="norte">
                 <br/>
                 <div class="col-sm-4 col-md-4">
                   <h5 class="labelCalculadora">Tipo de muro</h5>
