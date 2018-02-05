@@ -15,6 +15,9 @@ body {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+.labelCalculadora{
+  font-size: 1rem;
+}
 .form-group .help-block {
   color: red;
 }
@@ -2127,7 +2130,7 @@ ul.nav-tabs li {
 }
 ul.nav-tabs li a {
   border: medium none !important;
-  color: #a0a0a0;
+  color: #373a3c;
   font-size: 16px;
   font-weight: 400;
   line-height: 18px;

@@ -50,6 +50,17 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
     </script>
     <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113013061-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-113013061-1');
+    </script>
+
   </head>
   <body ng-app="app" ng-controller="loginRegisterController as app">
 
@@ -125,63 +136,69 @@
           <br/>
 
           <!-- Inicio de Tabs -->
+          <div id="default-tab">
+
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active show" href="#norte" aria-controls="norte" role="tab" data-toggle="tab" aria-selected="true">2.1 Norte</a></li>
+              <li class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab" aria-selected="false">2.2 Sur</a></li>
+              <li class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab">2.3 Este</a></li>
+              <li class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab">2.4 Oeste</a></li>
+              <li class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab">2.5 Techo</a></li>
+              <li class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab">2.6 Calcular</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active show" id="norte">
+                <br/>
+                <div class="col-sm-4 col-md-4">
+                  <h5 class="labelCalculadora">Tipo de muro</h5>
+                  <input type="text" class="form-control separacion-input" id="muroNorte" required/>
+                  <h5 class="labelCalculadora">Área (m2)</h5>
+                  <input type="text" class="form-control separacion-input" id="areaMuroNorte" required/>
+                  <h5 class="labelCalculadora">Número de componentes</h5>
+                  <input type="number" class="form-control separacion-input" id="numComponentesNorte" name="numComponentesNorte" min="1" max="100" required/>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                  <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Componentes</h5></center>
+                  <div id="componentesNorte">
+                  </div>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                  <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Espesor</h5></center>
+                  <div id="espesoresNorte">
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="sur">
+                <br/>
+                <p>In as name to here them deny wise this. As rapid woody my he me which. Men but they fail shew just wish next put. Led all visitor musical calling nor her. Within coming figure sex things are. Pretended concluded did repulsive education smallness yet yet described. Had country man his pressed shewing. No gate dare rose he. Eyes year if miss he as upon.</p>
+                <p>Or neglected agreeable of discovery concluded oh it sportsman. Week to time in john. Son elegance use weddings separate. Ask too matter formed county wicket oppose talent.</p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="este">
+                <br/>
+                <p>Repulsive questions contented him few extensive supported. Of remarkably thoroughly he appearance in. Supposing tolerably applauded or of be. Suffering unfeeling so objection agreeable allowance me of. Ask within entire season sex common far who family. As be valley warmth assure on. Park girl they rich hour new well way you. Face ye be me been room we sons fond.</p>
+                <p>Yourself required no at thoughts delicate landlord it be. Branched dashwood do is whatever it. Farther be chapter at visited married in it pressed. By distrusts procuring be oh frankness existence believing instantly if. Doubtful on an juvenile as of servants insisted</p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="oeste">
+                <br/>
+                <p>As collected deficient objection by it discovery sincerity curiosity. Quiet decay who round three world whole has mrs man. Built the china there tried jokes which gay why. Assure in adieus wicket it is. But spoke round point and one joy. Offending her moonlight men sweetness see unwilling. Often of it tears whole oh balls share an.</p>
+                <p>But why smiling man her imagine married. Chiefly can man her out believe manners cottage colonel unknown.</p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="techo">
+                <br/>
+                <p>As collected deficient objection by it discovery sincerity curiosity. Quiet decay who round three world whole has mrs man. Built the china there tried jokes which gay why. Assure in adieus wicket it is. But spoke round point and one joy. Offending her moonlight men sweetness see unwilling. Often of it tears whole oh balls share an.</p>
+                <p>But why smiling man her imagine married. Chiefly can man her out believe manners cottage colonel unknown.</p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="calcular">
+                <br/>
+                <p>As collected deficient objection by it discovery sincerity curiosity. Quiet decay who round three world whole has mrs man. Built the china there tried jokes which gay why. Assure in adieus wicket it is. But spoke round point and one joy. Offending her moonlight men sweetness see unwilling. Often of it tears whole oh balls share an.</p>
+                <p>But why smiling man her imagine married. Chiefly can man her out believe manners cottage colonel unknown.</p>
+              </div>
+            </div>
+          </div>
           <!-- Fin de Tabs -->
 
-          <div class="col-sm-4 col-md-4">
-            <input type="text" class="form-control separacion-input" id="nombre" placeholder="Nombre" required/>
-            <input type="text" class="form-control separacion-input" id="direccion" placeholder="Dirección" required/>
-            <input type="text" class="form-control separacion-input" id="ciudad" placeholder="Ciudad" required/>
-          </div>
-          <div class="col-sm-4 col-md-4">
 
-            <input type="text" class="form-control separacion-input" id="nombreEdificio" placeholder="Nombre del edificio" required/>
-            <select id="estado" class="form-control separacion-input" ng-model="app.idEstado" ng-change="consultaMunicipio(app.idEstado)">
-              <option selected value="">Selecciona un estado...</option>
-              <option value="01">Aguascalientes</option>
-              <option value="02">Baja California</option>
-              <option value="03">Baja California Sur</option>
-              <option value="04">Campeche</option>
-              <option value="05">Coahuila</option>
-              <option value="06">Colima</option>
-              <option value="07">Chiapas</option>
-              <option value="08">Chihuahua</option>
-              <option value="09">Ciudad de México</option>
-              <option value="10">Durango</option>
-              <option value="11">Guanajuato</option>
-              <option value="12">Guerrero</option>
-              <option value="13">Hidalgo</option>
-              <option value="14">Jalisco</option>
-              <option value="15">México</option>
-              <option value="16">Michoacán</option>
-              <option value="17">Morelos</option>
-              <option value="18">Nayarit</option>
-              <option value="19">Nuevo León</option>
-              <option value="20">Oaxaca</option>
-              <option value="21">Puebla</option>
-              <option value="22">Querétaro</option>
-              <option value="23">Quintana Roo</option>
-              <option value="24">San Luis Potosí</option>
-              <option value="25">Sinaloa</option>
-              <option value="26">Sonora</option>
-              <option value="27">Tabasco</option>
-              <option value="28">Tamaulipas</option>
-              <option value="29">Tlaxcala</option>
-              <option value="30">Veracruz</option>
-              <option value="31">Yucatán</option>
-              <option value="32">Zacatecas</option>
-            </select>
-            <select id="municipios" class="form-control separacion-input" ng-model="app.idMunicipio">
-              <option selected value="">Selecciona el municipio...</option>
-              <option ng-repeat="municipio in app.municipios" value="{{municipio.claveMunicipio}}">{{municipio.nombreMunicipio}}</option>
-            </select>
-            <input type="text" class="form-control separacion-input" id="latitud" placeholder="Latitud" required/>
-          </div>
-          <div class="col-sm-4 col-md-4">
-
-            <input type="text" class="form-control separacion-input" id="nombre" placeholder="Nombre" required/>
-            <input type="text" class="form-control separacion-input" id="direccion" placeholder="Dirección" required/>
-            <input type="text" class="form-control separacion-input" id="ciudad" placeholder="Ciudad" required/>
-          </div>
 
         </div>
 
@@ -335,12 +352,40 @@
     <script src="assets/js/jquery.vide.js"></script>
      <!-- All JS plugin Triggers -->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/color-switcher.js"></script>
+    <!--<script src="assets/js/color-switcher.js"></script>-->
 
     <!-- Script con funcionalidad de modal login y registro -->
     <script src="assets/js/login.js"></script>
 
     <script src="assets/js/pieChart.js"></script>
+
+    <script type="text/javascript">
+      $("#numComponentesNorte").on("keyup keydown change",function(event){
+          var totalElementos = $(this).val();
+          //Limpiamos los elementos que existan de ambos div
+          $("#componentesNorte").empty();
+          $("#espesoresNorte").empty();
+
+          //Se agrega el total de elementos del input number
+          var cont = 1;
+          for(i=0;i<totalElementos;i++){
+              var componente = '<select name="componenteNorte" class="form-control separacion-input">';
+              componente += '<option selected value="">Componente ' + cont + '</option>';
+              componente += '<option value="01">Aguascalientes</option>';
+              componente += '<option value="02">Baja California</option>';
+              componente += '<option value="03">Baja California Sur</option>';
+              componente += '</select>';
+
+              var espesor = '<input type="text" class="form-control separacion-input" name="espesorNorte" placeholder="Espesor ' + cont +' (m)" required/>';
+
+              $("#componentesNorte").append(componente);
+              $("#espesoresNorte").append(espesor);
+
+              cont++;
+          }
+
+      });
+    </script>
 
   </body>
 </html>

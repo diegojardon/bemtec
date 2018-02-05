@@ -50,6 +50,17 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
     </script>
     <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113013061-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-113013061-1');
+    </script>
+
   </head>
   <body ng-app="app" ng-controller="loginRegisterController as app">
 
@@ -296,7 +307,7 @@
     <div class="bottom"> <a href="#" class="settings"></a> </div>
 
       <!-- Hidden button for registering a visit -->
-    <button type="hidden" id="visita" ng-click="registraAccion(1)"/>
+    <button type="button" style="display:none" id="visita" ng-click="registraAccion(1)"/>
 
     <!-- JavaScript & jQuery Plugins -->
 
