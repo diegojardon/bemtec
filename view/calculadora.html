@@ -139,13 +139,14 @@
           <div id="default-tab">
 
             <ul class="nav nav-tabs" role="tablist">
-              <li class="nav-item"><a class="nav-link active show" href="#datosGenerales" aria-controls="datosGenerales" role="tab" data-toggle="tab" aria-selected="true">1. Datos Generales</a></li>
-              <li class="nav-item"><a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab" aria-selected="false">2.1 Norte</a></li>
-              <li class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab">2.2 Sur</a></li>
-              <li class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab">2.3 Este</a></li>
-              <li class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab">2.4 Oeste</a></li>
-              <li class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab">2.5 Techo</a></li>
-              <li class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab">2.6 Calcular</a></li>
+              <li class="nav-item"><a class="nav-link active show" href="#datosGenerales" aria-controls="datosGenerales" role="tab" data-toggle="tab" aria-selected="true"><i class="fa fa-book"></i>&nbsp;Datos Generales</a></li>
+              <li class="nav-item"><a class="nav-link" href="#configuracion" aria-controls="norte" role="tab" data-toggle="tab"><i class="fa fa-edit"></i>&nbsp;Configuración</a></li>
+              <li class="nav-item"><a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab"><i class="fa fa-arrow-up"></i>&nbsp;Norte</a></li>
+              <li class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab"><i class="fa fa-arrow-down"></i>&nbsp;Sur</a></li>
+              <li class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab"><i class="fa fa-arrow-right"></i>&nbsp;Este</a></li>
+              <li class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab"><i class="fa fa-arrow-left"></i>&nbsp;Oeste</a></li>
+              <li class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab"><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
+              <li class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i>&nbsp;Calcular</a></li>
             </ul>
 
             <div class="tab-content">
@@ -156,7 +157,7 @@
                 <div class="col-sm-4 col-md-4">
                   <center>
                     <h5>
-                      1.1 Propietario
+                      Propietario
                     </h5>
                   </center>
                   <br/>
@@ -168,7 +169,7 @@
                 <div class="col-sm-4 col-md-4">
                   <center>
                     <h5>
-                      1.2 Obra
+                      Obra
                     </h5>
                   </center>
                   <br/>
@@ -214,7 +215,49 @@
                   </select>
                   <input type="text" class="form-control separacion-input" id="latitud" placeholder="Latitud" required/>
                   <br/>
-                  <button type="button" class="btn btn-success" style="float:right;">SIGUIENTE</button>
+                  <!--<button type="button" class="btn btn-success" style="float:right;">SIGUIENTE</button>-->
+                </div>
+              </div>
+
+              <div role="tabpanel" class="tab-pane fade" id="configuracion">
+                <br/>
+                  <div class="col-sm-6 col-md-6">
+                    <center>
+                    <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                    <div class="col-sm-4 col-md-4">
+                      <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
+                      <br/>
+                      <input type="radio" name="elemento" value="M" checked>Muro</input>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                      <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
+                      <br/>
+                      <input type="radio" name="elemento" value="P">Puerta</input>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                      <img src="images/ventana.png" alt="Ventana" height="130" width="130" class="img-responsive center-block"/>
+                      <br/>
+                      <input type="radio" name="elemento" value="V">Ventana</input>
+                    </div>
+                  </center>
+                  <br/>
+                </div>
+                <div class="col-sm-1 col-md-1"></div>
+                <div class="col-sm-4 col-md-4">
+                  <br/>
+                  <h5 class="labelCalculadora">Dirección</h5>
+                  <select id="direccion" class="form-control separacion-input">
+                    <option selected value="">Selecciona...</option>
+                    <option value="N">Norte</option>
+                    <option value="S">Sur</option>
+                    <option value="E">Este</option>
+                    <option value="O">Oeste</option>
+                    <option value="T">Techo</option>
+                  </select>
+                  <h5 class="labelCalculadora">Número de elementos</h5>
+                  <input type="number" class="form-control separacion-input" id="numElementos" name="numElementos" min="1" max="100" required/>
+                  <br/>
+                  <button type="button" class="btn btn-success" style="float:right;">AGREGAR</button>
                 </div>
               </div>
 
