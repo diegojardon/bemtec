@@ -33,12 +33,11 @@
 	$totalInicial = count($calculo[$llave]);
 
 	for($i = $totalInicial;$i< ($totalInicial + intval($totalElementos)); $i++){
-		$calculo[$llave][$i] = 0;
+		$calculo[$llave][$i] = array();
 	}
 
 	$_SESSION['calculo']=$calculo;
 
-	//$resultado["response"] = $tipoElemento.",".$direccionElemento.",".$totalElementos;
 	$resultado["response"] = count($calculo[$llave]);
 
 	echo json_encode($resultado);

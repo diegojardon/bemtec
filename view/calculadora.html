@@ -141,11 +141,11 @@
             <ul class="nav nav-tabs" role="tablist">
               <li class="nav-item"><a class="nav-link active show" href="#datosGenerales" aria-controls="datosGenerales" role="tab" data-toggle="tab" aria-selected="true"><i class="fa fa-book"></i>&nbsp;Datos Generales</a></li>
               <li class="nav-item"><a class="nav-link" href="#configuracion" aria-controls="norte" role="tab" data-toggle="tab"><i class="fa fa-edit"></i>&nbsp;Configuración</a></li>
-              <li class="nav-item"><a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab"><i class="fa fa-arrow-up"></i>&nbsp;Norte</a></li>
-              <li class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab"><i class="fa fa-arrow-down"></i>&nbsp;Sur</a></li>
-              <li class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab"><i class="fa fa-arrow-right"></i>&nbsp;Este</a></li>
-              <li class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab"><i class="fa fa-arrow-left"></i>&nbsp;Oeste</a></li>
-              <li class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab"><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
+              <li id="norteTab" class="nav-item"><a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab"><i class="fa fa-arrow-up"></i>&nbsp;Norte</a></li>
+              <li id="surTab" class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab"><i class="fa fa-arrow-down"></i>&nbsp;Sur</a></li>
+              <li id="esteTab" class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab"><i class="fa fa-arrow-right"></i>&nbsp;Este</a></li>
+              <li id="oesteTab" class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab"><i class="fa fa-arrow-left"></i>&nbsp;Oeste</a></li>
+              <li id="techoTab" class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab"><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
               <li class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i>&nbsp;Calcular</a></li>
             </ul>
 
@@ -263,20 +263,28 @@
 
               <div role="tabpanel" class="tab-pane fade" id="norte">
                 <br/>
-                <div class="col-sm-4 col-md-4">
-                  <h5 class="labelCalculadora">Tipo de muro</h5>
-                  <input type="text" class="form-control separacion-input" id="muroNorte" required/>
-                  <h5 class="labelCalculadora">Área (m2)</h5>
-                  <input type="text" class="form-control separacion-input" id="areaMuroNorte" required/>
-                  <h5 class="labelCalculadora">Número de componentes</h5>
-                  <input type="number" class="form-control separacion-input" id="numComponentesNorte" name="numComponentesNorte" min="1" max="100" required/>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                  <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Componentes</h5></center>
-                  <div id="componentesNorte">
+                <input type="hidden" id="totalMurosNorte" name="totalMurosNorte" ng-value="app.TMN"/>
+                <input type="hidden" id="totalPuertasNorte" name="totalPuertasNorte" ng-value="app.TPN"/>
+                  <input type="hidden" id="totalVentanasNorte" name="totalVentanasNorte" ng-value="app.TVN"/>
+                <div class="col-sm-3 col-md-3">
+                  <div id="murosNorte">
+                  </div>
+                  <div id="puertasNorte">
+                  </div>
+                  <div id="ventanasNorte">
                   </div>
                 </div>
-                <div class="col-sm-4 col-md-4">
+                <div class="col-sm-3 col-md-3">
+                  <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Tipo de muro</h5></center>
+                  <div id="tipoMuroNorte">
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                  <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Área (m2)</h5></center>
+                  <div id="areaNorte">
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-3">
                   <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Espesor</h5></center>
                   <div id="espesoresNorte">
                   </div>
@@ -310,8 +318,6 @@
             </div>
           </div>
           <!-- Fin de Tabs -->
-
-
 
         </div>
 
@@ -473,6 +479,10 @@
     <script src="assets/js/pieChart.js"></script>
 
     <script type="text/javascript">
+
+    /*CODIGO PARA COMPONENTES NORTE*/
+
+
       $("#numComponentesNorte").on("keyup keydown change",function(event){
           var totalElementos = $(this).val();
           //Limpiamos los elementos que existan de ambos div
@@ -480,7 +490,7 @@
           $("#espesoresNorte").empty();
 
           //Se agrega el total de elementos del input number
-          var cont = 1;
+          let cont = 1;
           for(i=0;i<totalElementos;i++){
               var componente = '<select name="componenteNorte" class="form-control separacion-input">';
               componente += '<option selected value="">Componente ' + cont + '</option>';
@@ -498,6 +508,73 @@
           }
 
       });
+
+      $("#norteTab").click(function(){
+        console.log("TOTAL MUROS NORTE: " + $('#totalMurosNorte').val());
+        console.log("TOTAL PUERTAS NORTE: " + $('#totalPuertasNorte').val());
+        console.log("TOTAL VENTANAS NORTE: " + $('#totalVentanasNorte').val());
+
+        //Limpiamos los elementos que existan de los div
+        $("#murosNorte").empty();
+        $("#puertasNorte").empty();
+        $("#ventanasNorte").empty();
+
+        let cont = 1;
+        for(i=0;i<parseInt($('#totalMurosNorte').val());i++){
+            let componente = '<h5 class="labelCalculadora">Muro Norte ' + cont + '</h5>';
+            componente += '<h5 class="labelCalculadora">Número de componentes</h5>';
+            componente += '<input type="number" class="form-control separacion-input" id="numComponentesNorte" name="numComponentesNorte" min="1" max="100" required/>';
+
+            $("#murosNorte").append(componente);
+            cont++;
+        }
+
+        cont = 1;
+        for(i=0;i<parseInt($('#totalPuertasNorte').val());i++){
+            let componente = '<h5 class="labelCalculadora">Puerta Norte ' + cont + '</h5>';
+            componente += '<h5 class="labelCalculadora">Número de componentes</h5>';
+            componente += '<input type="number" class="form-control separacion-input" id="numComponentesNorte" name="numComponentesNorte" min="1" max="100" required/>';
+
+            $("#puertasNorte").append(componente);
+            cont++;
+        }
+
+        cont = 1;
+        for(i=0;i<parseInt($('#totalVentanasNorte').val());i++){
+            let componente = '<h5 class="labelCalculadora">Ventana Norte ' + cont + '</h5>';
+            componente += '<h5 class="labelCalculadora">Número de componentes</h5>';
+            componente += '<input type="number" class="form-control separacion-input" id="numComponentesNorte" name="numComponentesNorte" min="1" max="100" required/>';
+
+            $("#ventanasNorte").append(componente);
+            cont++;
+        }
+
+      });
+
+      $("#surTab").click(function(){
+        console.log("TOTAL MUROS SUR: " + $('#totalMurosSur').val());
+        console.log("TOTAL PUERTAS SUR: " + $('#totalPuertasSur').val());
+        console.log("TOTAL VENTANAS SUR: " + $('#totalVentanasSur').val());
+      });
+
+      $("#esteTab").click(function(){
+        console.log("TOTAL MUROS ESTE: " + $('#totalMurosEste').val());
+        console.log("TOTAL PUERTAS ESTE: " + $('#totalPuertasEste').val());
+        console.log("TOTAL VENTANAS ESTE: " + $('#totalVentanasEste').val());
+      });
+
+      $("#oesteTab").click(function(){
+        console.log("TOTAL MUROS OESTE: " + $('#totalMurosOeste').val());
+        console.log("TOTAL PUERTAS OESTE: " + $('#totalPuertasOeste').val());
+        console.log("TOTAL VENTANAS OESTE: " + $('#totalVentanasOeste').val());
+      });
+
+      $("#techoTab").click(function(){
+        console.log("TOTAL MUROS TECHO: " + $('#totalMurosTecho').val());
+        console.log("TOTAL PUERTAS TECHO: " + $('#totalPuertasTecho').val());
+        console.log("TOTAL VENTANAS TECHO: " + $('#totalVentanasTecho').val());
+      });
+
     </script>
 
   </body>

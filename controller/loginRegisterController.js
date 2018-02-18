@@ -84,6 +84,30 @@ app.controller("loginRegisterController", function($scope, $http){
 		console.log(data);
 	})
 
+	$http.get("http://www.bemtec.mx/bemtec/php/contarTotalElementos.php")
+	.success(function(data){
+		console.log(data);
+		app.TMN = data.TMN;
+		app.TMS = data.TMS;
+		app.TME = data.TME;
+		app.TMO = data.TMO;
+		app.TMT = data.TMT;
+		app.TPN = data.TPN;
+		app.TPS = data.TPS;
+		app.TPE = data.TPE;
+		app.TPO = data.TPO;
+		app.TPT = data.TPT;
+		app.TVN = data.TVN;
+		app.TVS = data.TVS;
+		app.TVE = data.TVE;
+		app.TVO = data.TVO;
+		app.TVT = data.TVT;
+		
+	})
+	.error(function(data){
+		console.log(data);
+	})
+
 	$scope.cierraSesion = function(){
 		$http.post("http://www.bemtec.mx/bemtec/php/logout.php")
 		.success(function(data){
