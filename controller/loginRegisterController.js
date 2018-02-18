@@ -217,57 +217,76 @@ app.controller("loginRegisterController", function($scope, $http){
 		});
 	}
 
-	$scope.actualizaTotalesNorte = function(){
-		$http.get("http://www.bemtec.mx/bemtec/php/contarTotalElementos.php")
+	$scope.buscaElementoSiguiente = function(direccion, accion){
+		$http.post("http://www.bemtec.mx/bemtec/php/contarTotalElementos.php", {'direccionElemento': direccion, 'accion': accion})
 		.success(function(data){
 			console.log(data);
-			let TMN = data.TMN;
-			let TPN = data.TPN;
-			let TVN = data.TVN;
 
-			console.log("TOTAL MUROS NORTE: " + TMN);
-			console.log("TOTAL PUERTAS NORTE: " + TPN);
-			console.log("TOTAL VENTANAS NORTE: " + TVN);
+			let elementoSiguiente = data.elementoSiguiente;
+
+			console.log("ELEMENTO SIGUIENTE: " + elementoSiguiente);
 
 			//Limpiamos los elementos que existan de los div
-			$("#murosNorte").empty();
-			$("#puertasNorte").empty();
-			$("#ventanasNorte").empty();
-
-			let cont = 1;
-				for(i=0;i<parseInt(TMN);i++){
-					let componente = '<h5 class="labelCalculadora">Muro Norte ' + cont + '</h5>';
-					componente += '<h5 class="labelCalculadora">Número de componentes</h5>';
-					componente += '<input type="number" class="form-control separacion-input" id="numComponentesNorte" name="numComponentesNorte" min="1" max="100" required/>';
-
-					$("#murosNorte").append(componente);
-					cont++;
-			}
-
-			cont = 1;
-			for(i=0;i<parseInt(TPN);i++){
-					let componente = '<h5 class="labelCalculadora">Puerta Norte ' + cont + '</h5>';
-					componente += '<h5 class="labelCalculadora">Número de componentes</h5>';
-					componente += '<input type="number" class="form-control separacion-input" id="numComponentesNorte" name="numComponentesNorte" min="1" max="100" required/>';
-
-					$("#puertasNorte").append(componente);
-					cont++;
-			}
-
-			cont = 1;
-			for(i=0;i<parseInt(TVN);i++){
-					let componente = '<h5 class="labelCalculadora">Ventana Norte ' + cont + '</h5>';
-					componente += '<h5 class="labelCalculadora">Número de componentes</h5>';
-					componente += '<input type="number" class="form-control separacion-input" id="numComponentesNorte" name="numComponentesNorte" min="1" max="100" required/>';
-
-					$("#ventanasNorte").append(componente);
-					cont++;
+			switch(direccion){
+				case "N":
+					$("#elementoNorte").empty();
+					$("#elementoNorte").append(armaComponente(elementoSiguiente));
+					break;
+				case "S":
+					$("#elementoSur").empty();
+					$("#elementoSur").append(armaComponente(elementoSiguiente));
+					break;
+				case "E":
+					$("#elementoEste").empty();
+					$("#elementoEste").append(armaComponente(elementoSiguiente));
+					break;
+				case "O":
+					$("#elementoOeste").empty();
+					$("#elementoOeste").append(armaComponente(elementoSiguiente));
+					break;
+				case "T":
+					$("#elementoTecho").empty();
+					$("#elementoTecho").append(armaComponente(elementoSiguiente));
+					break;
 			}
 
 		})
 		.error(function(data){
 			console.log(data);
 		})
+	}
+
+	function armaComponente(elementoSiguiente){
+		if(elementoSiguiente.equals("XX0")){
+			//No hay elementos disponibles para connfigurar en esta dirección
+			alert("No hay elementos disponibles para connfigurar en esta dirección");
+		}else{
+
+			let numElemento = parseInt(elementoSiguiente.substring(2,3));
+			let elemento = elementoSiguiente.substring(0,1);
+			console.log("NUM ELEMENTO: " + numElemento);
+			console.log("ELEMENTO: " + elemento);
+
+			let componente = "";
+
+			if(elemento.equals("M")){
+		  	componente = '<h5 class="labelCalculadora">Muro ' + numElemento + '</h5>';
+			}else{
+				if(elemento.equals("P")){
+					componente = '<h5 class="labelCalculadora">Puerta ' + numElemento + '</h5>';
+				}else{
+					if(elemento.equals("V")){
+						componente = '<h5 class="labelCalculadora">Ventana ' + numElemento + '</h5>';
+					}
+				}
+			}
+
+			componente += '<h5 class="labelCalculadora">Número de componentes</h5>';
+			componente += '<input type="number" id="numComponentes" class="form-control separacion-input" min="1" max="100" required/>';
+
+			return componente;
+
+		}
 	}
 
 });

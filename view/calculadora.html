@@ -141,12 +141,13 @@
             <ul class="nav nav-tabs" role="tablist">
               <li class="nav-item"><a class="nav-link active show" href="#datosGenerales" aria-controls="datosGenerales" role="tab" data-toggle="tab" aria-selected="true"><i class="fa fa-book"></i>&nbsp;Datos Generales</a></li>
               <li class="nav-item"><a class="nav-link" href="#configuracion" aria-controls="norte" role="tab" data-toggle="tab"><i class="fa fa-edit"></i>&nbsp;Configuración</a></li>
-              <li id="norteTab" ng-click="actualizaTotalesNorte()" class="nav-item"><a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab"><i class="fa fa-arrow-up"></i>&nbsp;Norte</a></li>
-              <li id="surTab" class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab"><i class="fa fa-arrow-down"></i>&nbsp;Sur</a></li>
-              <li id="esteTab" class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab"><i class="fa fa-arrow-right"></i>&nbsp;Este</a></li>
-              <li id="oesteTab" class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab"><i class="fa fa-arrow-left"></i>&nbsp;Oeste</a></li>
-              <li id="techoTab" class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab"><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
+              <li id="norteTab" ng-click="buscaElementoSiguiente('N','LECTURA')" class="nav-item"><a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab"><i class="fa fa-arrow-up"></i>&nbsp;Norte</a></li>
+              <li id="surTab" ng-click="buscaElementoSiguiente('S','LECTURA')" class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab"><i class="fa fa-arrow-down"></i>&nbsp;Sur</a></li>
+              <li id="esteTab" ng-click="buscaElementoSiguiente('E','LECTURA')" class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab"><i class="fa fa-arrow-right"></i>&nbsp;Este</a></li>
+              <li id="oesteTab" ng-click="buscaElementoSiguiente('O','LECTURA')" class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab"><i class="fa fa-arrow-left"></i>&nbsp;Oeste</a></li>
+              <li id="techoTab" ng-click="buscaElementoSiguiente('T','LECTURA')" class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab"><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
               <li class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i>&nbsp;Calcular</a></li>
+
             </ul>
 
             <div class="tab-content">
@@ -263,33 +264,37 @@
 
               <div role="tabpanel" class="tab-pane fade" id="norte">
                 <br/>
-              
-                <div class="col-sm-3 col-md-3">
-                  <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Muro(s)</h5></center>
-                  <div id="murosNorte">
+                  <div>
+                    <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Muro(s)</h5></center>
+                    <div class="col-sm-3 col-md-3">
+                      <div id="elementoNorte">
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Tipo de muro</h5></center>
+                      <div id="tipoMuroNorte">
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Área (m2)</h5></center>
+                      <div id="areaNorte">
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Espesor</h5></center>
+                      <div id="espesoresNorte">
+                      </div>
+                    </div>
                   </div>
-                  <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Puerta(s)</h5></center>
-                  <div id="puertasNorte">
-                  </div>
-                  <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Ventana(s)</h5></center>
-                  <div id="ventanasNorte">
-                  </div>
-                </div>
-                <div class="col-sm-3 col-md-3">
-                  <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Tipo de muro</h5></center>
-                  <div id="tipoMuroNorte">
-                  </div>
-                </div>
-                <div class="col-sm-3 col-md-3">
-                  <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Área (m2)</h5></center>
-                  <div id="areaNorte">
-                  </div>
-                </div>
-                <div class="col-sm-3 col-md-3">
-                  <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Espesor</h5></center>
-                  <div id="espesoresNorte">
-                  </div>
-                </div>
+                    <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Puerta(s)</h5></center>
+                    <div id="puertasNorte">
+                    </div>
+                    <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Ventana(s)</h5></center>
+                    <div id="ventanasNorte">
+                    </div>
+
+
+
               </div>
               <div role="tabpanel" class="tab-pane fade" id="sur">
                 <br/>
@@ -483,7 +488,7 @@
 
     /*CODIGO PARA COMPONENTES NORTE*/
 
-      $("#numComponentesNorte").on("keyup keydown change",function(event){
+      $("#numComponentes").on("keyup keydown change",function(event){
           var totalElementos = $(this).val();
           //Limpiamos los elementos que existan de ambos div
           $("#componentesNorte").empty();
@@ -508,7 +513,6 @@
           }
 
       });
-
 
       $("#surTab").click(function(){
         console.log("TOTAL MUROS SUR: " + $('#totalMurosSur').val());

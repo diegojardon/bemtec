@@ -22,23 +22,18 @@
 
 	//Se agrega el elemento con su configuración al array
 
-	if(!isset($_SESSION['calculo'])){
-		$calculo = array();
-		$calculo[] = array();
+	if(!isset($_SESSION['elementos'])){
+		$elementos = array();
 	}else{
-		$calculo = $_SESSION['calculo'];
+		$elementos = $_SESSION['elementos'];
 	}
 
 	$llave = $tipoElemento . $direccionElemento;
-	$totalInicial = count($calculo[$llave]);
+	$elementos[$llave] += intval($totalElementos);
 
-	for($i = $totalInicial;$i< ($totalInicial + intval($totalElementos)); $i++){
-		$calculo[$llave][$i] = array();
-	}
+	$_SESSION['elementos'] = $elementos;
 
-	$_SESSION['calculo']=$calculo;
-
-	$resultado["response"] = count($calculo[$llave]);
+	$resultado["response"] = $elementos[$llave];
 
 	echo json_encode($resultado);
 ?>
