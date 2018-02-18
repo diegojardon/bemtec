@@ -178,4 +178,19 @@ app.controller("loginRegisterController", function($scope, $http){
 		});
 	}
 
+	$scope.agregaElemento = function(elemento){
+		$http.post("http://www.bemtec.mx/bemtec/php/agregaElementoSesion.php", {'tipoElemento': elemento.tipo, 'direccionElemento': elemento.direccion,
+		'totalElementos': elemento.total})
+		.success(function(data){
+			console.log("RESPONSE: " + data.response);
+			if(data.response == 0){
+					//Redirigir a pantalla para confirmación del código recibido por correo
+					//document.location.href = "mensajeConfirmacion.html";
+					console.log("ELEMENTO REGISTRADO EXITOSAMENTE");
+			}else{
+
+			}
+		});
+	}
+
 });
