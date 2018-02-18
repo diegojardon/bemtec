@@ -102,7 +102,7 @@ app.controller("loginRegisterController", function($scope, $http){
 		app.TVE = data.TVE;
 		app.TVO = data.TVO;
 		app.TVT = data.TVT;
-		
+
 	})
 	.error(function(data){
 		console.log(data);
@@ -210,11 +210,64 @@ app.controller("loginRegisterController", function($scope, $http){
 			if(data.response == 0){
 					//Redirigir a pantalla para confirmación del código recibido por correo
 					//document.location.href = "mensajeConfirmacion.html";
-					console.log("ELEMENTO REGISTRADO EXITOSAMENTE");
+					alert("Elemento agregado exitosamente!");
 			}else{
 
 			}
 		});
+	}
+
+	$scope.actualizaTotalesNorte = function(){
+		$http.get("http://www.bemtec.mx/bemtec/php/contarTotalElementos.php")
+		.success(function(data){
+			console.log(data);
+			let TMN = data.TMN;
+			let TPN = data.TPN;
+			let TVN = data.TVN;
+
+			console.log("TOTAL MUROS NORTE: " + TMN);
+			console.log("TOTAL PUERTAS NORTE: " + TPN);
+			console.log("TOTAL VENTANAS NORTE: " + TVN);
+
+			//Limpiamos los elementos que existan de los div
+			$("#murosNorte").empty();
+			$("#puertasNorte").empty();
+			$("#ventanasNorte").empty();
+
+			let cont = 1;
+				for(i=0;i<parseInt(TMN);i++){
+					let componente = '<h5 class="labelCalculadora">Muro Norte ' + cont + '</h5>';
+					componente += '<h5 class="labelCalculadora">Número de componentes</h5>';
+					componente += '<input type="number" class="form-control separacion-input" id="numComponentesNorte" name="numComponentesNorte" min="1" max="100" required/>';
+
+					$("#murosNorte").append(componente);
+					cont++;
+			}
+
+			cont = 1;
+			for(i=0;i<parseInt(TPN);i++){
+					let componente = '<h5 class="labelCalculadora">Puerta Norte ' + cont + '</h5>';
+					componente += '<h5 class="labelCalculadora">Número de componentes</h5>';
+					componente += '<input type="number" class="form-control separacion-input" id="numComponentesNorte" name="numComponentesNorte" min="1" max="100" required/>';
+
+					$("#puertasNorte").append(componente);
+					cont++;
+			}
+
+			cont = 1;
+			for(i=0;i<parseInt(TVN);i++){
+					let componente = '<h5 class="labelCalculadora">Ventana Norte ' + cont + '</h5>';
+					componente += '<h5 class="labelCalculadora">Número de componentes</h5>';
+					componente += '<input type="number" class="form-control separacion-input" id="numComponentesNorte" name="numComponentesNorte" min="1" max="100" required/>';
+
+					$("#ventanasNorte").append(componente);
+					cont++;
+			}
+
+		})
+		.error(function(data){
+			console.log(data);
+		})
 	}
 
 });
