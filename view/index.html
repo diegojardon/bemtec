@@ -51,6 +51,8 @@
     </script>
     <![endif]-->
 
+    <script src="assets/js/js.cookie.js"></script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113013061-1"></script>
     <script>
@@ -262,6 +264,23 @@
   	</div>
     <!-- END # MODAL LOGIN -->
 
+    <!-- INICIA # WELCOME MODAL -->
+    <div class="modal fade" id="welcome-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div id="div-forms">
+            <div class="modal-body">
+                <br/>
+                <img src="images/BEMTEC-PupUpBienvenida.png" height="500" width="850" class="img-responsive center-block" />
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END # WELCOME MODAL -->
+
 
     <!-- Footer Section -->
     <footer class="navbar-fixed-bottom">
@@ -344,11 +363,17 @@
 
     <script type="text/javascript">
 
-
-
     $(document).ready(function() {
         //Insertamos una acción de visita
         $( "#visita" ).trigger( "click" );
+
+        var mostrarModal = Cookies.get('muestraWelcome');
+        if(mostrarModal == null || mostrarModal == ""){
+          Cookies.set('muestraWelcome', "si");
+          $("#welcome-modal").modal("show");
+        }
+
+
     });
 
     </script>
