@@ -128,7 +128,8 @@ app.controller("loginRegisterController", function($scope, $http){
 		.success(function(data){
 			console.log("RESPONSE: " + data.response);
 			if(data.response == 0){
-					location.reload(true);
+					//location.reload(true);
+					document.location.href = "calculadoraHome.html";
 			}else{
 				alert("Usuario y/o password incorrectos");
 				$scope.mensaje = "Error! Usuario y/o password incorrecto.";
@@ -257,7 +258,7 @@ app.controller("loginRegisterController", function($scope, $http){
 	}
 
 	function armaComponente(elementoSiguiente){
-		if(elementoSiguiente.equals("XX0")){
+		if(elementoSiguiente == "XX0"){
 			//No hay elementos disponibles para connfigurar en esta dirección
 			alert("No hay elementos disponibles para connfigurar en esta dirección");
 		}else{
@@ -269,13 +270,13 @@ app.controller("loginRegisterController", function($scope, $http){
 
 			let componente = "";
 
-			if(elemento.equals("M")){
+			if(elemento == "M"){
 		  	componente = '<h5 class="labelCalculadora">Muro ' + numElemento + '</h5>';
 			}else{
-				if(elemento.equals("P")){
+				if(elemento == "P"){
 					componente = '<h5 class="labelCalculadora">Puerta ' + numElemento + '</h5>';
 				}else{
-					if(elemento.equals("V")){
+					if(elemento == "V"){
 						componente = '<h5 class="labelCalculadora">Ventana ' + numElemento + '</h5>';
 					}
 				}
@@ -284,9 +285,18 @@ app.controller("loginRegisterController", function($scope, $http){
 			componente += '<h5 class="labelCalculadora">Número de componentes</h5>';
 			componente += '<input type="number" id="numComponentes" class="form-control separacion-input" min="1" max="100" required/>';
 
+			console.log(componente);
+
 			return componente;
 
 		}
+	}
+
+	$scope.muestraComponentes = function(nombreElemento, areaElemento, direccion){
+		console.log("Nombre Elemento: " + nombreElemento);
+		console.log("Area Elemento: " + areaElemento);
+		console.log("Direccion: " + direccion);
+
 	}
 
 });

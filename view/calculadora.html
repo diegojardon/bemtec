@@ -37,6 +37,18 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
+    <style text="text/css">
+
+    .separador{
+        width: 90%;
+        border-color:#24445A;
+        border-top: dotted 1px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+    </style>
+
     <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
 
@@ -126,9 +138,9 @@
       <!-- Container Starts -->
       <div class="container">
         <div class="row">
-          <h5 style="font-weight: 550;"><u>CÁLCULO PRESUPUESTO ENERGÉTICO {{app.nombreNormaEnergetica}}</u></h5>
+          <h5 style="font-weight: 550;"><u></u></h5>
           <h4 class="section-title2 wow fadeIn animated" data-wow-delay=".2s">
-           Cálculo del coeficiente global de transferencia de calor de las porciones de la envolvente
+           Cálculo Presupuesto Energético {{app.nombreNormaEnergetica}}
          </h4>
           <br/>
 
@@ -137,7 +149,6 @@
 
             <ul class="nav nav-tabs" role="tablist">
               <li class="nav-item"><a class="nav-link active show" href="#datosGenerales" aria-controls="datosGenerales" role="tab" data-toggle="tab" aria-selected="true"><i class="fa fa-book"></i>&nbsp;Datos Generales</a></li>
-              <li class="nav-item"><a class="nav-link" href="#configuracion" aria-controls="norte" role="tab" data-toggle="tab"><i class="fa fa-edit"></i>&nbsp;Configuración</a></li>
               <li id="norteTab" ng-click="buscaElementoSiguiente('N','LECTURA')" class="nav-item"><a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab"><i class="fa fa-arrow-up"></i>&nbsp;Norte</a></li>
               <li id="surTab" ng-click="buscaElementoSiguiente('S','LECTURA')" class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab"><i class="fa fa-arrow-down"></i>&nbsp;Sur</a></li>
               <li id="esteTab" ng-click="buscaElementoSiguiente('E','LECTURA')" class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab"><i class="fa fa-arrow-right"></i>&nbsp;Este</a></li>
@@ -161,7 +172,8 @@
                   <br/>
                   <input type="text" class="form-control separacion-input" id="nombre" placeholder="Nombre" required/>
                   <input type="text" class="form-control separacion-input" id="direccion" placeholder="Dirección" required/>
-                  <input type="text" class="form-control separacion-input" id="ciudad" placeholder="Ciudad" required/>
+                  <input type="text" class="form-control separacion-input" id="ciudad" placeholder="Código Postal" required/>
+                  <input type="text" class="form-control separacion-input" id="telefono" placeholder="Teléfono" required/>
                 </div>
                 <div class="col-sm-1 col-md-1"></div>
                 <div class="col-sm-4 col-md-4">
@@ -172,6 +184,7 @@
                   </center>
                   <br/>
                   <input type="text" class="form-control separacion-input" id="nombreEdificio" placeholder="Nombre del edificio" required/>
+                  <input type="text" class="form-control separacion-input" id="direccionEdificio" placeholder="Dirección" required/>
                   <select id="estado" class="form-control separacion-input" ng-model="app.idEstado" ng-change="consultaMunicipio(app.idEstado)">
                     <option selected value="">Selecciona un estado...</option>
                     <option value="01">Aguascalientes</option>
@@ -208,92 +221,98 @@
                     <option value="32">Zacatecas</option>
                   </select>
                   <select id="municipios" class="form-control separacion-input" ng-model="app.idMunicipio">
-                    <option selected value="">Selecciona el municipio...</option>
+                    <option selected value="">Selecciona la ciudad...</option>
                     <option ng-repeat="municipio in app.municipios" value="{{municipio.claveMunicipio}}">{{municipio.nombreMunicipio}}</option>
                   </select>
-                  <input type="text" class="form-control separacion-input" id="latitud" placeholder="Latitud" required/>
+                  <!--<h5>Latitud:&nbsp;</h5>-->
+                  <input type="hidden" class="form-control separacion-input" id="latitud" required/>
                   <br/>
                   <!--<button type="button" class="btn btn-success" style="float:right;">SIGUIENTE</button>-->
                 </div>
               </div>
 
-              <div role="tabpanel" class="tab-pane fade" id="configuracion">
-                <br/>
-                  <div class="col-sm-6 col-md-6">
-                    <center>
-                    <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
-                    <div class="col-sm-4 col-md-4">
-                      <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
-                      <br/>
-                      <input type="radio" name="elemento" ng-model="elemento.tipo" value="M" checked>Muro</input>
-                    </div>
-                    <div class="col-sm-4 col-md-4">
-                      <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
-                      <br/>
-                      <input type="radio" name="elemento" ng-model="elemento.tipo" value="P">Puerta</input>
-                    </div>
-                    <div class="col-sm-4 col-md-4">
-                      <img src="images/ventana.png" alt="Ventana" height="130" width="130" class="img-responsive center-block"/>
-                      <br/>
-                      <input type="radio" name="elemento" ng-model="elemento.tipo" value="V">Ventana</input>
-                    </div>
-                  </center>
-                  <br/>
-                </div>
-                <div class="col-sm-1 col-md-1"></div>
-                <div class="col-sm-4 col-md-4">
-                  <br/>
-                  <h5 class="labelCalculadora">Dirección</h5>
-                  <select id="direccion" class="form-control separacion-input" ng-model="elemento.direccion">
-                    <option selected value="">Selecciona...</option>
-                    <option value="N">Norte</option>
-                    <option value="S">Sur</option>
-                    <option value="E">Este</option>
-                    <option value="O">Oeste</option>
-                    <option value="T">Techo</option>
-                  </select>
-                  <h5 class="labelCalculadora">Número de elementos</h5>
-                  <input type="number" class="form-control separacion-input" id="numElementos" name="numElementos" ng-model="elemento.total" min="1" max="100" required/>
-                  <br/>
-                  <button type="button" class="btn btn-success" style="float:right;" ng-click="agregaElemento(elemento)">AGREGAR</button>
-                </div>
-              </div>
-
               <div role="tabpanel" class="tab-pane fade" id="norte">
                 <br/>
-                  <div>
-                    <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Muro(s)</h5></center>
-                    <div class="col-sm-3 col-md-3">
-                      <div id="elementoNorte">
+                <div class="row">
+                    <div class="col-sm-9 col-md-9">
+                      <center>
+                      <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="elemento" ng-model="elemento.tipo" value="M" checked>Muro</input>
                       </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3">
-                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Tipo de muro</h5></center>
-                      <div id="tipoMuroNorte">
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="elemento" ng-model="elemento.tipo" value="P">Puerta</input>
                       </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3">
-                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Área (m2)</h5></center>
-                      <div id="areaNorte">
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/ventana.png" alt="Ventana" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="elemento" ng-model="elemento.tipo" value="V">Ventana</input>
                       </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3">
-                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Espesor</h5></center>
-                      <div id="espesoresNorte">
-                      </div>
-                    </div>
+                    </center>
+                    <br/>
                   </div>
-                    <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Puerta(s)</h5></center>
-                    <div id="puertasNorte">
+                  <div class="col-sm-1 col-md-1"></div>
+                  <!--<div class="col-sm-4 col-md-4">
+                    <br/>-->
+                    <!--<h5 class="labelCalculadora">Dirección</h5>
+                    <select id="direccion" class="form-control separacion-input" ng-model="elemento.direccion">
+                      <option selected value="">Selecciona...</option>
+                      <option value="N">Norte</option>
+                      <option value="S">Sur</option>
+                      <option value="E">Este</option>
+                      <option value="O">Oeste</option>
+                      <option value="T">Techo</option>
+                    </select>-->
+                    <!--<h5 class="labelCalculadora">Número de elementos</h5>
+                    <input type="number" class="form-control separacion-input" id="numElementosNorte" name="numElementosNorte" ng-model="elemento.total" min="1" max="100" required/>
+                    <br/>-->
+                    <!--<button type="button" class="btn btn-success" style="float:right;" ng-click="agregaElemento(elemento)">AGREGAR</button>-->
+                    <!--<button type="button" class="btn btn-success" style="float:right;" onclick="agregarComponentes('N')">AGREGAR</button>
+                  </div>-->
+                </div>
+                <br/>
+                <div class="row">
+                  <hr class="separador"/>
+                  <br/>
+                  <div id="elementosNorte">
+                    <div class="col-sm-3 col-md-3">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Nombre</h5></center>
+                      <div id="nombreElementoNorte">
+                      </div>
                     </div>
-                    <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Ventana(s)</h5></center>
-                    <div id="ventanasNorte">
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Área (m2)</h5></center>
+                      <div id="areaElementoNorte">
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Es Homogéneo?</h5></center>
+                      <div id="homogeneoNorte">
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">K</h5></center>
+                      <div id="KNorte">
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <div id="calculoKNorte">
+                      </div>
                     </div>
 
-
-
+                  </div>
+                </div>
+                <div class="row">
+                  <br/>
+                  <button type="button" class="btn btn-success" style="float:right;" ng-click="muestraComponentes('muro 234', 213.89, 1)">GUARDAR</button>
+                </div>
               </div>
-              <div role="tabpanel" class="tab-pane fade" id="sur">
+
+            <div role="tabpanel" class="tab-pane fade" id="sur">
                 <br/>
                 <p>In as name to here them deny wise this. As rapid woody my he me which. Men but they fail shew just wish next put. Led all visitor musical calling nor her. Within coming figure sex things are. Pretended concluded did repulsive education smallness yet yet described. Had country man his pressed shewing. No gate dare rose he. Eyes year if miss he as upon.</p>
                 <p>Or neglected agreeable of discovery concluded oh it sportsman. Week to time in john. Son elegance use weddings separate. Ask too matter formed county wicket oppose talent.</p>
@@ -483,33 +502,45 @@
 
     <script type="text/javascript">
 
-    /*CODIGO PARA COMPONENTES NORTE*/
 
-      $("#numComponentes").on("keyup keydown change",function(event){
-          var totalElementos = $(this).val();
-          //Limpiamos los elementos que existan de ambos div
-          $("#componentesNorte").empty();
-          $("#espesoresNorte").empty();
+    function agregarComponentes(direccion){
+      if(direccion == "N"){
 
-          //Se agrega el total de elementos del input number
-          let cont = 1;
-          for(i=0;i<totalElementos;i++){
-              var componente = '<select name="componenteNorte" class="form-control separacion-input">';
-              componente += '<option selected value="">Componente ' + cont + '</option>';
-              componente += '<option value="01">Aguascalientes</option>';
-              componente += '<option value="02">Baja California</option>';
-              componente += '<option value="03">Baja California Sur</option>';
-              componente += '</select>';
+        var totalElementos = $("#numElementosNorte").val();
 
-              var espesor = '<input type="text" class="form-control separacion-input" name="espesorNorte" placeholder="Espesor ' + cont +' (m)" required/>';
+        //Limpiamos los elementos que existan de ambos div
+        //$("#elementosNorte").empty();
 
-              $("#componentesNorte").append(componente);
-              $("#espesoresNorte").append(espesor);
+        //Se agrega el total de elementos del input number
+        let cont = 1;
+        for(i=0;i<totalElementos;i++){
 
-              cont++;
-          }
+            var nombre = '<input type="text" class="form-control separacion-input" name="nombreNorte" placeholder="Elemento ' + cont +'" ng-model="app.nombreNorte' + cont + '" />';
 
-      });
+            var area = '<input type="text" class="form-control separacion-input" name="areaNorte" ng-model="app.areaNorte' + cont + '"/>';
+
+            var homogeneo = '<select name="homogeneo" class="form-control separacion-input">';
+            homogeneo += '<option selected value="1">Si</option>';
+            homogeneo += '<option value="2">No</option>';
+            homogeneo += '</select>';
+
+            var kNorte = '<input type="text" class="form-control separacion-input" name="kNorte" disabled/>';
+            var calculoKNorte = '<br/><button type="button" class="btn btn-success" ng-click="muestraComponentes(app.nombreNorte' + cont + ', app.areaNorte' + cont + ', 1)">Calcular K</button><br/>';
+
+            $("#nombreElementoNorte").append(nombre);
+            $("#areaElementoNorte").append(area);
+            $("#homogeneoNorte").append(homogeneo);
+            $("#KNorte").append(kNorte);
+            $("#calculoKNorte").append(calculoKNorte);
+
+            cont++;
+        }
+
+      }
+
+    }
+
+
 
       $("#surTab").click(function(){
         console.log("TOTAL MUROS SUR: " + $('#totalMurosSur').val());
