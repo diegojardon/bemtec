@@ -25,5 +25,7 @@
 
 		const ERROR_NO_HAY_ELEMENTOS = -401;
 
+		const ERROR_SESION_EXPIRADA = -501;
+
 	}
 ?>

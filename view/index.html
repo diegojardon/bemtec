@@ -366,7 +366,7 @@
 
         var mostrarModal = Cookies.get('muestraWelcome');
         if(mostrarModal == null || mostrarModal == ""){
-          Cookies.set('muestraWelcome', "si");
+          Cookies.set('muestraWelcome', "si", { expires: 365 });
           $("#welcome-modal").modal("show");
         }
 

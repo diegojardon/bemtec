@@ -223,14 +223,14 @@
                     </select>
                     <select id="municipios" class="form-control separacion-input" ng-model="app.idMunicipio">
                       <option selected value="">Selecciona la ciudad...</option>
-                      <option ng-repeat="municipio in app.municipios" value="{{municipio.claveMunicipio}}">{{municipio.nombreMunicipio}}</option>
+                      <option ng-repeat="municipio in app.municipios" ng-if="municipio.claveMunicipio" value="{{municipio.claveMunicipio}}" data-foo="{{municipio.latitud}}">{{municipio.nombreMunicipio}}</option>
                     </select>
                     <!--<h5>Latitud:&nbsp;</h5>-->
                     <div class="col-sm-3 col-md-3">
                       <h5 style="font-size:18px; padding-top: 7px;">Latitud</h5>
                     </div>
                     <div class="col-sm-9 col-md-9">
-                      <input type="text" class="form-control separacion-input" id="latitud" disabled ng-model="calculo.latitudEdificio"/>
+                      <input type="text" class="form-control separacion-input" id="latitud" value="" disabled ng-model="calculo.latitudEdificio"/>
                     </div>
 
                     <br/>
@@ -501,6 +501,13 @@
     <script src="assets/js/pieChart.js"></script>
 
     <script type="text/javascript">
+
+    $(function(){
+      $('#municipios').change(function(){
+         var selected = $(this).find('option:selected');
+         $('#latitud').val(selected.data('foo'));
+      }).change();
+    });
 
     </script>
 

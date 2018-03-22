@@ -1,7 +1,7 @@
 <?php
 
 /*
-*		Servicio REST para agregar elementos al cálculo en la sesión actual.
+*		Servicio REST para agregar elementos homogéneos al cálculo en la sesión actual.
 *
 * 	@author: Diego Jardón
 * 	@creationDate: 17-Feb-2018
@@ -15,11 +15,6 @@
 	require("constantes.php");
 	require("cors.php");
 
-	if(!isset($_SESSION['idCalculo']))
-		$idCalculo = 0;
-	else
-		$idCalculo = $_SESSION['idCalculo'];
-
 	$data = json_decode(file_get_contents("php://input"));
 	$nombreElemento = mysql_real_escape_string($data->nombreElemento);
 	$tipoElemento = mysql_real_escape_string($data->tipoElemento);
@@ -29,23 +24,30 @@
 
 	//Se inserta el elemento en la BD
 
-	$query = "INSERT INTO elemento (`idElemento`,`nombreElemento`,`tipoElemento`,`direccionElemento`,`idCalculo`, `esHomogeneoElemento`,`areaElemento`)
-            VALUES (NULL, '$nombreElemento', '$tipoElemento' , '$direccionElemento', '$idCalculo', '$esHomogeneoElemento', '$areaElemento')";
+	if(isset($_SESSION['idCalculo'])){
 
-	$result = mysql_query($query);
+		$idCalculo = $_SESSION['idCalculo'];
 
-	$_SESSION['idElemento'] = mysql_insert_id();
+		$query = "INSERT INTO elemento (`idElemento`,`nombreElemento`,`tipoElemento`,`direccionElemento`,`idCalculo`, `esHomogeneoElemento`,`areaElemento`)
+	            VALUES (NULL, '$nombreElemento', '$tipoElemento' , '$direccionElemento', '$idCalculo', '$esHomogeneoElemento', '$areaElemento')";
 
-  if($result === TRUE){
- 		$resultado["response"] = Constantes::EXITO;
-		$resultado["esHomogeneo"] = $esHomogeneoElemento;
+		$result = mysql_query($query);
 
-		$_SESSION["esHomogeneo"] = $esHomogeneoElemento;
-		$_SESSION["nombreElemento"] = $nombreElemento;
-		$_SESSION["direccionElemento"] = $direccionElemento;
-		$_SESSION["areaElemento"] = $areaElemento;
+		$_SESSION['idElemento'] = mysql_insert_id();
+
+	  if($result === TRUE){
+	 		$resultado["response"] = Constantes::EXITO;
+			$resultado["esHomogeneo"] = $esHomogeneoElemento;
+
+			$_SESSION["esHomogeneo"] = $esHomogeneoElemento;
+			$_SESSION["nombreElemento"] = $nombreElemento;
+			$_SESSION["direccionElemento"] = $direccionElemento;
+			$_SESSION["areaElemento"] = $areaElemento;
+		}else{
+			 $resultado["response"] = Constantes::ERROR;
+		}
 	}else{
-		 $resultado["response"] = Constantes::ERROR;
+		$resultado["response"] = Constantes::ERROR_SESION_EXPIRADA;
 	}
 
 	echo json_encode($resultado);
