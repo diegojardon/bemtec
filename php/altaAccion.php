@@ -18,12 +18,15 @@
 	$data = json_decode(file_get_contents("php://input"));
 	$idTipoAccion = mysql_real_escape_string($data->idTipoAccion);
 
-  //Leemos el idUsuario de la sesión
-  if(!isset($_SESSION['idUsuario'])){
-		$idUsuario = $_SESSION['idUsuario'];
-	}
-
-  $idUsuario = "0"; //Usuario visitante
+  if($idTipoAccion == '3' || $idTipoAccion == '4'){
+      if(isset($_SESSION['idUsuario'])){
+        $idUsuario = $_SESSION['idUsuario'];
+      }else{
+        $idUsuario = "0"; //Usuario visitante
+      }
+  }else{
+    $idUsuario = "0"; //Usuario visitante
+  }
 
   $query = "INSERT INTO accion (`idAccion`,`idUsuario`,`idTipoAccion`,`fechaAccion`)
             VALUES (NULL, '$idUsuario', '$idTipoAccion' , NOW())";
@@ -32,10 +35,28 @@
 
   if($result === TRUE){
 
-    if($idTipoAccion == 3)
+    if($idTipoAccion == 3){
       $_SESSION['nombreNormaEnergetica']="NOM 008-ENER 2001";
-    if($idTipoAccion == 4)
+
+      $query = "INSERT INTO calculo (`idCalculo`,`idUsuario`,`fechaCalculo`,`normaCalculo`)
+                VALUES (NULL, '$idUsuario', NOW(), 2001)";
+
+      $result = mysql_query($query);
+
+      $_SESSION['idCalculo'] = mysql_insert_id();
+    }
+    if($idTipoAccion == 4){
       $_SESSION['nombreNormaEnergetica']="NOM 020-ENER 2011";
+
+      $query = "INSERT INTO calculo (`idCalculo`,`idUsuario`,`fechaCalculo`,`normaCalculo`)
+                VALUES (NULL, '$idUsuario', NOW(), 2011)";
+
+      $result = mysql_query($query);
+
+      $_SESSION['idCalculo'] = mysql_insert_id();
+    }
+
+
 
      $resultado["response"] = Constantes::EXITO;
   }else{

@@ -25,6 +25,7 @@
 			$resultado["usuarioUsuario"] = $_SESSION['usuarioUsuario'];
 			$resultado["estatusUsuario"] = $_SESSION['estatusUsuario'];
 			$resultado["nombreNormaEnergetica"] = $_SESSION['nombreNormaEnergetica'];
+			$resultado["areaElemento"] = $_SESSION['areaElemento'];
 		}
 	}
 
