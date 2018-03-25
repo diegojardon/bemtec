@@ -179,7 +179,7 @@
                 <h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Área que ocupa la componente no homogénea 1:</h5>
               </div>
               <div class="col-sm-4 col-md-4">
-                <input type="text" id="areaNoHomogenea1" class="form-control separacion-input" name="areaNoHomogenea1" ng-model="componente.areaNoHomogenea1" />
+                <input type="text" id="areaNoHomogenea1" class="form-control separacion-input" name="areaNoHomogenea1" ng-model="componenteNH1.areaNoHomogenea" />
               </div>
             </div>
             <div class="col-sm-6 col-md-6">
@@ -187,7 +187,7 @@
                 <h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Fracción (F1):</h5>
               </div>
               <div class="col-sm-3 col-md-3">
-                <input type="text" id="fraccion1" class="form-control separacion-input" name="fraccion1" disabled ng-model="componente.fraccion1" />
+                <input type="text" id="fraccion1" class="form-control separacion-input" name="fraccion1" disabled ng-model="componenteNH1.fraccion" />
               </div>
               <div class="col-sm-2 col-md-2"></div>
             </div>
@@ -202,7 +202,7 @@
                 <h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Área que ocupa la componente no homogénea 2:</h5>
               </div>
               <div class="col-sm-4 col-md-4">
-                <input type="text" id="areaNoHomogenea2" class="form-control separacion-input" name="areaNoHomogenea2" ng-model="componente.areaNoHomogenea2" />
+                <input type="text" id="areaNoHomogenea2" class="form-control separacion-input" name="areaNoHomogenea2" ng-model="componenteNH2.areaNoHomogenea" />
               </div>
             </div>
             <div class="col-sm-6 col-md-6">
@@ -210,7 +210,7 @@
                 <h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Fracción (F2):</h5>
               </div>
               <div class="col-sm-3 col-md-3">
-                <input type="text" id="fraccion2" class="form-control separacion-input" name="fraccion2" disabled ng-model="componente.fraccion2" />
+                <input type="text" id="fraccion2" class="form-control separacion-input" name="fraccion2" disabled ng-model="componenteNH2.fraccion" />
               </div>
               <div class="col-sm-2 col-md-2"></div>
             </div>
@@ -448,7 +448,7 @@
             <div>
               <div class="col-sm-1 col-md-1"></div>
               <div class="col-sm-2 col-md-2">
-                  <input type="text" id="fraccionNH1" class="form-control separacion-input" name="fraccionNH1" disabled ng-model="componenteNH1.fraccion" />
+                  <input type="text" id="fraccionNH1" class="form-control separacion-input" name="fraccionNH1" disabled />
               </div>
               <div class="col-sm-2 col-md-2">
                   <input type="text" id="materialNH1" class="form-control separacion-input" name="materialNH1" ng-model="componenteNH1.material" />
@@ -473,7 +473,7 @@
             <div>
               <div class="col-sm-1 col-md-1"></div>
               <div class="col-sm-2 col-md-2">
-                  <input type="text" id="fraccionNH2" class="form-control separacion-input" name="fraccionNH2" disabled ng-model="componenteNH2.fraccion" />
+                  <input type="text" id="fraccionNH2" class="form-control separacion-input" name="fraccionNH2" disabled />
               </div>
               <div class="col-sm-2 col-md-2">
                   <input type="text" id="materialNH2" class="form-control separacion-input" name="materialNH2" ng-model="componenteNH2.material" />

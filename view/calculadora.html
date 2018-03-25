@@ -47,6 +47,14 @@
         margin-bottom: 5px;
       }
 
+      .separadorElementos{
+          width: 70%;
+          border-color:#24445A;
+          border-top: dotted 1px;
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+
     </style>
 
     <!-- Angular -->
@@ -149,11 +157,11 @@
 
             <ul class="nav nav-tabs" role="tablist">
               <li class="nav-item"><a class="nav-link active show" href="#datosGenerales" aria-controls="datosGenerales" role="tab" data-toggle="tab" aria-selected="true"><i class="fa fa-book"></i>&nbsp;Datos Generales</a></li>
-              <li id="norteTab" class="nav-item"><a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab"><i class="fa fa-arrow-up"></i>&nbsp;Norte</a></li>
-              <li id="surTab" class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab"><i class="fa fa-arrow-down"></i>&nbsp;Sur</a></li>
-              <li id="esteTab" class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab"><i class="fa fa-arrow-right"></i>&nbsp;Este</a></li>
-              <li id="oesteTab" class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab"><i class="fa fa-arrow-left"></i>&nbsp;Oeste</a></li>
-              <li id="techoTab" class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab"><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
+              <li id="norteTab" class="nav-item"><a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab" ><i class="fa fa-arrow-up"></i>&nbsp;Norte</a></li>
+              <li id="surTab" class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab" ><i class="fa fa-arrow-down"></i>&nbsp;Sur</a></li>
+              <li id="esteTab" class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab" ><i class="fa fa-arrow-right"></i>&nbsp;Este</a></li>
+              <li id="oesteTab" class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab" ><i class="fa fa-arrow-left"></i>&nbsp;Oeste</a></li>
+              <li id="techoTab" class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab" ><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
               <li class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i>&nbsp;Calcular</a></li>
 
             </ul>
@@ -223,14 +231,14 @@
                     </select>
                     <select id="municipios" class="form-control separacion-input" ng-model="app.idMunicipio">
                       <option selected value="">Selecciona la ciudad...</option>
-                      <option ng-repeat="municipio in app.municipios" ng-if="municipio.claveMunicipio" value="{{municipio.claveMunicipio}}" data-foo="{{municipio.latitud}}">{{municipio.nombreMunicipio}}</option>
+                      <option ng-repeat="municipio in app.municipios" ng-if="municipio.claveMunicipio" value="{{municipio.claveMunicipio}}|{{municipio.latitud}}" data-foo="{{municipio.latitud}}">{{municipio.nombreMunicipio}}</option>
                     </select>
                     <!--<h5>Latitud:&nbsp;</h5>-->
                     <div class="col-sm-3 col-md-3">
                       <h5 style="font-size:18px; padding-top: 7px;">Latitud</h5>
                     </div>
                     <div class="col-sm-9 col-md-9">
-                      <input type="text" class="form-control separacion-input" id="latitud" value="" disabled ng-model="calculo.latitudEdificio"/>
+                      <input type="text" class="form-control separacion-input" id="latitud" disabled ng-bind="calculo.latitudEdificio"/>
                     </div>
 
                     <br/>
@@ -257,17 +265,17 @@
                       <div class="col-sm-4 col-md-4">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="elemento" ng-model="elementoNorte.tipo" value="M" checked>Muro</input>
+                        <input type="radio" name="elemento" ng-model="elementoNorte.tipo" value="Muro" checked>Muro</input>
                       </div>
                       <div class="col-sm-4 col-md-4">
                         <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="elemento" ng-model="elementoNorte.tipo" value="P">Puerta</input>
+                        <input type="radio" name="elemento" ng-model="elementoNorte.tipo" value="Puerta">Puerta</input>
                       </div>
                       <div class="col-sm-4 col-md-4">
                         <img src="images/ventana.png" alt="Ventana" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="elemento" ng-model="elementoNorte.tipo" value="V">Ventana</input>
+                        <input type="radio" name="elemento" ng-model="elementoNorte.tipo" value="Ventana">Ventana</input>
                       </div>
                     </center>
                     <br/>
@@ -310,6 +318,69 @@
 
                   </div>
                 </div>
+                <div class="row">
+                  <br/>
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-6 col-md-6">
+                    <h5 class="labelCalculadora" style="padding-bottom: 7px;">O bien, puedes cargar un Sistema Constructivo existente:</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <br/>
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-4 col-md-4">
+                    <select id="sistemaConstructivoNorte" class="form-control separacion-input" ng-model="app.idSCN">
+                      <option selected value="">Selecciona un Sistema Constructivo...</option>
+                      <option ng-repeat="elemento in app.elementos" ng-if="elemento.idElemento && elemento.direccionElemento == 'Norte'" value="{{elemento.idElemento}}">{{elemento.nombreElemento}}</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-4 col-md-4">
+                      <button type="button" class="btn btn-success" ng-click="">AGREGAR</button>
+                  </div>
+                </div>
+
+                <div id="elementosConfiguradosNorte" ng-if="app.totalElementosNorte > 0">
+                  <br/>
+                  <div class="row">
+                      <center><h5>Elementos configurados</h5></center>
+                  </div>
+                  <div class="row">
+                    <br/>
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Nombre</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Tipo</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de M</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de K</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+                  </div>
+                  <hr class="separadorElementos"/>
+                  <div class="row" ng-repeat="elemento in app.calculo" ng-if="elemento.idElemento && elemento.direccionElemento == 'Norte' ">
+                    <br/>
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+                  </div>
+                </div>
+
               </div>
 
             <div role="tabpanel" class="tab-pane fade" id="sur">
@@ -334,8 +405,10 @@
               </div>
               <div role="tabpanel" class="tab-pane fade" id="calcular">
                 <br/>
-                <p>As collected deficient objection by it discovery sincerity curiosity. Quiet decay who round three world whole has mrs man. Built the china there tried jokes which gay why. Assure in adieus wicket it is. But spoke round point and one joy. Offending her moonlight men sweetness see unwilling. Often of it tears whole oh balls share an.</p>
-                <p>But why smiling man her imagine married. Chiefly can man her out believe manners cottage colonel unknown.</p>
+                <h4 class="section-title2 wow fadeIn animated" data-wow-delay=".2s">
+                  Resumen del Cálculo
+                </h4>
+
               </div>
             </div>
           </div>
@@ -507,6 +580,34 @@
          var selected = $(this).find('option:selected');
          $('#latitud').val(selected.data('foo'));
       }).change();
+    });
+
+    $(document).ready(function(){
+      var sPageURL = window.location.search.substring(1);
+      var sURLVariables = sPageURL.split('&');
+      for (var i = 0; i < sURLVariables.length; i++){
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == "dir"){
+            direccion = sParameterName[1];
+        }
+      }
+
+      if(direccion == "N"){
+        $('.nav-tabs a[href="#norte"]').tab('show');
+      }
+      if(direccion == "S"){
+        $('.nav-tabs a[href="#sur"]').tab('show');
+      }
+      if(direccion == "E"){
+        $('.nav-tabs a[href="#este"]').tab('show');
+      }
+      if(direccion == "O"){
+        $('.nav-tabs a[href="#oeste"]').tab('show');
+      }
+      if(direccion == "T"){
+        $('.nav-tabs a[href="#techo"]').tab('show');
+      }
+
     });
 
     </script>

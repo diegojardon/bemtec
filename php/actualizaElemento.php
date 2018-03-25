@@ -32,6 +32,11 @@
 
       if($result === TRUE){
         $resultado["response"] = Constantes::EXITO;
+        if(isset($_SESSION['direccionElemento'])){
+          $resultado["direccionElemento"] = $_SESSION['direccionElemento'];
+        }else{
+          $resultado["direccionElemento"] = "SIN_SESION";
+        }
       }else{
         $resultado["response"] = Constantes::ERROR;
       }
