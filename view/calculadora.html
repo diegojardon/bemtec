@@ -145,11 +145,20 @@
     <section id="service-block-main" class="section">
       <!-- Container Starts -->
       <div class="container">
+        <!--<div class="row">
+          <div class="col-sm-6 col-md-6"></div>
+          <div class="col-sm-3 col-md-3">
+            <button type="button" class="btn btn-success" style="float:right;">ABRIR DE ARCHIVO</button>
+          </div>
+          <div class="col-sm-3 col-md-3">
+            <button type="button" class="btn btn-success" style="float:right;">GUARDAR EN ARCHIVO</button>
+          </div>
+        </div>-->
         <div class="row">
           <h5 style="font-weight: 550;"><u></u></h5>
           <h4 class="section-title2 wow fadeIn animated" data-wow-delay=".2s">
            Cálculo Presupuesto Energético {{app.nombreNormaEnergetica}}
-         </h4>
+          </h4>
           <br/>
 
           <!-- Inicio de Tabs -->
@@ -162,12 +171,14 @@
               <li id="esteTab" class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab" ><i class="fa fa-arrow-right"></i>&nbsp;Este</a></li>
               <li id="oesteTab" class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab" ><i class="fa fa-arrow-left"></i>&nbsp;Oeste</a></li>
               <li id="techoTab" class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab" ><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
+              <li id="techoInteriorTab" class="nav-item"><a class="nav-link" href="#techoInterior" aria-controls="techo" role="tab" data-toggle="tab" ><i class="fa fa-stop"></i>&nbsp;Superficie Interior</a></li>
               <li class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i>&nbsp;Calcular</a></li>
 
             </ul>
 
             <div class="tab-content">
 
+              <!-- PESTAÑA DATOS GENERALES -->
               <div role="tabpanel" class="tab-pane active show" id="datosGenerales">
                 <br/>
                 <div class="row">
@@ -255,6 +266,7 @@
                 </div>
               </div>
 
+              <!-- PESTAÑA NORTE -->
               <div role="tabpanel" class="tab-pane fade" id="norte">
                 <br/>
                 <div class="row">
@@ -265,17 +277,17 @@
                       <div class="col-sm-4 col-md-4">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="elemento" ng-model="elementoNorte.tipo" value="Muro" checked>Muro</input>
+                        <input type="radio" name="tipoElementoNorte" ng-model="elementoNorte.tipo" value="Muro" checked>Muro</input>
                       </div>
                       <div class="col-sm-4 col-md-4">
                         <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="elemento" ng-model="elementoNorte.tipo" value="Puerta">Puerta</input>
+                        <input type="radio" name="tipoElementoNorte" ng-model="elementoNorte.tipo" value="Puerta">Puerta</input>
                       </div>
                       <div class="col-sm-4 col-md-4">
                         <img src="images/ventana.png" alt="Ventana" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="elemento" ng-model="elementoNorte.tipo" value="Ventana">Ventana</input>
+                        <input type="radio" name="tipoElementoNorte" ng-model="elementoNorte.tipo" value="Ventana">Ventana</input>
                       </div>
                     </center>
                     <br/>
@@ -335,7 +347,7 @@
                     </select>
                   </div>
                   <div class="col-sm-4 col-md-4">
-                      <button type="button" class="btn btn-success" ng-click="">AGREGAR</button>
+                      <button type="button" class="btn btn-success" ng-click="agregaSistemaConstructivo(app.idSCN, elementoNorte)">AGREGAR</button>
                   </div>
                 </div>
 
@@ -383,26 +395,519 @@
 
               </div>
 
-            <div role="tabpanel" class="tab-pane fade" id="sur">
+              <!-- PESTAÑA SUR -->
+              <div role="tabpanel" class="tab-pane fade" id="sur">
                 <br/>
-                <p>In as name to here them deny wise this. As rapid woody my he me which. Men but they fail shew just wish next put. Led all visitor musical calling nor her. Within coming figure sex things are. Pretended concluded did repulsive education smallness yet yet described. Had country man his pressed shewing. No gate dare rose he. Eyes year if miss he as upon.</p>
-                <p>Or neglected agreeable of discovery concluded oh it sportsman. Week to time in john. Son elegance use weddings separate. Ask too matter formed county wicket oppose talent.</p>
+                <div class="row">
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-8 col-md-8">
+                    <center>
+                      <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoSur" ng-model="elementoSur.tipo" value="Muro" checked>Muro</input>
+                      </div>
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoSur" ng-model="elementoSur.tipo" value="Puerta">Puerta</input>
+                      </div>
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/ventana.png" alt="Ventana" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoSur" ng-model="elementoSur.tipo" value="Ventana">Ventana</input>
+                      </div>
+                    </center>
+                    <br/>
+                  </div>
+                  <div class="col-sm-2 col-md-2"></div>
+                </div>
+                <br/>
+                <div class="row">
+                  <hr class="separador"/>
+                  <br/>
+                  <div id="elementosSur">
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Nombre</h5></center>
+                      <div>
+                        <input type="text" class="form-control separacion-input" name="nombreSur" ng-model="elementoSur.nombre" />
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Área (m<sup>2</sup>)</h5></center>
+                      <div>
+                        <input type="text" class="form-control separacion-input" name="areaSur" ng-model="elementoSur.area" />
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Es Homogéneo?</h5></center>
+                      <div>
+                        <select name="homogeneoSur" ng-model="elementoSur.esHomogeneoElemento" class="form-control separacion-input">
+                          <option selected value="1">Si</option>
+                          <option value="2">No</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <div style="padding-top: 32px;">
+                        <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoSur, 'Sur')">CALCULAR K</button>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <br/>
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-6 col-md-6">
+                    <h5 class="labelCalculadora" style="padding-bottom: 7px;">O bien, puedes cargar un Sistema Constructivo existente:</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <br/>
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-4 col-md-4">
+                    <select id="sistemaConstructivoNorte" class="form-control separacion-input" ng-model="app.idSCS">
+                      <option selected value="">Selecciona un Sistema Constructivo...</option>
+                      <option ng-repeat="elemento in app.elementos" ng-if="elemento.idElemento && elemento.direccionElemento == 'Sur'" value="{{elemento.idElemento}}">{{elemento.nombreElemento}}</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-4 col-md-4">
+                      <button type="button" class="btn btn-success" ng-click="agregaSistemaConstructivo(app.idSCS, elementoSur)">AGREGAR</button>
+                  </div>
+                </div>
+
+                <div id="elementosConfiguradosSur" ng-if="app.totalElementosSur > 0">
+                  <br/>
+                  <div class="row">
+                      <center><h5>Elementos configurados</h5></center>
+                  </div>
+                  <div class="row">
+                    <br/>
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Nombre</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Tipo</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de M</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de K</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+                  </div>
+                  <hr class="separadorElementos"/>
+                  <div class="row" ng-repeat="elemento in app.calculo" ng-if="elemento.idElemento && elemento.direccionElemento == 'Sur' ">
+                    <br/>
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+                  </div>
+                </div>
               </div>
+
+              <!-- PESTAÑA ESTE -->
               <div role="tabpanel" class="tab-pane fade" id="este">
                 <br/>
-                <p>Repulsive questions contented him few extensive supported. Of remarkably thoroughly he appearance in. Supposing tolerably applauded or of be. Suffering unfeeling so objection agreeable allowance me of. Ask within entire season sex common far who family. As be valley warmth assure on. Park girl they rich hour new well way you. Face ye be me been room we sons fond.</p>
-                <p>Yourself required no at thoughts delicate landlord it be. Branched dashwood do is whatever it. Farther be chapter at visited married in it pressed. By distrusts procuring be oh frankness existence believing instantly if. Doubtful on an juvenile as of servants insisted</p>
+                <div class="row">
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-8 col-md-8">
+                    <center>
+                      <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoEste" ng-model="elementoEste.tipo" value="Muro" checked>Muro</input>
+                      </div>
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoEste" ng-model="elementoEste.tipo" value="Puerta">Puerta</input>
+                      </div>
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/ventana.png" alt="Ventana" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoEste" ng-model="elementoEste.tipo" value="Ventana">Ventana</input>
+                      </div>
+                    </center>
+                    <br/>
+                  </div>
+                  <div class="col-sm-2 col-md-2"></div>
+                </div>
+                <br/>
+                <div class="row">
+                  <hr class="separador"/>
+                  <br/>
+                  <div id="elementosEste">
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Nombre</h5></center>
+                      <div>
+                        <input type="text" class="form-control separacion-input" name="nombreEste" ng-model="elementoEste.nombre" />
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Área (m<sup>2</sup>)</h5></center>
+                      <div>
+                        <input type="text" class="form-control separacion-input" name="areaEste" ng-model="elementoEste.area" />
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Es Homogéneo?</h5></center>
+                      <div>
+                        <select name="homogeneoEste" ng-model="elementoEste.esHomogeneoElemento" class="form-control separacion-input">
+                          <option selected value="1">Si</option>
+                          <option value="2">No</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <div style="padding-top: 32px;">
+                        <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoEste, 'Este')">CALCULAR K</button>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <br/>
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-6 col-md-6">
+                    <h5 class="labelCalculadora" style="padding-bottom: 7px;">O bien, puedes cargar un Sistema Constructivo existente:</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <br/>
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-4 col-md-4">
+                    <select id="sistemaConstructivoEste" class="form-control separacion-input" ng-model="app.idSCE">
+                      <option selected value="">Selecciona un Sistema Constructivo...</option>
+                      <option ng-repeat="elemento in app.elementos" ng-if="elemento.idElemento && elemento.direccionElemento == 'Este'" value="{{elemento.idElemento}}">{{elemento.nombreElemento}}</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-4 col-md-4">
+                      <button type="button" class="btn btn-success" ng-click="agregaSistemaConstructivo(app.idSCE, elementoEste)">AGREGAR</button>
+                  </div>
+                </div>
+
+                <div id="elementosConfiguradosEste" ng-if="app.totalElementosEste > 0">
+                  <br/>
+                  <div class="row">
+                      <center><h5>Elementos configurados</h5></center>
+                  </div>
+                  <div class="row">
+                    <br/>
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Nombre</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Tipo</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de M</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de K</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+                  </div>
+                  <hr class="separadorElementos"/>
+                  <div class="row" ng-repeat="elemento in app.calculo" ng-if="elemento.idElemento && elemento.direccionElemento == 'Este' ">
+                    <br/>
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+                  </div>
+                </div>
               </div>
+
+              <!-- PESTAÑA OESTE -->
               <div role="tabpanel" class="tab-pane fade" id="oeste">
                 <br/>
-                <p>As collected deficient objection by it discovery sincerity curiosity. Quiet decay who round three world whole has mrs man. Built the china there tried jokes which gay why. Assure in adieus wicket it is. But spoke round point and one joy. Offending her moonlight men sweetness see unwilling. Often of it tears whole oh balls share an.</p>
-                <p>But why smiling man her imagine married. Chiefly can man her out believe manners cottage colonel unknown.</p>
+                <div class="row">
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-8 col-md-8">
+                    <center>
+                      <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoOeste" ng-model="elementoOeste.tipo" value="Muro" checked>Muro</input>
+                      </div>
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoOeste" ng-model="elementoOeste.tipo" value="Puerta">Puerta</input>
+                      </div>
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/ventana.png" alt="Ventana" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoOeste" ng-model="elementoOeste.tipo" value="Ventana">Ventana</input>
+                      </div>
+                    </center>
+                    <br/>
+                  </div>
+                  <div class="col-sm-2 col-md-2"></div>
+                </div>
+                <br/>
+                <div class="row">
+                  <hr class="separador"/>
+                  <br/>
+                  <div id="elementosOeste">
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Nombre</h5></center>
+                      <div>
+                        <input type="text" class="form-control separacion-input" name="nombreOeste" ng-model="elementoOeste.nombre" />
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Área (m<sup>2</sup>)</h5></center>
+                      <div>
+                        <input type="text" class="form-control separacion-input" name="areaOeste" ng-model="elementoOeste.area" />
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Es Homogéneo?</h5></center>
+                      <div>
+                        <select name="homogeneoOeste" ng-model="elementoOeste.esHomogeneoElemento" class="form-control separacion-input">
+                          <option selected value="1">Si</option>
+                          <option value="2">No</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <div style="padding-top: 32px;">
+                        <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoOeste, 'Oeste')">CALCULAR K</button>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <br/>
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-6 col-md-6">
+                    <h5 class="labelCalculadora" style="padding-bottom: 7px;">O bien, puedes cargar un Sistema Constructivo existente:</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <br/>
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-4 col-md-4">
+                    <select id="sistemaConstructivoOeste" class="form-control separacion-input" ng-model="app.idSCO">
+                      <option selected value="">Selecciona un Sistema Constructivo...</option>
+                      <option ng-repeat="elemento in app.elementos" ng-if="elemento.idElemento && elemento.direccionElemento == 'Oeste'" value="{{elemento.idElemento}}">{{elemento.nombreElemento}}</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-4 col-md-4">
+                      <button type="button" class="btn btn-success" ng-click="agregaSistemaConstructivo(app.idSCO, elementoOeste)">AGREGAR</button>
+                  </div>
+                </div>
+
+                <div id="elementosConfiguradosOeste" ng-if="app.totalElementosOeste > 0">
+                  <br/>
+                  <div class="row">
+                      <center><h5>Elementos configurados</h5></center>
+                  </div>
+                  <div class="row">
+                    <br/>
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Nombre</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Tipo</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de M</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de K</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+                  </div>
+                  <hr class="separadorElementos"/>
+                  <div class="row" ng-repeat="elemento in app.calculo" ng-if="elemento.idElemento && elemento.direccionElemento == 'Oeste' ">
+                    <br/>
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+                  </div>
+                </div>
               </div>
+
+              <!-- PESTAÑA TECHO -->
               <div role="tabpanel" class="tab-pane fade" id="techo">
                 <br/>
-                <p>As collected deficient objection by it discovery sincerity curiosity. Quiet decay who round three world whole has mrs man. Built the china there tried jokes which gay why. Assure in adieus wicket it is. But spoke round point and one joy. Offending her moonlight men sweetness see unwilling. Often of it tears whole oh balls share an.</p>
-                <p>But why smiling man her imagine married. Chiefly can man her out believe manners cottage colonel unknown.</p>
+                <div class="row">
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-8 col-md-8">
+                    <center>
+                      <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoTecho" ng-model="elementoTecho.tipo" value="Muro" checked>Muro</input>
+                      </div>
+                      <!--<div class="col-sm-4 col-md-4">
+                        <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoTecho" ng-model="elementoTecho.tipo" value="Puerta">Puerta</input>
+                      </div>-->
+                      <div class="col-sm-4 col-md-4">
+                        <img src="images/ventana.png" alt="Ventana" height="130" width="130" class="img-responsive center-block"/>
+                        <br/>
+                        <input type="radio" name="tipoElementoTecho" ng-model="elementoTecho.tipo" value="Ventana">Ventana</input>
+                      </div>
+                    </center>
+                    <br/>
+                  </div>
+                  <div class="col-sm-2 col-md-2"></div>
+                </div>
+                <br/>
+                <div class="row">
+                  <hr class="separador"/>
+                  <br/>
+                  <div id="elementosTecho">
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Nombre</h5></center>
+                      <div>
+                        <input type="text" class="form-control separacion-input" name="nombreTecho" ng-model="elementoTecho.nombre" />
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Área (m<sup>2</sup>)</h5></center>
+                      <div>
+                        <input type="text" class="form-control separacion-input" name="areaTecho" ng-model="elementoTecho.area" />
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Es Homogéneo?</h5></center>
+                      <div>
+                        <select name="homogeneoTecho" ng-model="elementoTecho.esHomogeneoElemento" class="form-control separacion-input">
+                          <option selected value="1">Si</option>
+                          <option value="2">No</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <div style="padding-top: 32px;">
+                        <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoTecho, 'Techo')">CALCULAR K</button>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <br/>
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-6 col-md-6">
+                    <h5 class="labelCalculadora" style="padding-bottom: 7px;">O bien, puedes cargar un Sistema Constructivo existente:</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <br/>
+                  <div class="col-sm-2 col-md-2"></div>
+                  <div class="col-sm-4 col-md-4">
+                    <select id="sistemaConstructivoTecho" class="form-control separacion-input" ng-model="app.idSCT">
+                      <option selected value="">Selecciona un Sistema Constructivo...</option>
+                      <option ng-repeat="elemento in app.elementos" ng-if="elemento.idElemento && elemento.direccionElemento == 'Techo'" value="{{elemento.idElemento}}">{{elemento.nombreElemento}}</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-4 col-md-4">
+                      <button type="button" class="btn btn-success" ng-click="agregaSistemaConstructivo(app.idSCT, elementoTecho)">AGREGAR</button>
+                  </div>
+                </div>
+
+                <div id="elementosConfiguradosTecho" ng-if="app.totalElementosTecho > 0">
+                  <br/>
+                  <div class="row">
+                      <center><h5>Elementos configurados</h5></center>
+                  </div>
+                  <div class="row">
+                    <br/>
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Nombre</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Tipo</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de M</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de K</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+                  </div>
+                  <hr class="separadorElementos"/>
+                  <div class="row" ng-repeat="elemento in app.calculo" ng-if="elemento.idElemento && elemento.direccionElemento == 'Techo' ">
+                    <br/>
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+                  </div>
+                </div>
               </div>
+
+              <!-- PESTAÑA CALCULAR -->
               <div role="tabpanel" class="tab-pane fade" id="calcular">
                 <br/>
                 <h4 class="section-title2 wow fadeIn animated" data-wow-delay=".2s">

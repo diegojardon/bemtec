@@ -286,6 +286,21 @@ app.controller("loginRegisterController", function($scope, $http){
 		});
 	}
 
+	$scope.agregaSistemaConstructivo = function(idElemento, elemento){
+
+		console.log("idElemento selccionado: " + idElemento);
+
+		$http.post("http://www.bemtec.mx/bemtec/php/agregaSistemaConstructivo.php", {'idElemento': idElemento,'nombreElemento': elemento.nombre,'tipoElemento': elemento.tipo, 'areaElemento': elemento.area})
+		.success(function(data){
+			console.log("RESPONSE: " + data.response);
+			if(data.response == 0){
+
+			}else{
+
+			}
+		});
+	}
+
 	$scope.actualizaElemento = function(elemento){
 
 		if(elemento.mParcial == null || elemento.mParcial == ""){
