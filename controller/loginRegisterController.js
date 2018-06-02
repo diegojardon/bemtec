@@ -247,7 +247,7 @@ app.controller("loginRegisterController", function($scope, $http){
 
 		$http.post("http://www.bemtec.mx/bemtec/php/actualizaCalculo.php", {'nombrePropietario': calculo.nombrePropietario, 'direccionPropietario': calculo.direccionPropietario,
 		'cpPropietario': calculo.cpPropietario, 'telefonoPropietario': calculo.telefonoPropietario, 'nombreEdificio': calculo.nombreEdificio, 'direccionEdificio': calculo.direccionEdificio,
-	  'estadoEdificio': idEstado, 'ciudadEdificio': idCiudad, 'latitudEdificio': latitudEdificio})
+	    'numNivelesEdificio':calculo.numNiveles,'estadoEdificio': idEstado, 'ciudadEdificio': idCiudad, 'latitudEdificio': latitudEdificio})
 		.success(function(data){
 			console.log("RESPONSE: " + data.response);
 			if(data.response == 0){

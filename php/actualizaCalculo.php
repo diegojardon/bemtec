@@ -27,6 +27,7 @@
     $telefonoPropietario = mysql_real_escape_string($data->telefonoPropietario);
     $nombreEdificio = mysql_real_escape_string($data->nombreEdificio);
     $direccionEdificio = mysql_real_escape_string($data->direccionEdificio);
+    $numNivelesEdificio = mysql_real_escape_string($data->numNivelesEdificio);
     $estadoEdificio = mysql_real_escape_string($data->estadoEdificio);
     $ciudadEdificio = mysql_real_escape_string($data->ciudadEdificio);
     $latitudEdificio = mysql_real_escape_string($data->latitudEdificio);
@@ -34,7 +35,7 @@
     if($idCalculo != 0){
       $query = "UPDATE calculo SET nombrePropietario = '".$nombrePropietario."', direccionPropietario = '".$direccionPropietario."',
       cpPropietario = '".$cpPropietario."', telefonoPropietario = '".$telefonoPropietario."', nombreEdificio = '".$nombreEdificio."',
-      direccionEdificio = '".$direccionEdificio."', cve_est = '".$estadoEdificio."', cve_mun = '".$ciudadEdificio."',
+      direccionEdificio = '".$direccionEdificio."',numNivelesEdificio = '".$numNivelesEdificio."', cve_est = '".$estadoEdificio."', cve_mun = '".$ciudadEdificio."',
       latitud = '".$latitudEdificio."' WHERE idCalculo = '$idCalculo'";
 
       $result = mysql_query($query);
