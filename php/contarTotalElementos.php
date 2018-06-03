@@ -44,6 +44,9 @@
              if($info["direccionElemento"] == "Techo"){
                $resultado["totalElementosTecho"] = $info["total"];
              }
+             if($info["direccionElemento"] == "TechoI"){
+              $resultado["totalElementosTechoInterior"] = $info["total"];
+            }
          }
 
         $resultado["response"] = Constantes::EXITO;

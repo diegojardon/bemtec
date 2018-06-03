@@ -21,6 +21,20 @@
 	$direccionElemento = mysql_real_escape_string($data->direccionElemento);
 	$esHomogeneoElemento = mysql_real_escape_string($data->esHomogeneoElemento);
 	$areaElemento = mysql_real_escape_string($data->areaElemento);
+	$coeficienteSombra = mysql_real_escape_string($data->coeficienteSombra);
+	$tipoSombra = mysql_real_escape_string($data->tipoSombra);
+	$LVoladoMas = mysql_real_escape_string($data->LVoladoMas);
+	$HVoladoMas = mysql_real_escape_string($data->HVoladoMas);
+	$AVoladoMas = mysql_real_escape_string($data->AVoladoMas);
+	$LVoladoLimite = mysql_real_escape_string($data->LVoladoLimite);
+	$HVoladoLimite = mysql_real_escape_string($data->HVoladoLimite);
+	$WVoladoLimite = mysql_real_escape_string($data->WVoladoLimite);
+	$AVoladoLimite = mysql_real_escape_string($data->AVoladoLimite);
+	$ERemetida = mysql_real_escape_string($data->ERemetida);
+	$PRemetida = mysql_real_escape_string($data->PRemetida);
+	$WRemetida = mysql_real_escape_string($data->WRemetida);
+	$LParteluces = mysql_real_escape_string($data->LParteluces);
+	$WParteluces = mysql_real_escape_string($data->WParteluces);
 
 	//Se inserta el elemento en la BD
 
@@ -28,8 +42,15 @@
 
 		$idCalculo = $_SESSION['idCalculo'];
 
-		$query = "INSERT INTO elemento (`idElemento`,`nombreElemento`,`tipoElemento`,`direccionElemento`,`idCalculo`, `esHomogeneoElemento`,`areaElemento`)
-	            VALUES (NULL, '$nombreElemento', '$tipoElemento' , '$direccionElemento', '$idCalculo', '$esHomogeneoElemento', '$areaElemento')";
+		$query = "INSERT INTO elemento (`idElemento`,`nombreElemento`,`tipoElemento`,`direccionElemento`,`idCalculo`,
+		                                `esHomogeneoElemento`,`areaElemento`,`coeficienteSombra`, `tipoSombra`,
+										`LVoladoMas`, `HVoladoMas`, `AVoladoMas`, `LVoladoLimite`, `HVoladoLimite`, 
+										`WVoladoLimite`, `AVoladoLimite`, `ERemetida`, `PRemetida`, `WRemetida`,
+										`LParteluces`, `WParteluces`)
+	            VALUES (NULL, '$nombreElemento', '$tipoElemento' , '$direccionElemento', '$idCalculo', '$esHomogeneoElemento', '$areaElemento',
+					    '$coeficienteSombra', '$tipoSombra', '$LVoladoMas', '$HVoladoMas', '$AVoladoMas', '$LVoladoLimite',
+						'$HVoladoLimite', '$WVoladoLimite', '$AVoladoLimite', '$ERemetida', '$PRemetida', '$WRemetida',
+						'$LParteluces', '$WParteluces')";
 
 		$result = mysql_query($query);
 

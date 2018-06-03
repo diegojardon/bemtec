@@ -115,6 +115,11 @@ app.controller("loginRegisterController", function($scope, $http){
 		}else{
 			app.totalElementosTecho = 0;
 		}
+		if(data.totalElementosTechoInterior != null){
+			app.totalElementosTechoInterior = data.totalElementosTechoInterior;
+		}else{
+			app.totalElementosTechoInterior = 0;
+		}
 
 	})
 	.error(function(data){
@@ -268,8 +273,27 @@ app.controller("loginRegisterController", function($scope, $http){
 
 	$scope.agregaElemento = function(elemento, direccion){
 
-		$http.post("http://www.bemtec.mx/bemtec/php/agregaElemento.php", {'nombreElemento': elemento.nombre,'tipoElemento': elemento.tipo, 'direccionElemento': direccion,
-		'esHomogeneoElemento': elemento.esHomogeneoElemento,'areaElemento': elemento.area})
+		$http.post("http://www.bemtec.mx/bemtec/php/agregaElemento.php", {
+			'nombreElemento': elemento.nombre,
+			'tipoElemento': elemento.tipo, 
+			'direccionElemento': direccion,
+			'esHomogeneoElemento': elemento.esHomogeneoElemento,
+			'areaElemento': elemento.area,
+			'coeficienteSombra': elemento.CS,
+			'tipoSombra': elemento.sombra,
+			'LVoladoMas': elemento.LvoladoMas,
+			'HVoladoMas': elemento.HVoladoMas,
+			'AVoladoMas': elemento.AVoladoMas,
+			'LVoladoLimite': elemento.LVoladoLimite,
+			'HVoladoLimite': elemento.HVoladoLimite,
+			'WVoladoLimite': elemento.WVoladoLimite,
+			'AVoladoLimite': elemento.AVoladoLimite,
+			'ERemetida': elemento.ERemetida,
+			'PRemetida': elemento.PRemetida,
+			'WRemetida': elemento.WRemetida,
+			'LParteluces': elemento.LParteluces,
+			'WParteluces': elemento.WParteluces
+		})
 		.success(function(data){
 			console.log("RESPONSE: " + data.response);
 			if(data.response == 0){
