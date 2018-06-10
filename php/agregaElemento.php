@@ -11,7 +11,7 @@
 
 	session_start();
 
-  require("conexion.php");
+    require("conexion.php");
 	require("constantes.php");
 	require("cors.php");
 

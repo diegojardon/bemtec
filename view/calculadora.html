@@ -1137,7 +1137,7 @@
                       <div class="col-sm-6 col-md-6">
                         <img src="images/ventana.png" alt="Ventana" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="tipoElementoTecho" ng-model="elementoTecho.tipo" value="Ventana">Tragaluz</input>
+                        <input type="radio" name="tipoElementoTecho" ng-model="elementoTecho.tipo" value="Tragaluz">Tragaluz</input>
                       </div>
                     </center>
                     <br/>
@@ -1501,6 +1501,10 @@
                     <h5>{{app.totalProyectado}}</h5>
                   </div>
                 </div>
+                <br/>
+                <div class="row">
+                  <!-- AQUI DEBE IR LA ETIQUETA DE COLOR INDICANDO SI CUMPLE CON LA NORMA O NO -->
+                </div>
               </div>
             </div>
           </div>
@@ -1745,6 +1749,178 @@
           $('#voladoLimiteNorte').css("display", "none");
           $('#remetidaNorte').css("display", "none");
           $('#partelucesNorte').css("display", "block");
+        }
+      });
+
+      $('input:radio[name=tipoElementoSur]').change(function(){
+        if($(this).val()=="Ventana"){
+          $('#extrasVentanaSur').css("display","block");
+        }else{
+          $('#extrasVentanaSur').css("display","none");  
+        }
+      });
+
+      $('#sombraSur').change(function(){
+        var tipoSombra = $(this).val();
+
+        if(tipoSombra == "1"){
+          $('#voladoMasSur').css("display", "none");
+          $('#voladoLimiteSur').css("display", "none");
+          $('#remetidaSur').css("display", "none");
+          $('#partelucesSur').css("display", "none");
+        }
+        if(tipoSombra == "2"){
+          $('#voladoMasSur').css("display", "block");
+          $('#voladoLimiteSur').css("display", "none");
+          $('#remetidaSur').css("display", "none");
+          $('#partelucesSur').css("display", "none");
+        }
+        if(tipoSombra == "3"){
+          $('#voladoMasSur').css("display", "none");
+          $('#voladoLimiteSur').css("display", "block");
+          $('#remetidaSur').css("display", "none");
+          $('#partelucesSur').css("display", "none");
+        }
+        if(tipoSombra == "4"){
+          $('#voladoMasSur').css("display", "none");
+          $('#voladoLimiteSur').css("display", "none");
+          $('#remetidaSur').css("display", "block");
+          $('#partelucesSur').css("display", "none");
+        }
+        if(tipoSombra == "5"){
+          $('#voladoMasSur').css("display", "none");
+          $('#voladoLimiteSur').css("display", "none");
+          $('#remetidaSur').css("display", "none");
+          $('#partelucesSur').css("display", "block");
+        }
+      });
+
+      $('input:radio[name=tipoElementoEste]').change(function(){
+        if($(this).val()=="Ventana"){
+          $('#extrasVentanaEste').css("display","block");
+        }else{
+          $('#extrasVentanaEste').css("display","none");  
+        }
+      });
+
+      $('#sombraEste').change(function(){
+        var tipoSombra = $(this).val();
+
+        if(tipoSombra == "1"){
+          $('#voladoMasEste').css("display", "none");
+          $('#voladoLimiteEste').css("display", "none");
+          $('#remetidaEste').css("display", "none");
+          $('#partelucesEste').css("display", "none");
+        }
+        if(tipoSombra == "2"){
+          $('#voladoMasEste').css("display", "block");
+          $('#voladoLimiteEste').css("display", "none");
+          $('#remetidaEste').css("display", "none");
+          $('#partelucesEste').css("display", "none");
+        }
+        if(tipoSombra == "3"){
+          $('#voladoMasEste').css("display", "none");
+          $('#voladoLimiteEste').css("display", "block");
+          $('#remetidaEste').css("display", "none");
+          $('#partelucesEste').css("display", "none");
+        }
+        if(tipoSombra == "4"){
+          $('#voladoMasEste').css("display", "none");
+          $('#voladoLimiteEste').css("display", "none");
+          $('#remetidaEste').css("display", "block");
+          $('#partelucesEste').css("display", "none");
+        }
+        if(tipoSombra == "5"){
+          $('#voladoMasEste').css("display", "none");
+          $('#voladoLimiteEste').css("display", "none");
+          $('#remetidaEste').css("display", "none");
+          $('#partelucesEste').css("display", "block");
+        }
+      });
+
+      $('input:radio[name=tipoElementoOeste]').change(function(){
+        if($(this).val()=="Ventana"){
+          $('#extrasVentanaOeste').css("display","block");
+        }else{
+          $('#extrasVentanaOeste').css("display","none");  
+        }
+      });
+
+      $('#sombraOeste').change(function(){
+        var tipoSombra = $(this).val();
+
+        if(tipoSombra == "1"){
+          $('#voladoMasOeste').css("display", "none");
+          $('#voladoLimiteOeste').css("display", "none");
+          $('#remetidaOeste').css("display", "none");
+          $('#partelucesOeste').css("display", "none");
+        }
+        if(tipoSombra == "2"){
+          $('#voladoMasOeste').css("display", "block");
+          $('#voladoLimiteOeste').css("display", "none");
+          $('#remetidaOeste').css("display", "none");
+          $('#partelucesOeste').css("display", "none");
+        }
+        if(tipoSombra == "3"){
+          $('#voladoMasOeste').css("display", "none");
+          $('#voladoLimiteOeste').css("display", "block");
+          $('#remetidaOeste').css("display", "none");
+          $('#partelucesOeste').css("display", "none");
+        }
+        if(tipoSombra == "4"){
+          $('#voladoMasOeste').css("display", "none");
+          $('#voladoLimiteOeste').css("display", "none");
+          $('#remetidaOeste').css("display", "block");
+          $('#partelucesOeste').css("display", "none");
+        }
+        if(tipoSombra == "5"){
+          $('#voladoMasOeste').css("display", "none");
+          $('#voladoLimiteOeste').css("display", "none");
+          $('#remetidaOeste').css("display", "none");
+          $('#partelucesOeste').css("display", "block");
+        }
+      });
+
+      $('input:radio[name=tipoElementoTecho]').change(function(){
+        if($(this).val()=="Ventana"){
+          $('#extrasVentanaTecho').css("display","block");
+        }else{
+          $('#extrasVentanaTecho').css("display","none");  
+        }
+      });
+
+      $('#sombraTecho').change(function(){
+        var tipoSombra = $(this).val();
+
+        if(tipoSombra == "1"){
+          $('#voladoMasTecho').css("display", "none");
+          $('#voladoLimiteTecho').css("display", "none");
+          $('#remetidaTecho').css("display", "none");
+          $('#partelucesTecho').css("display", "none");
+        }
+        if(tipoSombra == "2"){
+          $('#voladoMasTecho').css("display", "block");
+          $('#voladoLimiteTecho').css("display", "none");
+          $('#remetidaTecho').css("display", "none");
+          $('#partelucesTecho').css("display", "none");
+        }
+        if(tipoSombra == "3"){
+          $('#voladoMasTecho').css("display", "none");
+          $('#voladoLimiteTecho').css("display", "block");
+          $('#remetidaTecho').css("display", "none");
+          $('#partelucesTecho').css("display", "none");
+        }
+        if(tipoSombra == "4"){
+          $('#voladoMasTecho').css("display", "none");
+          $('#voladoLimiteTecho').css("display", "none");
+          $('#remetidaTecho').css("display", "block");
+          $('#partelucesTecho').css("display", "none");
+        }
+        if(tipoSombra == "5"){
+          $('#voladoMasTecho').css("display", "none");
+          $('#voladoLimiteTecho').css("display", "none");
+          $('#remetidaTecho').css("display", "none");
+          $('#partelucesTecho').css("display", "block");
         }
       });
 
