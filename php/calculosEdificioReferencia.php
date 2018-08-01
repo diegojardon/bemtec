@@ -61,27 +61,27 @@
             //Se realizan los cálculos correspondientes
             for($j=0; $j<6; $j++){
               if($resultado[$j]["direccionElemento"] == "Norte"){
-                $resultadosCalculos = calculoCalorYRadiacion("Norte", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "Norte", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
                 continue;
               }
               if($resultado[$j]["direccionElemento"] == "Sur"){
-                $resultadosCalculos = calculoCalorYRadiacion("Sur", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "Sur", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
                 continue;
               }
               if(($resultado[$j]["direccionElemento"] == "Este"){
-                $resultadosCalculos = calculoCalorYRadiacion("Este", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "Este", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
                 continue;
               }
               if(($resultado[$j]["direccionElemento"] == "Oeste"){
-                $resultadosCalculos = calculoCalorYRadiacion("Oeste", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "Oeste", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
                 continue;
               }
               if(($resultado[$j]["direccionElemento"] == "Techo"){
-                $resultadosCalculos = calculoCalorYRadiacion("Techo", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "Techo", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
                 continue;
               }
               if(($resultado[$j]["direccionElemento"] == "TechoI"){
-                $resultadosCalculos = calculoCalorYRadiacion("TechoI", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "TechoI", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
                 continue;
               }
             }
@@ -109,6 +109,7 @@
 
 
   /**
+   * @param idCalculo -- El identificador del cálculo
    * @param orientacion -- Indica el tipo de direccion. Puede tomar los valores 
    * Norte, Sur, Este, Oeste, Techo y TechoI
    * @param norma -- Indica la norma, puede tomar los valores 2001 o 2011
@@ -116,8 +117,10 @@
    * @param latitud -- Indica latitud del edificio
    * @param areaTotalOrientacion -- Indica la suma del área total por la orientación definida en 
    * el parámetro orientación
+   * @param resultadosCalculo -- Sirve para almacenar los resultados de los cálculos para edificio
+   * de referencia y proyectado
    */
-  function calculoCalorYRadiacion($orientacion, $norma, $numNivelesEdificio, $latitud, $areaTotalOrientacion, $resultadosCalculos){
+  function calculoCalorYRadiacion($idCalculo, $orientacion, $norma, $numNivelesEdificio, $latitud, $areaTotalOrientacion, $resultadosCalculos){
 
     $result = mysql_query("SELECT tipoElemento, kTotal, esMasivoElemento, tipoSombra, coeficienteSombra, LVoladoMas, 
                            HVoladoMas, AVoladoMas, LVoladoLimite, HVoladoLimite, WVoladoLimite, AVoladoLimite, ERemetida,
