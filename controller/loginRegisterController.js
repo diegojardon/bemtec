@@ -299,10 +299,15 @@ app.controller("loginRegisterController", function($scope, $http){
 			if(data.response == 0){
 					//Redirigir a pantalla para configuración de elemento dependiendo si es homogeneo o no
 					var esHomogeneo = parseInt(data.esHomogeneo);
-					if(esHomogeneo == 1)
+					if(esHomogeneo == 1){
 						document.location.href = "componenteHomogenea.html";
-					else
-						document.location.href = "componenteNoHomogenea.html";
+					}else{
+						if(data.normaEnergetica == "NOM 008-ENER 2001"){
+							document.location.href = "componenteNoHomogenea008.html";
+						}else{
+							document.location.href = "componenteNoHomogenea.html";
+						}
+					}
 
 			}else{
 
@@ -505,5 +510,23 @@ app.controller("loginRegisterController", function($scope, $http){
 		console.log("ACTUALIZACIÓN DE ELEMENTO");
 
 	}
+
+	$scope.realizarCalculoFinal = function(){
+
+		$http.post("http://www.bemtec.mx/bemtec/php/calculosEdificioReferencia.php", {})
+		.success(function(data){
+			console.log("RESPONSE: " + data);
+			if(data.response == 0){
+				app.conduccionReferencia = data.gananciaCalorRef;
+				app.conduccionProyectado = data.gananciaCalorProy;
+				app.radiacionReferencia = data.gananciaRadiacionRef;
+				app.radiacionProyectado = data.gananciaRadiacionProy;
+				app.totalReferencia = data.gananciaCalorRef + data.gananciaRadiacionRef;
+				app.totalProyectado	= data.gananciaCalorProy + data.gananciaRadiacionProy;
+			}
+		});
+	}
+
+
 
 });

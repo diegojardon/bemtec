@@ -57,31 +57,52 @@
             }
 
             $resultadosCalculos = array(0.0, 0.0, 0.0, 0.0);
-
+            $resultadosCalculosTmp = array(0.0, 0.0, 0.0, 0.0);
+          
             //Se realizan los cálculos correspondientes
-            for($j=0; $j<6; $j++){
+            for($j=0; $j<$i; $j++){
               if($resultado[$j]["direccionElemento"] == "Norte"){
-                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "Norte", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Norte", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
+                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
               }
               if($resultado[$j]["direccionElemento"] == "Sur"){
-                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "Sur", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Sur", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
+                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
               }
-              if(($resultado[$j]["direccionElemento"] == "Este"){
-                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "Este", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+              if($resultado[$j]["direccionElemento"] == "Este"){
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Este", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
+                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
               }
-              if(($resultado[$j]["direccionElemento"] == "Oeste"){
-                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "Oeste", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+              if($resultado[$j]["direccionElemento"] == "Oeste"){
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Oeste", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
+                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
               }
-              if(($resultado[$j]["direccionElemento"] == "Techo"){
-                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "Techo", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+              if($resultado[$j]["direccionElemento"] == "Techo"){
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Techo", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
+                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
               }
-              if(($resultado[$j]["direccionElemento"] == "TechoI"){
-                $resultadosCalculos = calculoCalorYRadiacion($idCalculo, "TechoI", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos);
+              if($resultado[$j]["direccionElemento"] == "TechoI"){
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "TechoI", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
                 continue;
               }
             }
@@ -119,15 +140,18 @@
    * el parámetro orientación
    * @param resultadosCalculo -- Sirve para almacenar los resultados de los cálculos para edificio
    * de referencia y proyectado
+   * @param link -- Variable para conexión con Base de Datos
    */
-  function calculoCalorYRadiacion($idCalculo, $orientacion, $norma, $numNivelesEdificio, $latitud, $areaTotalOrientacion, $resultadosCalculos){
+  function calculoCalorYRadiacion($idCalculo, $orientacion, $norma, $numNivelesEdificio, $latitud, $areaTotalOrientacion, $resultadosCalculos, $link){
 
-    $result = mysql_query("SELECT tipoElemento, kTotal, esMasivoElemento, tipoSombra, coeficienteSombra, LVoladoMas, 
-                           HVoladoMas, AVoladoMas, LVoladoLimite, HVoladoLimite, WVoladoLimite, AVoladoLimite, ERemetida,
-                           PRemetida, WRemetida, LParteluces, WParteluces FROM elemento WHERE idCalculo = '".$idCalculo."' AND direccionElemento = '".$orientacion."'",$link);
+    $queryF = "SELECT tipoElemento, kTotal, esMasivoElemento, tipoSombra, coeficienteSombra, LVoladoMas, 
+    HVoladoMas, AVoladoMas, LVoladoLimite, HVoladoLimite, WVoladoLimite, AVoladoLimite, ERemetida,
+    PRemetida, WRemetida, LParteluces, WParteluces FROM elemento WHERE idCalculo = '".$idCalculo."' AND direccionElemento = '".$orientacion."'";
+
+    $result = mysql_query($queryF,$link);
 
     $totalUsu = mysql_num_rows($result);
-      if($totalUsu > 0){
+    if($totalUsu > 0){
         $i=0;
         while($info = mysql_fetch_assoc($result)){
             $tipoElemento = $info["tipoElemento"];
@@ -163,30 +187,97 @@
               $se = 0;
               $query = "";
 
-              if($norma == "2011"){
+              if($tipoSombreado == "1"){
+                $se = 1;
+              }
+              if($tipoSombreado == "2"){
+                //Ocupar dirección, latitud y factor1 (L/H)
+                $columna = "";
+                $factor1 = (float)$lVoladoMas / (float)$hVoladoMas;
 
-                if($tipoSombreado == "1"){
-                  $se = 1;
-                }
-                if($tipoSombreado == "2"){
-                  //Ocupar dirección, latitud y factor1 (L/H)
-                  $columna = "";
-                  $factor1 = (float)$lVoladoMas / (float)$hVoladoMas;
+                if($orientacion == "Norte")
+                  $columna = "norte";
+                if($orientacion == "Este" || $orientacion == "Oeste")
+                  $columna = "esteOeste";
+                if($orientacion == "Sur")
+                  $columna = "sur";
 
-                  if($orientacion == "Norte")
-                    $columna = "norte";
-                  if($orientacion == "Este" || $orientacion == "Oeste")
-                    $columna = "esteOeste";
-                  if($orientacion == "Sur")
-                    $columna = "sur";
-
-                  $latitudNum = (float)$latitud;  
+                $latitudNum = (float)$latitud;  
+                
+                if($norma == "2011"){
                   if($latitudNum <= 33.0 && $latitudNum >= 23.0)
                     $columna .= "23a33";
                   if($latitudNum < 23.0 && $latitudNum >= 14.0)
                     $columna .= "14a23";  
+                }else{
+                  if($latitudNum <= 33.0 && $latitudNum >= 28.0)
+                    $columna .= "28a33";
+                  if($latitudNum < 28.0 && $latitudNum >= 14.0)
+                    $columna .= "14a28";  
+                }
 
+                if($norma == "2011")
                   $query = "SELECT " . $columna . " FROM tabla_2_2011 WHERE lH >= " . $factor1 . " ORDER BY lH ASC";
+                else
+                  $query = "SELECT " . $columna . " FROM tabla_2_2001 WHERE lH >= " . $factor1 . " ORDER BY lH ASC";
+                $resultSombreado = mysql_query($query,$link);
+                if($resultSombreado === FALSE){
+                  $resultado["response"] = Constantes::ERROR;
+                }else{
+                  $totalUsu = mysql_num_rows($resultSombreado);
+                  if($totalUsu > 0){
+                    while($info = mysql_fetch_assoc($resultSombreado)){
+                        $se = $info[$columna];
+                        break;
+                    }
+                  }else{
+                    $resultado["response"] = Constantes::ERROR;
+                  }
+                }    
+              }else{
+                if($tipoSombreado == "3"){
+                  //Ocupar dirección, latitud, factor1 (L/H) y factor2 (W/H)
+                  if($norma == "2011")
+                    $tabla = "tabla_3_2011_";
+                  else
+                    $tabla = "tabla_3_2001_";
+                  $columna = "wH_";
+                  $factor1 = (float)$lVoladoLimite / (float)$hVoladoLimite;
+                  $factor2 = (float)$wVoladoLimite / (float)$hVoladoLimite;
+
+                  if($orientacion == "Norte")
+                    $tabla .= "Norte_";
+                  if($orientacion == "Este" || $orientacion == "Oeste")
+                    $tabla .= "EsteOeste_";
+                  if($orientacion == "Sur")
+                    $tabla .= "Sur_";
+
+                  $latitudNum = (float)$latitud; 
+                  if($latitudNum >= 14.0 && $latitudNum <= 19.0)
+                    $tabla .= "1";
+                  if($latitudNum > 19.0 & $latitudNum <= 23.0)
+                    $tabla .= "2";
+                  if($latitudNum > 23.0 && $latitudNum <= 28.0)
+                    $tabla .= "3";
+                  if($latitudNum > 28.0 && $latitudNum <= 32.0)
+                    $tabla .= "4";
+
+                  $factor2 = round($factor2);
+                  
+                  if($factor2 <= 0.5)
+                    $columna .= "0.5";
+                  if($factor2 > 0.5 && $factor2 <= 1.0)
+                    $columna .= "1";
+                  if($factor2 > 1.0 && $factor2 <= 2.0)
+                    $columna .= "2";
+                  if($factor2 > 2.0 && $factor2 <= 4.0)
+                    $columna .= "4";  
+                  if($factor2 > 4.0 && $factor2 <= 6.0)
+                    $columna .= "6";
+                  if($factor2 > 6.0)
+                    $columna .= "8";
+
+                  $query = "SELECT " . $columna . " FROM " . $tabla . " WHERE lH >= ". $factor1 . " ORDER BY lH ASC";
 
                   $resultSombreado = mysql_query($query,$link);
                   if($resultSombreado === FALSE){
@@ -201,14 +292,17 @@
                     }else{
                       $resultado["response"] = Constantes::ERROR;
                     }
-                  }    
+                  }   
                 }else{
-                  if($tipoSombreado == "3"){
-                    //Ocupar dirección, latitud, factor1 (L/H) y factor2 (W/H)
-                    $tabla = "tabla_3_2011_";
-                    $columna = "wH_";
-                    $factor1 = (float)$lVoladoLimite / (float)$hVoladoLimite;
-                    $factor2 = (float)$wVoladoLimite / (float)$hVoladoLimite;
+                  if($tipoSombreado == "4"){
+                    //Ocupar dirección, latitud, factor1 (P/E) y factor2 (W/E)
+                    if($norma == "2011")
+                      $tabla = "tabla_4_2011_";
+                    else
+                      $tabla = "tabla_4_2001_";
+                    $columna = "wE_";
+                    $factor1 = (float)$pRemetida / (float)$eRemetida;
+                    $factor2 = (float)$wRemetida / (float)$eRemetida;
 
                     if($orientacion == "Norte")
                       $tabla .= "Norte_";
@@ -242,8 +336,8 @@
                     if($factor2 > 6.0)
                       $columna .= "8";
 
-                    $query = "SELECT " . $columna . " FROM " . $tabla . " WHERE lH >= ". $factor1 . " ORDER BY lH ASC";
-
+                    $query = "SELECT " . $columna . " FROM " . $tabla . " WHERE pE >= ". $factor1 . " ORDER BY pE ASC";
+                    
                     $resultSombreado = mysql_query($query,$link);
                     if($resultSombreado === FALSE){
                       $resultado["response"] = Constantes::ERROR;
@@ -259,47 +353,34 @@
                       }
                     }   
                   }else{
-                    if($tipoSombreado == "4"){
-                      //Ocupar dirección, latitud, factor1 (P/E) y factor2 (W/E)
-                      $tabla = "tabla_4_2011_";
-                      $columna = "wE_";
-                      $factor1 = (float)$pRemetida / (float)$eRemetida;
-                      $factor2 = (float)$wRemetida / (float)$eRemetida;
+                    if($tipoSombreado == "5"){
+                      //Ocupar dirección, latitud, factor1 (L/W)
+                      $columna = "";
+                      $factor1 = (float)$lParteluces / (float)$wParteluces;
 
                       if($orientacion == "Norte")
-                        $tabla .= "Norte_";
+                        $columna = "norte";
                       if($orientacion == "Este" || $orientacion == "Oeste")
-                        $tabla .= "EsteOeste_";
+                        $columna = "esteOeste";
                       if($orientacion == "Sur")
-                        $tabla .= "Sur_";
+                        $columna = "sur";
 
-                      $latitudNum = (float)$latitud; 
+                      $latitudNum = (float)$latitud;  
                       if($latitudNum >= 14.0 && $latitudNum <= 19.0)
-                        $tabla .= "1";
-                      if($latitudNum > 19.0 & $latitudNum <= 23.0)
-                        $tabla .= "2";
+                        $columna .= "14a19";
+                      if($latitudNum > 19.0 && $latitudNum <= 23.0)
+                        $columna .= "19a23";
                       if($latitudNum > 23.0 && $latitudNum <= 28.0)
-                        $tabla .= "3";
-                      if($latitudNum > 28.0 && $latitudNum <= 32.0)
-                        $tabla .= "4";
+                        $columna .= "23a28";    
+                      if($latitudNum > 28.0 && $latitudNum <=32)
+                        $columna .= "28a32";
 
-                      $factor2 = round($factor2);
-                      
-                      if($factor2 <= 0.5)
-                        $columna .= "0.5";
-                      if($factor2 > 0.5 && $factor2 <= 1.0)
-                        $columna .= "1";
-                      if($factor2 > 1.0 && $factor2 <= 2.0)
-                        $columna .= "2";
-                      if($factor2 > 2.0 && $factor2 <= 4.0)
-                        $columna .= "4";  
-                      if($factor2 > 4.0 && $factor2 <= 6.0)
-                        $columna .= "6";
-                      if($factor2 > 6.0)
-                        $columna .= "8";
+                      if($norma == "2011")
+                        $query = "SELECT " . $columna . " FROM tabla_5_2011 WHERE lW >= " . $factor1 . " ORDER BY lW ASC";
+                      else
+                        $query = "SELECT " . $columna . " FROM tabla_5_2001 WHERE lW >= " . $factor1 . " ORDER BY lW ASC";
 
-                      $query = "SELECT " . $columna . " FROM " . $tabla . " WHERE pE >= ". $factor1 . " ORDER BY pE ASC";
-                      
+                      //Del resultado tomar solo el primer elemento
                       $resultSombreado = mysql_query($query,$link);
                       if($resultSombreado === FALSE){
                         $resultado["response"] = Constantes::ERROR;
@@ -315,54 +396,11 @@
                         }
                       }   
                     }else{
-                      if($tipoSombreado == "5"){
-                        //Ocupar dirección, latitud, factor1 (L/W)
-                        $columna = "";
-                        $factor1 = (float)$lParteluces / (float)$wParteluces;
-
-                        if($orientacion == "Norte")
-                          $columna = "norte";
-                        if($orientacion == "Este" || $orientacion == "Oeste")
-                          $columna = "esteOeste";
-                        if($orientacion == "Sur")
-                          $columna = "sur";
-
-                        $latitudNum = (float)$latitud;  
-                        if($latitudNum >= 14.0 && $latitudNum <= 19.0)
-                          $columna .= "14a19";
-                        if($latitudNum > 19.0 && $latitudNum <= 23.0)
-                          $columna .= "19a23";
-                        if($latitudNum > 23.0 && $latitudNum <= 28.0)
-                          $columna .= "23a28";    
-                        if($latitudNum > 28.0 && $latitudNum <=32)
-                          $columna .= "28a32";
-
-                        $query = "SELECT " . $columna . " FROM tabla_5_2011 WHERE lW >= " . $factor1 . " ORDER BY lW ASC";
-
-                        //Del resultado tomar solo el primer elemento
-                        $resultSombreado = mysql_query($query,$link);
-                        if($resultSombreado === FALSE){
-                          $resultado["response"] = Constantes::ERROR;
-                        }else{
-                          $totalUsu = mysql_num_rows($resultSombreado);
-                          if($totalUsu > 0){
-                            while($info = mysql_fetch_assoc($resultSombreado)){
-                                $se = $info[$columna];
-                                break;
-                            }
-                          }else{
-                            $resultado["response"] = Constantes::ERROR;
-                          }
-                        }   
-                      }else{
-                        $se = 1;
-                      }
+                      $se = 1;
                     }
                   }
-                }  
-              }else{
-                //Es la norma 008 (PENDIENTE COLOCAR LOS VALORES)
-              }
+                }
+              }  
             }
 
             //Armamos la consulta para obtener la temperatura equivalente, la temperatura interior, 
@@ -378,7 +416,7 @@
                 $query .= "sInterior, ";
                 $columnaTE = "sInterior";
               }else{
-                if$tipoElemento == "Tragaluz"){
+                if($tipoElemento == "Tragaluz"){
                   $query .= "teTragaluz, ";
                   $columnaTE = "teTragaluz";
                 }else{
@@ -387,7 +425,7 @@
                       $query .= "teMasivo";
                       $columnaTE = "teMasivo";
                     }else{
-                      $query .= "teLigero":
+                      $query .= "teLigero";
                       $columnaTE = "teLigero";
                     }
                   }else{
@@ -401,8 +439,8 @@
             }
 
             $nivelesEdificio = (int)$numNivelesEdificio;
-            if(nivelesEdificio <= 3){
-              $query .="kMenor3, "
+            if($nivelesEdificio <= 3){
+              $query .="kMenor3, ";
               $columnaK = "kMenor3";
             }else{
               if($orientacion == "Techo" || $orientacion == "TechoI"){
@@ -424,7 +462,9 @@
               }
             }
 
-            $query .= "FROM tabla_1_".$norma." WHERE latitud = '".$latitud."'";
+            $query .= " FROM tabla_1_".$norma." WHERE latitud = '".$latitud."'";
+
+           //echo "QUERY: ".$query."<br/>";
 
             $resultTabla1 = mysql_query($query,$link); 
             if($resultTabla1 === FALSE){
@@ -434,15 +474,22 @@
               if($totalUsu > 0){
                 $i=0;
                 while($info = mysql_fetch_assoc($resultTabla1)){
-                  $te = info[$columnaTE];
-                  $ti = info["tInterior"];
-                  $fg = info[$columnaFG];
-                  $kProy = info[$columnaK];
+                  $te = $info[$columnaTE];
+                  $ti = $info["tInterior"];
+                  $fg = $info[$columnaFG];
+                  $kProy = $info[$columnaK];
                 }
               }
             }
 
             //Se aplican los cálculos para la ganancia de calor (referencia y proyectado)
+
+            /*echo "KTOTAL: ".$kTotal."<br/>";
+            echo "AREA TOTAL ORIENTACION: ".$areaTotalOrientacion."<br/>";
+            echo "FRACCION COMPONENTE: ".$fraccionComponente."<br/>";
+            echo "TE: ".$te."<br/>";
+            echo "TI: ".$ti."<br/>";*/
+         
 
             //Ganancia de calor referencia
             $resultadosCalculos[0] += ((float)$kTotal * (float)$areaTotalOrientacion * (float)$fraccionComponente * ((float)$te - (float)$ti)); 
@@ -452,17 +499,24 @@
             //Se aplican los cálculos para la ganancia por radiación
 
             if($tipoElemento == "Tragaluz" || $tipoElemento == "Ventana"){
+              /*echo "CS: ".$cs."<br/>";
+              echo "FG: ".$fg."<br/>";
+              echo "SE: ".$se."<br/>";*/
               //Ganancia de calor radiación referencia
               $resultadosCalculos[2] += (float)$areaTotalOrientacion * (float)$cs * (float)$fraccionComponente * (float)$fg;
               //Ganancia de calor radiación proyectado
               $resultadosCalculos[3] += (float)$areaTotalOrientacion * (float)$cs * (float)$fg * (float)$se;
             }
 
+            /*echo "RESULTADOS CALCULOS [0]: ".$resultadosCalculos[0];
+            echo "RESULTADOS CALCULOS [1]: ".$resultadosCalculos[1];
+            echo "RESULTADOS CALCULOS [2]: ".$resultadosCalculos[2];
+            echo "RESULTADOS CALCULOS [3]: ".$resultadosCalculos[3];*/
+
             $i++;
         }
-
-        return $resultadosCalculos;
-
+    }
+    return $resultadosCalculos;
   }
 
 ?>

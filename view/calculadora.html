@@ -1454,7 +1454,7 @@
               <!-- PESTAÑA CALCULAR -->
               <div role="tabpanel" class="tab-pane fade" id="calcular">
                 <br/>
-                <h4 class="section-title2 wow fadeIn animated" data-wow-delay=".2s">
+                <h4 class="section-title2 wow fadeIn animated" data-wow-delay=".2s" style="text-decoration: underline;">
                   Resumen del Cálculo
                 </h4>
                 <br/>
@@ -1462,13 +1462,13 @@
                 <div class="row">
                     <div class="col-sm-3 col-md-3"></div>
                     <div class="col-sm-3 col-md-3">
-                      <h5>Ganancia por Conducción (W)</h5>
+                      <h5><center>Ganancia de calor por Conducción (W)</center></h5>
                     </div>
                     <div class="col-sm-3 col-md-3">
-                      <h5>Ganancia por Radiación (W)</h5>
+                      <h5><center>Ganancia de calor por Radiación (W)</center></h5>
                     </div>
                     <div class="col-sm-3 col-md-3">
-                      <h5>Ganancia Total (W)</h5>
+                      <h5><center>Ganancia de calor Total (W)</center></h5>
                     </div>
                 </div>
                 <br/>
@@ -1477,13 +1477,13 @@
                     <h5>Edificio de Referencia</h5>
                   </div>
                   <div class="col-sm-3 col-md-3">
-                    <h5>{{app.conduccionReferencia}}</h5>
+                    <h5><center>{{app.conduccionReferencia}}</center></h5>
                   </div>
                   <div class="col-sm-3 col-md-3">
-                    <h5>{{app.radiacionReferencia}}</h5>
+                    <h5><center>{{app.radiacionReferencia}}</center></h5>
                   </div>
                   <div class="col-sm-3 col-md-3">
-                    <h5>{{app.totalReferencia}}</h5>
+                    <h5><center>{{app.totalReferencia}}</center></h5>
                   </div>
                 </div>
                 <br/>
@@ -1492,26 +1492,33 @@
                     <h5>Edificio Proyectado</h5>
                   </div>
                   <div class="col-sm-3 col-md-3">
-                    <h5>{{app.conduccionProyectado}}</h5>
+                    <h5><center>{{app.conduccionProyectado}}</center></h5>
                   </div>
                   <div class="col-sm-3 col-md-3">
-                    <h5>{{app.radiacionProyectado}}</h5>
+                    <h5><center>{{app.radiacionProyectado}}</center></h5>
                   </div>
                   <div class="col-sm-3 col-md-3">
-                    <h5>{{app.totalProyectado}}</h5>
+                    <h5><center>{{app.totalProyectado}}</center></h5>
                   </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-sm-5 col-md-5"></div>
                     <div class="col-sm-3 col-md-3">
-                      <button type="button" class="btn btn-success" ng-click="">CALCULAR</button>
+                      <button type="button" class="btn btn-success" ng-click="realizarCalculoFinal()">CALCULAR</button>
                     </div>
                     <div class="col-sm-4 col-md-4"></div>
                 </div>
                 <br/>
                 <div class="row">
                   <!-- AQUI DEBE IR LA ETIQUETA DE COLOR INDICANDO SI CUMPLE CON LA NORMA O NO -->
+                  <center>
+                    <br/>
+                    <h5 style="color:#769e26" ng-if="app.totalReferencia <= app.totalProyectado"><strong>SI</strong> cumple con la norma</h5>
+                    <h5 style="color: red" ng-if="app.totalReferencia > app.totalProyectado"><strong>NO</strong> cumple con la norma</h5>
+                    <br/>
+                    <img src="images/etiqueta_resultado.jpg" height="250" width="250" alt="100" ng-if="app.totalReferencia <= app.totalProyectado"/>
+                  </center>
                 </div>
               </div>
             </div>

@@ -41,6 +41,7 @@
 	if(isset($_SESSION['idCalculo'])){
 
 		$idCalculo = $_SESSION['idCalculo'];
+		$normaEnergetica = $_SESSION['nombreNormaEnergetica'];
 
 		$query = "INSERT INTO elemento (`idElemento`,`nombreElemento`,`tipoElemento`,`direccionElemento`,`idCalculo`,
 		                                `esHomogeneoElemento`,`areaElemento`,`coeficienteSombra`, `tipoSombra`,
@@ -59,6 +60,7 @@
 	  if($result === TRUE){
 	 		$resultado["response"] = Constantes::EXITO;
 			$resultado["esHomogeneo"] = $esHomogeneoElemento;
+			$resultado["normaEnergetica"] = $normaEnergetica;
 
 			$_SESSION["esHomogeneo"] = $esHomogeneoElemento;
 			$_SESSION["nombreElemento"] = $nombreElemento;
