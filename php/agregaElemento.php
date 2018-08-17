@@ -35,6 +35,8 @@
 	$WRemetida = mysql_real_escape_string($data->WRemetida);
 	$LParteluces = mysql_real_escape_string($data->LParteluces);
 	$WParteluces = mysql_real_escape_string($data->WParteluces);
+	$KVentana = mysql_real_escape_string($data->KVentana);
+	$MVentana = mysql_real_escape_string($data->MVentana);
 
 	//Se inserta el elemento en la BD
 
@@ -47,11 +49,11 @@
 		                                `esHomogeneoElemento`,`areaElemento`,`coeficienteSombra`, `tipoSombra`,
 										`LVoladoMas`, `HVoladoMas`, `AVoladoMas`, `LVoladoLimite`, `HVoladoLimite`, 
 										`WVoladoLimite`, `AVoladoLimite`, `ERemetida`, `PRemetida`, `WRemetida`,
-										`LParteluces`, `WParteluces`)
+										`LParteluces`, `WParteluces`,`kTotal`,`mTotal`)
 	            VALUES (NULL, '$nombreElemento', '$tipoElemento' , '$direccionElemento', '$idCalculo', '$esHomogeneoElemento', '$areaElemento',
 					    '$coeficienteSombra', '$tipoSombra', '$LVoladoMas', '$HVoladoMas', '$AVoladoMas', '$LVoladoLimite',
 						'$HVoladoLimite', '$WVoladoLimite', '$AVoladoLimite', '$ERemetida', '$PRemetida', '$WRemetida',
-						'$LParteluces', '$WParteluces')";
+						'$LParteluces', '$WParteluces', '$KVentana', '$MVentana')";
 
 		$result = mysql_query($query);
 
@@ -61,6 +63,8 @@
 	 		$resultado["response"] = Constantes::EXITO;
 			$resultado["esHomogeneo"] = $esHomogeneoElemento;
 			$resultado["normaEnergetica"] = $normaEnergetica;
+			$resultado["tipoElemento"] = $tipoElemento;
+			$resultado["direccionElemento"] = $direccionElemento;
 
 			$_SESSION["esHomogeneo"] = $esHomogeneoElemento;
 			$_SESSION["nombreElemento"] = $nombreElemento;

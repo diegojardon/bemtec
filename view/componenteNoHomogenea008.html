@@ -692,12 +692,12 @@
       $("#areaNoHomogenea1").bind('keyup blur',function(){
         var areaTotal = $("#areaOculta").val();
         var fraccion = parseFloat($("#areaNoHomogenea1").val()) / parseFloat(areaTotal);
-        $("#fraccion1").val(fraccion.toFixed(4));
-        $("#fraccionNH1").val(fraccion.toFixed(4));
+        $("#fraccion1").val(fraccion.toFixed(3));
+        $("#fraccionNH1").val(fraccion.toFixed(3));
         if($("#areaNoHomogenea2").val() != ""){
           fraccion = 1 - fraccion;
-          $("#fraccion2").val(fraccion.toFixed(4));
-          $("#fraccionNH2").val(fraccion.toFixed(4));
+          $("#fraccion2").val(fraccion.toFixed(3));
+          $("#fraccionNH2").val(fraccion.toFixed(3));
         }
       });
 
@@ -705,8 +705,8 @@
         var areaTotal = $("#areaOculta").val();
         console.log("AREA 2: " + areaTotal);
         var fraccion = 1 - (parseFloat($("#areaNoHomogenea1").val()) / parseFloat(areaTotal));
-        $("#fraccion2").val(fraccion.toFixed(4));
-        $("#fraccionNH2").val(fraccion.toFixed(4));
+        $("#fraccion2").val(fraccion.toFixed(3));
+        $("#fraccionNH2").val(fraccion.toFixed(3));
       });
 
       $("#totalComponentes").change(function () {
@@ -732,7 +732,7 @@
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponenteParcial").val(totalM.toFixed(4));
+        $("#mComponenteParcial").val(totalM.toFixed(3));
 
       });
 
@@ -742,11 +742,11 @@
           $("#aislante1").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividad1").val());
-          $("#aislante1").val(total.toFixed(4));
+          $("#aislante1").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponenteParcial").val(totalM.toFixed(4));
+        $("#mComponenteParcial").val(totalM.toFixed(3));
 
       });
 
@@ -756,11 +756,11 @@
           $("#aislante1").val(0);
         }else{
           var total = parseFloat($("#espesor1").val()) / parseFloat($(this).val());
-          $("#aislante1").val(total.toFixed(4));
+          $("#aislante1").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponenteParcial").val(totalM.toFixed(4));
+        $("#mComponenteParcial").val(totalM.toFixed(3));
 
       });
 
@@ -770,11 +770,11 @@
           $("#aislante2").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividad2").val());
-          $("#aislante2").val(total.toFixed(4));
+          $("#aislante2").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponenteParcial").val(totalM.toFixed(4));
+        $("#mComponenteParcial").val(totalM.toFixed(3));
 
       });
 
@@ -784,11 +784,11 @@
           $("#aislante2").val(0);
         }else{
           var total = parseFloat($("#espesor2").val()) / parseFloat($(this).val());
-          $("#aislante2").val(total.toFixed(4));
+          $("#aislante2").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponenteParcial").val(totalM.toFixed(4));
+        $("#mComponenteParcial").val(totalM.toFixed(3));
 
       });
 
@@ -798,11 +798,11 @@
           $("#aislante3").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividad3").val());
-          $("#aislante3").val(total.toFixed(4));
+          $("#aislante3").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponenteParcial").val(totalM.toFixed(4));
+        $("#mComponenteParcial").val(totalM.toFixed(3));
 
       });
 
@@ -812,11 +812,11 @@
           $("#aislante3").val(0);
         }else{
           var total = parseFloat($("#espesor3").val()) / parseFloat($(this).val());
-          $("#aislante3").val(total.toFixed(4));
+          $("#aislante3").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponenteParcial").val(totalM.toFixed(4));
+        $("#mComponenteParcial").val(totalM.toFixed(3));
 
       });
 
@@ -826,11 +826,11 @@
           $("#aislante4").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividad4").val());
-          $("#aislante4").val(total.toFixed(4));
+          $("#aislante4").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponenteParcial").val(totalM.toFixed(4));
+        $("#mComponenteParcial").val(totalM.toFixed(3));
 
       });
 
@@ -840,11 +840,11 @@
           $("#aislante4").val(0);
         }else{
           var total = parseFloat($("#espesor4").val()) / parseFloat($(this).val());
-          $("#aislante4").val(total.toFixed(4));
+          $("#aislante4").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponenteParcial").val(totalM.toFixed(4));
+        $("#mComponenteParcial").val(totalM.toFixed(3));
 
       });
 
@@ -854,11 +854,11 @@
           $("#aislante5").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividad5").val());
-          $("#aislante5").val(total.toFixed(4));
+          $("#aislante5").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponenteParcial").val(totalM.toFixed(4));
+        $("#mComponenteParcial").val(totalM.toFixed(3));
 
       });
 
@@ -868,11 +868,11 @@
           $("#aislante5").val(0);
         }else{
           var total = parseFloat($("#espesor5").val()) / parseFloat($(this).val());
-          $("#aislante5").val(total.toFixed(4));
+          $("#aislante5").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponenteParcial").val(totalM.toFixed(4));
+        $("#mComponenteParcial").val(totalM.toFixed(3));
 
       });
 
@@ -898,7 +898,7 @@
           $("#aislanteNH1").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividadNH1").val());
-          $("#aislanteNH1").val(total.toFixed(4));
+          $("#aislanteNH1").val(total.toFixed(3));
         }
 
       });
@@ -909,7 +909,7 @@
           $("#aislanteNH1").val(0);
         }else{
           var total = parseFloat($("#espesorNH1").val()) / parseFloat($(this).val());
-          $("#aislanteNH1").val(total.toFixed(4));
+          $("#aislanteNH1").val(total.toFixed(3));
         }
 
       });
@@ -920,7 +920,7 @@
           $("#aislanteNH2").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividadNH2").val());
-          $("#aislanteNH2").val(total.toFixed(4));
+          $("#aislanteNH2").val(total.toFixed(3));
         }
 
       });
@@ -931,7 +931,7 @@
           $("#aislanteNH2").val(0);
         }else{
           var total = parseFloat($("#espesorNH2").val()) / parseFloat($(this).val());
-          $("#aislanteNH2").val(total.toFixed(4));
+          $("#aislanteNH2").val(total.toFixed(3));
         }
 
       });
@@ -953,11 +953,11 @@
 
         var totalM = 1 / (parseFloat(subtotalMParcial) + parseFloat(subtotalFraccion1) + parseFloat(subtotalFraccion2));
 
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
 
       });
 

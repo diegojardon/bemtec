@@ -302,18 +302,18 @@
                       <div class="col-sm-5 col-md-5">
                         <select id="vidrioNorte" class="form-control separacion-input" ng-model="elementoNorte.CS">
                           <option selected value="">Selecciona un tipo de vidrio...</option>
-                          <option value="1.00">Vidrio 3mm K=4.92 CS=1.00</option>
-                          <option value="1.00">Claro 6mm K=4.86 CS=1.00</option>
-                          <option value="0.83">Tintex 3mm K=4.92 CS=0.83</option>
-                          <option value="0.61">SolLITE 3mm K=4.92 CS=0.61</option>
-                          <option value="0.76">Filtrasol 4mm K=4.90 CS=0.76</option>
-                          <option value="0.68">Filtrasol 6mm K=4.86 CS=0.68</option>
-                          <option value="0.40">Filtraplus 6mm K=4.86 CS=0.40</option>
-                          <option value="0.30">Claro 3mm+pelicula control sol K=4.90 CS=0.30</option>
-                          <option value="0.22">Claro 3mm+pelicula control sol K=4.90 CS=0.22</option>
-                          <option value="0.89">Doble 6-12-6 ClaroAireClaro K=2.77 CS=0.89</option>
-                          <option value="0.64">Doble 4-12-4 ClaroAireLowE K=2.80 CS=0.64</option>
-                          <option value="0.64">Doble 4-16-4 ClaroArgónLowE K=1.50 CS=0.64</option>
+                          <option value="1.00|4.92">Vidrio 3mm K=4.92 CS=1.00</option>
+                          <option value="1.00|4.86">Claro 6mm K=4.86 CS=1.00</option>
+                          <option value="0.83|4.92">Tintex 3mm K=4.92 CS=0.83</option>
+                          <option value="0.61|4.92">SolLITE 3mm K=4.92 CS=0.61</option>
+                          <option value="0.76|4.90">Filtrasol 4mm K=4.90 CS=0.76</option>
+                          <option value="0.68|4.86">Filtrasol 6mm K=4.86 CS=0.68</option>
+                          <option value="0.40|4.86">Filtraplus 6mm K=4.86 CS=0.40</option>
+                          <option value="0.30|4.90">Claro 3mm+pelicula control sol K=4.90 CS=0.30</option>
+                          <option value="0.22|4.90">Claro 3mm+pelicula control sol K=4.90 CS=0.22</option>
+                          <option value="0.89|2.77">Doble 6-12-6 ClaroAireClaro K=2.77 CS=0.89</option>
+                          <option value="0.64|2.80">Doble 4-12-4 ClaroAireLowE K=2.80 CS=0.64</option>
+                          <option value="0.64|1.50">Doble 4-16-4 ClaroArgónLowE K=1.50 CS=0.64</option>
                         </select> 
                       </div>
                       <div class="col-sm-5 col-md-5">
@@ -397,7 +397,7 @@
                         <input type="text" class="form-control separacion-input" name="areaNorte" ng-model="elementoNorte.area" />
                       </div>
                     </div>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2" id="selectElementoHomogeneoNorte" style="display:block">
                       <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Es Homogéneo?</h5></center>
                       <div>
                         <select name="homogeneoNorte" ng-model="elementoNorte.esHomogeneoElemento" class="form-control separacion-input">
@@ -515,18 +515,18 @@
                       <div class="col-sm-5 col-md-5">
                         <select id="vidrioSur" class="form-control separacion-input" ng-model="elementoSur.CS">
                           <option selected value="">Selecciona un tipo de vidrio...</option>
-                          <option value="1.00">Vidrio 3mm K=4.92 CS=1.00</option>
-                          <option value="1.00">Claro 6mm K=4.86 CS=1.00</option>
-                          <option value="0.83">Tintex 3mm K=4.92 CS=0.83</option>
-                          <option value="0.61">SolLITE 3mm K=4.92 CS=0.61</option>
-                          <option value="0.76">Filtrasol 4mm K=4.90 CS=0.76</option>
-                          <option value="0.68">Filtrasol 6mm K=4.86 CS=0.68</option>
-                          <option value="0.40">Filtraplus 6mm K=4.86 CS=0.40</option>
-                          <option value="0.30">Claro 3mm+pelicula control sol K=4.90 CS=0.30</option>
-                          <option value="0.22">Claro 3mm+pelicula control sol K=4.90 CS=0.22</option>
-                          <option value="0.89">Doble 6-12-6 ClaroAireClaro K=2.77 CS=0.89</option>
-                          <option value="0.64">Doble 4-12-4 ClaroAireLowE K=2.80 CS=0.64</option>
-                          <option value="0.64">Doble 4-16-4 ClaroArgónLowE K=1.50 CS=0.64</option>
+                          <option value="1.00|4.92">Vidrio 3mm K=4.92 CS=1.00</option>
+                          <option value="1.00|4.86">Claro 6mm K=4.86 CS=1.00</option>
+                          <option value="0.83|4.92">Tintex 3mm K=4.92 CS=0.83</option>
+                          <option value="0.61|4.92">SolLITE 3mm K=4.92 CS=0.61</option>
+                          <option value="0.76|4.90">Filtrasol 4mm K=4.90 CS=0.76</option>
+                          <option value="0.68|4.86">Filtrasol 6mm K=4.86 CS=0.68</option>
+                          <option value="0.40|4.86">Filtraplus 6mm K=4.86 CS=0.40</option>
+                          <option value="0.30|4.90">Claro 3mm+pelicula control sol K=4.90 CS=0.30</option>
+                          <option value="0.22|4.90">Claro 3mm+pelicula control sol K=4.90 CS=0.22</option>
+                          <option value="0.89|2.77">Doble 6-12-6 ClaroAireClaro K=2.77 CS=0.89</option>
+                          <option value="0.64|2.80">Doble 4-12-4 ClaroAireLowE K=2.80 CS=0.64</option>
+                          <option value="0.64|1.50">Doble 4-16-4 ClaroArgónLowE K=1.50 CS=0.64</option>
                         </select> 
                       </div>
                       <div class="col-sm-5 col-md-5">
@@ -610,7 +610,7 @@
                         <input type="text" class="form-control separacion-input" name="areaSur" ng-model="elementoSur.area" />
                       </div>
                     </div>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2" id="selectElementoHomogeneoSur" style="display:block">
                       <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Es Homogéneo?</h5></center>
                       <div>
                         <select name="homogeneoSur" ng-model="elementoSur.esHomogeneoElemento" class="form-control separacion-input">
@@ -727,18 +727,18 @@
                       <div class="col-sm-5 col-md-5">
                         <select id="vidrioEste" class="form-control separacion-input" ng-model="elementoEste.CS">
                           <option selected value="">Selecciona un tipo de vidrio...</option>
-                          <option value="1.00">Vidrio 3mm K=4.92 CS=1.00</option>
-                          <option value="1.00">Claro 6mm K=4.86 CS=1.00</option>
-                          <option value="0.83">Tintex 3mm K=4.92 CS=0.83</option>
-                          <option value="0.61">SolLITE 3mm K=4.92 CS=0.61</option>
-                          <option value="0.76">Filtrasol 4mm K=4.90 CS=0.76</option>
-                          <option value="0.68">Filtrasol 6mm K=4.86 CS=0.68</option>
-                          <option value="0.40">Filtraplus 6mm K=4.86 CS=0.40</option>
-                          <option value="0.30">Claro 3mm+pelicula control sol K=4.90 CS=0.30</option>
-                          <option value="0.22">Claro 3mm+pelicula control sol K=4.90 CS=0.22</option>
-                          <option value="0.89">Doble 6-12-6 ClaroAireClaro K=2.77 CS=0.89</option>
-                          <option value="0.64">Doble 4-12-4 ClaroAireLowE K=2.80 CS=0.64</option>
-                          <option value="0.64">Doble 4-16-4 ClaroArgónLowE K=1.50 CS=0.64</option>
+                          <option value="1.00|4.92">Vidrio 3mm K=4.92 CS=1.00</option>
+                          <option value="1.00|4.86">Claro 6mm K=4.86 CS=1.00</option>
+                          <option value="0.83|4.92">Tintex 3mm K=4.92 CS=0.83</option>
+                          <option value="0.61|4.92">SolLITE 3mm K=4.92 CS=0.61</option>
+                          <option value="0.76|4.90">Filtrasol 4mm K=4.90 CS=0.76</option>
+                          <option value="0.68|4.86">Filtrasol 6mm K=4.86 CS=0.68</option>
+                          <option value="0.40|4.86">Filtraplus 6mm K=4.86 CS=0.40</option>
+                          <option value="0.30|4.90">Claro 3mm+pelicula control sol K=4.90 CS=0.30</option>
+                          <option value="0.22|4.90">Claro 3mm+pelicula control sol K=4.90 CS=0.22</option>
+                          <option value="0.89|2.77">Doble 6-12-6 ClaroAireClaro K=2.77 CS=0.89</option>
+                          <option value="0.64|2.80">Doble 4-12-4 ClaroAireLowE K=2.80 CS=0.64</option>
+                          <option value="0.64|1.50">Doble 4-16-4 ClaroArgónLowE K=1.50 CS=0.64</option>
                         </select> 
                       </div>
                       <div class="col-sm-5 col-md-5">
@@ -822,7 +822,7 @@
                         <input type="text" class="form-control separacion-input" name="areaEste" ng-model="elementoEste.area" />
                       </div>
                     </div>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2" id="selectElementoHomogeneoEste" style="display:block">
                       <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Es Homogéneo?</h5></center>
                       <div>
                         <select name="homogeneoEste" ng-model="elementoEste.esHomogeneoElemento" class="form-control separacion-input">
@@ -939,18 +939,18 @@
                       <div class="col-sm-5 col-md-5">
                         <select id="vidrioOeste" class="form-control separacion-input" ng-model="elementoOeste.CS">
                           <option selected value="">Selecciona un tipo de vidrio...</option>
-                          <option value="1.00">Vidrio 3mm K=4.92 CS=1.00</option>
-                          <option value="1.00">Claro 6mm K=4.86 CS=1.00</option>
-                          <option value="0.83">Tintex 3mm K=4.92 CS=0.83</option>
-                          <option value="0.61">SolLITE 3mm K=4.92 CS=0.61</option>
-                          <option value="0.76">Filtrasol 4mm K=4.90 CS=0.76</option>
-                          <option value="0.68">Filtrasol 6mm K=4.86 CS=0.68</option>
-                          <option value="0.40">Filtraplus 6mm K=4.86 CS=0.40</option>
-                          <option value="0.30">Claro 3mm+pelicula control sol K=4.90 CS=0.30</option>
-                          <option value="0.22">Claro 3mm+pelicula control sol K=4.90 CS=0.22</option>
-                          <option value="0.89">Doble 6-12-6 ClaroAireClaro K=2.77 CS=0.89</option>
-                          <option value="0.64">Doble 4-12-4 ClaroAireLowE K=2.80 CS=0.64</option>
-                          <option value="0.64">Doble 4-16-4 ClaroArgónLowE K=1.50 CS=0.64</option>
+                          <option value="1.00|4.92">Vidrio 3mm K=4.92 CS=1.00</option>
+                          <option value="1.00|4.86">Claro 6mm K=4.86 CS=1.00</option>
+                          <option value="0.83|4.92">Tintex 3mm K=4.92 CS=0.83</option>
+                          <option value="0.61|4.92">SolLITE 3mm K=4.92 CS=0.61</option>
+                          <option value="0.76|4.90">Filtrasol 4mm K=4.90 CS=0.76</option>
+                          <option value="0.68|4.86">Filtrasol 6mm K=4.86 CS=0.68</option>
+                          <option value="0.40|4.86">Filtraplus 6mm K=4.86 CS=0.40</option>
+                          <option value="0.30|4.90">Claro 3mm+pelicula control sol K=4.90 CS=0.30</option>
+                          <option value="0.22|4.90">Claro 3mm+pelicula control sol K=4.90 CS=0.22</option>
+                          <option value="0.89|2.77">Doble 6-12-6 ClaroAireClaro K=2.77 CS=0.89</option>
+                          <option value="0.64|2.80">Doble 4-12-4 ClaroAireLowE K=2.80 CS=0.64</option>
+                          <option value="0.64|1.50">Doble 4-16-4 ClaroArgónLowE K=1.50 CS=0.64</option>
                         </select> 
                       </div>
                       <div class="col-sm-5 col-md-5">
@@ -1034,7 +1034,7 @@
                         <input type="text" class="form-control separacion-input" name="areaOeste" ng-model="elementoOeste.area" />
                       </div>
                     </div>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2" id="selectElementoHomogeneoOeste" style="display:block">
                       <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Es Homogéneo?</h5></center>
                       <div>
                         <select name="homogeneoOeste" ng-model="elementoOeste.esHomogeneoElemento" class="form-control separacion-input">
@@ -1151,18 +1151,18 @@
                       <div class="col-sm-5 col-md-5">
                         <select id="vidrioTecho" class="form-control separacion-input" ng-model="elementoTecho.CS">
                           <option selected value="">Selecciona un tipo de vidrio...</option>
-                          <option value="1.00">Vidrio 3mm K=4.92 CS=1.00</option>
-                          <option value="1.00">Claro 6mm K=4.86 CS=1.00</option>
-                          <option value="0.83">Tintex 3mm K=4.92 CS=0.83</option>
-                          <option value="0.61">SolLITE 3mm K=4.92 CS=0.61</option>
-                          <option value="0.76">Filtrasol 4mm K=4.90 CS=0.76</option>
-                          <option value="0.68">Filtrasol 6mm K=4.86 CS=0.68</option>
-                          <option value="0.40">Filtraplus 6mm K=4.86 CS=0.40</option>
-                          <option value="0.30">Claro 3mm+pelicula control sol K=4.90 CS=0.30</option>
-                          <option value="0.22">Claro 3mm+pelicula control sol K=4.90 CS=0.22</option>
-                          <option value="0.89">Doble 6-12-6 ClaroAireClaro K=2.77 CS=0.89</option>
-                          <option value="0.64">Doble 4-12-4 ClaroAireLowE K=2.80 CS=0.64</option>
-                          <option value="0.64">Doble 4-16-4 ClaroArgónLowE K=1.50 CS=0.64</option>
+                          <option value="1.00|4.92">Vidrio 3mm K=4.92 CS=1.00</option>
+                          <option value="1.00|4.86">Claro 6mm K=4.86 CS=1.00</option>
+                          <option value="0.83|4.92">Tintex 3mm K=4.92 CS=0.83</option>
+                          <option value="0.61|4.92">SolLITE 3mm K=4.92 CS=0.61</option>
+                          <option value="0.76|4.90">Filtrasol 4mm K=4.90 CS=0.76</option>
+                          <option value="0.68|4.86">Filtrasol 6mm K=4.86 CS=0.68</option>
+                          <option value="0.40|4.86">Filtraplus 6mm K=4.86 CS=0.40</option>
+                          <option value="0.30|4.90">Claro 3mm+pelicula control sol K=4.90 CS=0.30</option>
+                          <option value="0.22|4.90">Claro 3mm+pelicula control sol K=4.90 CS=0.22</option>
+                          <option value="0.89|2.77">Doble 6-12-6 ClaroAireClaro K=2.77 CS=0.89</option>
+                          <option value="0.64|2.80">Doble 4-12-4 ClaroAireLowE K=2.80 CS=0.64</option>
+                          <option value="0.64|1.50">Doble 4-16-4 ClaroArgónLowE K=1.50 CS=0.64</option>
                         </select> 
                       </div>
                       <div class="col-sm-5 col-md-5">
@@ -1246,7 +1246,7 @@
                         <input type="text" class="form-control separacion-input" name="areaTecho" ng-model="elementoTecho.area" />
                       </div>
                     </div>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2" id="selectElementoHomogeneoTecho" style="display:block">
                       <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Es Homogéneo?</h5></center>
                       <div>
                         <select name="homogeneoTecho" ng-model="elementoTecho.esHomogeneoElemento" class="form-control separacion-input">
@@ -1369,7 +1369,7 @@
                         <input type="text" class="form-control separacion-input" name="areaTecho" ng-model="elementoTechoInterior.area" />
                       </div>
                     </div>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2" id="selectElementoHomogeneoTechoInterior" style="display:block">
                       <center><h5 class="labelCalculadora" style="padding-bottom: 7px;">Es Homogéneo?</h5></center>
                       <div>
                         <select name="homogeneoTecho" ng-model="elementoTechoInterior.esHomogeneoElemento" class="form-control separacion-input">
@@ -1727,8 +1727,10 @@
      $('input:radio[name=tipoElementoNorte]').change(function(){
         if($(this).val()=="Ventana"){
           $('#extrasVentanaNorte').css("display","block");
+          $('#selectElementoHomogeneoNorte').css("display","none");
         }else{
-          $('#extrasVentanaNorte').css("display","none");  
+          $('#extrasVentanaNorte').css("display","none");
+          $('#selectElementoHomogeneoNorte').css("display","block");
         }
       });
 
@@ -1770,8 +1772,10 @@
       $('input:radio[name=tipoElementoSur]').change(function(){
         if($(this).val()=="Ventana"){
           $('#extrasVentanaSur').css("display","block");
+          $('#selectElementoHomogeneoSur').css("display","none");
         }else{
           $('#extrasVentanaSur').css("display","none");  
+          $('#selectElementoHomogeneoSur').css("display","block");
         }
       });
 
@@ -1813,8 +1817,10 @@
       $('input:radio[name=tipoElementoEste]').change(function(){
         if($(this).val()=="Ventana"){
           $('#extrasVentanaEste').css("display","block");
+          $('#selectElementoHomogeneoEste').css("display","none");
         }else{
           $('#extrasVentanaEste').css("display","none");  
+          $('#selectElementoHomogeneoEste').css("display","block");
         }
       });
 
@@ -1856,8 +1862,10 @@
       $('input:radio[name=tipoElementoOeste]').change(function(){
         if($(this).val()=="Ventana"){
           $('#extrasVentanaOeste').css("display","block");
+          $('#selectElementoHomogeneoOeste').css("display","none");
         }else{
-          $('#extrasVentanaOeste').css("display","none");  
+          $('#extrasVentanaOeste').css("display","none"); 
+          $('#selectElementoHomogeneoOeste').css("display","block"); 
         }
       });
 
@@ -1897,10 +1905,12 @@
       });
 
       $('input:radio[name=tipoElementoTecho]').change(function(){
-        if($(this).val()=="Ventana"){
+        if($(this).val()=="Tragaluz"){
           $('#extrasVentanaTecho').css("display","block");
+          $('#selectElementoHomogeneoTecho').css("display","none");
         }else{
-          $('#extrasVentanaTecho').css("display","none");  
+          $('#extrasVentanaTecho').css("display","none"); 
+          $('#selectElementoHomogeneoTecho').css("display","block"); 
         }
       });
 
@@ -1936,6 +1946,16 @@
           $('#voladoLimiteTecho').css("display", "none");
           $('#remetidaTecho').css("display", "none");
           $('#partelucesTecho').css("display", "block");
+        }
+      });
+
+       $('input:radio[name=tipoElementoTechoInterior]').change(function(){
+        if($(this).val()=="Ventana"){
+          $('#extrasVentanaTecho').css("display","block");
+          $('#selectElementoHomogeneoTechoInterior').css("display","none");
+        }else{
+          $('#extrasVentanaTecho').css("display","none"); 
+          $('#selectElementoHomogeneoTechoInterior').css("display","block"); 
         }
       });
 

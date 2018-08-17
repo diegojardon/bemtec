@@ -269,9 +269,23 @@ app.controller("loginRegisterController", function($scope, $http){
 		});
 	}
 
-
-
 	$scope.agregaElemento = function(elemento, direccion){
+
+		if(elemento.tipo === "Ventana" || elemento.tipo === "Tragaluz"){
+			var CS = elemento.CS.split("|")[0];
+			var KVentana = elemento.CS.split("|")[1];
+			var MVentana = 1 / parseFloat(KVentana);
+			MVentana = MVentana.toFixed(3);
+			elemento.esHomogeneoElemento = "1";
+		}else{
+			CS = 0.0;
+			KVentana = 0.0;
+			MVentana = 0.0;
+		}
+
+		console.log("CS: " + CS);
+		console.log("KVentana: " + KVentana);
+		console.log("Es homogeneo: " + elemento.esHomogeneoElemento);
 
 		$http.post("http://www.bemtec.mx/bemtec/php/agregaElemento.php", {
 			'nombreElemento': elemento.nombre,
@@ -279,7 +293,7 @@ app.controller("loginRegisterController", function($scope, $http){
 			'direccionElemento': direccion,
 			'esHomogeneoElemento': elemento.esHomogeneoElemento,
 			'areaElemento': elemento.area,
-			'coeficienteSombra': elemento.CS,
+			'coeficienteSombra': CS,
 			'tipoSombra': elemento.sombra,
 			'LVoladoMas': elemento.LvoladoMas,
 			'HVoladoMas': elemento.HVoladoMas,
@@ -292,15 +306,44 @@ app.controller("loginRegisterController", function($scope, $http){
 			'PRemetida': elemento.PRemetida,
 			'WRemetida': elemento.WRemetida,
 			'LParteluces': elemento.LParteluces,
-			'WParteluces': elemento.WParteluces
+			'WParteluces': elemento.WParteluces,
+			'KVentana': KVentana,
+			'MVentana': MVentana
 		})
 		.success(function(data){
 			console.log("RESPONSE: " + data.response);
 			if(data.response == 0){
 					//Redirigir a pantalla para configuración de elemento dependiendo si es homogeneo o no
 					var esHomogeneo = parseInt(data.esHomogeneo);
+					var tipoElemento = data.tipoElemento;
+					var direccionElemento = data.direccionElemento;
+
+					console.log("TIPO ELEMENTO AGREGADO: " + tipoElemento);
+					console.log("DIRECCION ELEMENTO AGREGADA: " + direccionElemento);
+
 					if(esHomogeneo == 1){
-						document.location.href = "componenteHomogenea.html";
+						if(tipoElemento == "Ventana" || tipoElemento == "Tragaluz"){
+							if(direccionElemento == "Norte"){
+								document.location.href = "calculadora.html?dir=N";
+							}
+							if(direccionElemento == "Sur"){
+								document.location.href = "calculadora.html?dir=S";
+							}
+							if(direccionElemento == "Este"){
+								document.location.href = "calculadora.html?dir=E";
+							}
+							if(direccionElemento == "Oeste"){
+								document.location.href = "calculadora.html?dir=O";
+							}
+							if(direccionElemento == "Techo"){
+								document.location.href = "calculadora.html?dir=T";
+							}
+							if(direccionElemento == "SIN_SESION"){
+								document.location.href = "calculadora.html";
+							}
+						}else{
+							document.location.href = "componenteHomogenea.html";
+						}
 					}else{
 						if(data.normaEnergetica == "NOM 008-ENER 2001"){
 							document.location.href = "componenteNoHomogenea008.html";

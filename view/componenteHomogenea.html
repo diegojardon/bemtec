@@ -566,11 +566,11 @@
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
 
       });
 
@@ -580,15 +580,15 @@
           $("#aislante1").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividad1").val());
-          $("#aislante1").val(total.toFixed(4));
+          $("#aislante1").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
       });
 
       $("#conductividad1").bind('keyup blur',function(){
@@ -597,15 +597,15 @@
           $("#aislante1").val(0);
         }else{
           var total = parseFloat($("#espesor1").val()) / parseFloat($(this).val());
-          $("#aislante1").val(total.toFixed(4));
+          $("#aislante1").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
       });
 
       $("#espesor2").bind('keyup blur',function(){
@@ -614,15 +614,15 @@
           $("#aislante2").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividad2").val());
-          $("#aislante2").val(total.toFixed(4));
+          $("#aislante2").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
       });
 
       $("#conductividad2").bind('keyup blur',function(){
@@ -631,15 +631,15 @@
           $("#aislante2").val(0);
         }else{
           var total = parseFloat($("#espesor2").val()) / parseFloat($(this).val());
-          $("#aislante2").val(total.toFixed(4));
+          $("#aislante2").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
       });
 
       $("#espesor3").bind('keyup blur',function(){
@@ -648,15 +648,15 @@
           $("#aislante3").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividad3").val());
-          $("#aislante3").val(total.toFixed(4));
+          $("#aislante3").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
       });
 
       $("#conductividad3").bind('keyup blur',function(){
@@ -665,15 +665,15 @@
           $("#aislante3").val(0);
         }else{
           var total = parseFloat($("#espesor3").val()) / parseFloat($(this).val());
-          $("#aislante3").val(total.toFixed(4));
+          $("#aislante3").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
       });
 
       $("#espesor4").bind('keyup blur',function(){
@@ -682,15 +682,15 @@
           $("#aislante4").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividad4").val());
-          $("#aislante4").val(total.toFixed(4));
+          $("#aislante4").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
       });
 
       $("#conductividad4").bind('keyup blur',function(){
@@ -699,15 +699,15 @@
           $("#aislante4").val(0);
         }else{
           var total = parseFloat($("#espesor4").val()) / parseFloat($(this).val());
-          $("#aislante4").val(total.toFixed(4));
+          $("#aislante4").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
       });
 
       $("#espesor5").bind('keyup blur',function(){
@@ -716,15 +716,15 @@
           $("#aislante5").val(0);
         }else{
           var total = parseFloat($(this).val()) / parseFloat($("#conductividad5").val());
-          $("#aislante5").val(total.toFixed(4));
+          $("#aislante5").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
       });
 
       $("#conductividad5").bind('keyup blur',function(){
@@ -733,15 +733,15 @@
           $("#aislante5").val(0);
         }else{
           var total = parseFloat($("#espesor5").val()) / parseFloat($(this).val());
-          $("#aislante5").val(total.toFixed(4));
+          $("#aislante5").val(total.toFixed(3));
         }
 
         var totalM = validaSumatoriaM($("#aislante1").val(), $("#aislante2").val(), $("#aislante3").val(), $("#aislante4").val(), $("#aislante5").val());
-        $("#mComponentes").val(totalM.toFixed(4));
+        $("#mComponentes").val(totalM.toFixed(3));
         var inverso = 1 / totalM;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(4));
+        $("#kComponentes").val(inverso.toFixed(3));
       });
 
       function validaSumatoriaM(m1, m2, m3, m4, m5){
