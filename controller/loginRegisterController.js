@@ -338,6 +338,9 @@ app.controller("loginRegisterController", function($scope, $http){
 							if(direccionElemento == "Techo"){
 								document.location.href = "calculadora.html?dir=T";
 							}
+							if(direccionElemento == "TechoI"){
+								document.location.href = "calculadora.html?dir=TI";
+							}
 							if(direccionElemento == "SIN_SESION"){
 								document.location.href = "calculadora.html";
 							}
@@ -401,6 +404,9 @@ app.controller("loginRegisterController", function($scope, $http){
 					}
 					if(direccionElemento == "Techo"){
 						document.location.href = "calculadora.html?dir=T";
+					}
+					if(direccionElemento == "TechoI"){
+						document.location.href = "calculadora.html?dir=TI";
 					}
 					if(direccionElemento == "SIN_SESION"){
 						document.location.href = "calculadora.html";
@@ -478,6 +484,11 @@ app.controller("loginRegisterController", function($scope, $http){
 		}
 
 		//Se actualizan los totales en el elemento
+		
+		if(componente == null)
+			console.log("ES NULL KCOMPONENTES");
+		else
+			console.log("NO ES NULL KCOMPONENTES: ");
 		componente.kTotal = $("#kComponentes").val();
 		componente.mTotal = $("#mComponentes").val();
 		$scope.actualizaElemento(componente);
