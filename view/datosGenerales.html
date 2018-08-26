@@ -87,19 +87,19 @@
             <div class="collapse navbar-toggleable-sm pull-xs-left pull-md-right" id="main-menu">
               <!-- Navbar Starts -->
               <ul class="nav nav-inline">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
                   <a class="nav-link" href="index.html" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
                   <a class="nav-link" href="que_es.html" role="button" aria-haspopup="true" aria-expanded="false">¿Qué es?</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
                   <a class="nav-link" href="aprende.html" role="button" aria-haspopup="true" aria-expanded="false">Aprende más</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
                   <a class="nav-link" href="equipo.html" role="button" aria-haspopup="true" aria-expanded="false">Sobre el equipo</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
                   <a class="nav-link" href="ayuda.html" role="button" aria-haspopup="true" aria-expanded="false">Ayuda</a>
                 </li>
                 <li class="nav-item dropdown" ng-if="app.sesion == 0">
@@ -214,7 +214,7 @@
                     <div class="modal-body">
                         <div style="padding-top: 10px; padding-bottom: 10px;">
                           <center>
-                            <h3 style="color:#769e26x"><a href="#" id="login_login_btn">Inicia Sesión</a> o <a href="#" id="login_register_btn">Regístrate aquí</a></h3>
+                            <h3 style="color:#769e26"><a href="#" id="login_login_btn">Inicia Sesión</a> o <a href="#" id="login_register_btn">Regístrate aquí</a></h3>
                           </center>
                         </div>
                         <input id="login_username" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
@@ -236,7 +236,7 @@
                    <div class="modal-body">
                      <div style="padding-top: 10px; padding-bottom: 10px;">
                        <center>
-                         <h3 style="color:#769e26x"><a href="#">Recupera Contraseña</a></h3>
+                         <h3 style="color:#769e26"><a href="#">Recupera Contraseña</a></h3>
                        </center>
                      </div>
                        <input id="lost_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
@@ -257,7 +257,7 @@
                   <div class="modal-body">
                     <div style="padding-top: 10px; padding-bottom: 10px;">
                       <center>
-                        <h3 style="color:#769e26x"><a href="#" id="register_register_btn">Regístrate</a></h3>
+                        <h3 style="color:#769e26"><a href="#" id="register_register_btn">Regístrate</a></h3>
                       </center>
                     </div>
                       <input id="register_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">

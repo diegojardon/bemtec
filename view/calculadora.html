@@ -107,19 +107,19 @@
             <div class="collapse navbar-toggleable-sm pull-xs-left pull-md-right" id="main-menu">
               <!-- Navbar Starts -->
               <ul class="nav nav-inline">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
                   <a class="nav-link" href="index.html" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
                   <a class="nav-link" href="que_es.html" role="button" aria-haspopup="true" aria-expanded="false">¿Qué es?</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
                   <a class="nav-link" href="aprende.html" role="button" aria-haspopup="true" aria-expanded="false">Aprende más</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
                   <a class="nav-link" href="equipo.html" role="button" aria-haspopup="true" aria-expanded="false">Sobre el equipo</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" ng-if="app.sesion == 0">
                   <a class="nav-link" href="ayuda.html" role="button" aria-haspopup="true" aria-expanded="false">Ayuda</a>
                 </li>
                 <li class="nav-item dropdown" ng-if="app.sesion == 0">
@@ -172,7 +172,7 @@
               <li id="oesteTab" class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab" ><i class="fa fa-arrow-left"></i>&nbsp;Oeste</a></li>
               <li id="techoTab" class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab" ><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
               <li id="techoInteriorTab" class="nav-item"><a class="nav-link" href="#techoInterior" aria-controls="techoInterior" role="tab" data-toggle="tab" ><i class="fa fa-stop"></i>&nbsp;Superficie Interior</a></li>
-              <li class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i>&nbsp;Calcular</a></li>
+              <li id="calcularTab" class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i>&nbsp;Calcular</a></li>
 
             </ul>
 
@@ -469,7 +469,10 @@
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
-                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
+                      <center>
+                        <h5 class="labelCalculadora" ng-if="elemento.tipoElemento != 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5>
+                        <h5 class="labelCalculadora" ng-if="elemento.tipoElemento == 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">--</h5>
+                      </center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
@@ -491,7 +494,7 @@
                       <div class="col-sm-4 col-md-4">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="tipoElementoSur" ng-model="elementoSur.tipo" value="Muro" checked>Muro</input>
+                        <input type="radio" name="tipoElementoSur" ng-model="elementoSur.tipo" value="Muro">Muro</input>
                       </div>
                       <div class="col-sm-4 col-md-4">
                         <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
@@ -682,7 +685,10 @@
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
-                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
+                      <center>
+                        <h5 class="labelCalculadora" ng-if="elemento.tipoElemento != 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5>
+                        <h5 class="labelCalculadora" ng-if="elemento.tipoElemento == 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">--</h5>
+                      </center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
@@ -703,7 +709,7 @@
                       <div class="col-sm-4 col-md-4">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="tipoElementoEste" ng-model="elementoEste.tipo" value="Muro" checked>Muro</input>
+                        <input type="radio" name="tipoElementoEste" ng-model="elementoEste.tipo" value="Muro" >Muro</input>
                       </div>
                       <div class="col-sm-4 col-md-4">
                         <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
@@ -894,7 +900,10 @@
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
-                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
+                      <center>
+                          <h5 class="labelCalculadora" ng-if="elemento.tipoElemento != 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5>
+                          <h5 class="labelCalculadora" ng-if="elemento.tipoElemento == 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">--</h5>
+                      </center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
@@ -915,7 +924,7 @@
                       <div class="col-sm-4 col-md-4">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="tipoElementoOeste" ng-model="elementoOeste.tipo" value="Muro" checked>Muro</input>
+                        <input type="radio" name="tipoElementoOeste" ng-model="elementoOeste.tipo" value="Muro" >Muro</input>
                       </div>
                       <div class="col-sm-4 col-md-4">
                         <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
@@ -1106,7 +1115,10 @@
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
-                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
+                      <center>
+                          <h5 class="labelCalculadora" ng-if="elemento.tipoElemento != 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5>
+                          <h5 class="labelCalculadora" ng-if="elemento.tipoElemento == 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">--</h5>
+                      </center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
@@ -1127,7 +1139,7 @@
                       <div class="col-sm-6 col-md-6">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="tipoElementoTecho" ng-model="elementoTecho.tipo" value="Muro" checked>Techo</input>
+                        <input type="radio" name="tipoElementoTecho" ng-model="elementoTecho.tipo" value="Muro" >Techo</input>
                       </div>
                       <!--<div class="col-sm-4 col-md-4">
                         <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
@@ -1318,7 +1330,10 @@
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
-                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
+                      <center>
+                          <h5 class="labelCalculadora" ng-if="elemento.tipoElemento != 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5>
+                          <h5 class="labelCalculadora" ng-if="elemento.tipoElemento == 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">--</h5>
+                      </center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
@@ -1339,7 +1354,7 @@
                       <div class="col-sm-12 col-md-12">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" checked="checked" name="tipoElementoTechoInterior" ng-model="elementoTechoInterior.tipo" value="Muro">Techo</input>
+                        <input type="radio" name="tipoElementoTechoInterior" ng-model="elementoTechoInterior.tipo" value="Muro" >Techo</input>
                       </div>
                       <!--<div class="col-sm-4 col-md-4">
                         <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
@@ -1438,7 +1453,10 @@
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
-                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
+                      <center>
+                          <h5 class="labelCalculadora" ng-if="elemento.tipoElemento != 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5>
+                          <h5 class="labelCalculadora" ng-if="elemento.tipoElemento == 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">--</h5>
+                      </center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
@@ -1722,7 +1740,7 @@
         $('.nav-tabs a[href="#techoInterior"]').tab('show');
       }
 
-    });
+     });
 
      $('input:radio[name=tipoElementoNorte]').change(function(){
         if($(this).val()=="Ventana"){

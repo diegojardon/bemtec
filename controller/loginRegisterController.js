@@ -569,7 +569,11 @@ app.controller("loginRegisterController", function($scope, $http){
 
 		$http.post("http://www.bemtec.mx/bemtec/php/calculosEdificioReferencia.php", {})
 		.success(function(data){
-			console.log("RESPONSE: " + data);
+			console.log("RESPONSE: " + data.response);
+			console.log("RESPONSE CALOR REF: " + data.gananciaCalorRef);
+			console.log("RESPONSE CALOR PROY: " + data.gananciaCalorProy);
+			console.log("RESPONSE RADIACION REF: " + data.gananciaRadiacionRef);
+			console.log("RESPONSE RADIACION PROY: " + data.gananciaRadiacionProy);
 			if(data.response == 0){
 				app.conduccionReferencia = data.gananciaCalorRef;
 				app.conduccionProyectado = data.gananciaCalorProy;

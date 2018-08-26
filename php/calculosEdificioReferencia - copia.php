@@ -124,7 +124,7 @@
       }
     }
 
-    echo json_encode($resultado);
+    //echo json_encode($resultado);
 
   }
 
@@ -187,10 +187,10 @@
               $se = 0;
               $query = "";
 
-              if($tipoSombra == "1"){
+              if($tipoSombreado == "1"){
                 $se = 1;
               }
-              if($tipoSombra == "2"){
+              if($tipoSombreado == "2"){
                 //Ocupar dirección, latitud y factor1 (L/H)
                 $columna = "";
                 $factor1 = (float)$lVoladoMas / (float)$hVoladoMas;
@@ -235,7 +235,7 @@
                   }
                 }    
               }else{
-                if($tipoSombra == "3"){
+                if($tipoSombreado == "3"){
                   //Ocupar dirección, latitud, factor1 (L/H) y factor2 (W/H)
                   if($norma == "2011")
                     $tabla = "tabla_3_2011_";
@@ -263,7 +263,6 @@
                   if($latitudNum > 28.0 && $latitudNum <= 32.0)
                     $tabla .= "4";
 
-                  $factor2SinRedondeo = $factor2;  
                   $factor2 = round($factor2);
                   
                   if($factor2 <= 0.5){
@@ -294,12 +293,8 @@
                   }
 
                   if($columna2 == "wH_"){
-
-
+                    /** Los extremos de la tabla, no aplica factor de corrección **/
                     $query = "SELECT " . $columna . " FROM " . $tabla . " WHERE lH >= ". $factor1 . " ORDER BY lH ASC";
-
-                    /*echo "COLUMNA: " . $columna ."<br/>";
-                    echo "QUERY SOMBREADO 3: " . $query;*/
 
                     $resultSombreado = mysql_query($query,$link);
                     if($resultSombreado === FALSE){
@@ -316,10 +311,9 @@
                       }
                     }   
                   }else{
-
-                     /** Se aplica el factor de corrección **/
+                    /** Se aplica el factor de corrección **/
                     
-                     if($factor1 >= 0.0 && $factor1 <= 0.10){
+                    if($factor1 >= 0.0 && $factor1 <= 0.10){
                       $factor1XN = 0.0;
                       $factor1XN1 = 0.10;
                     }
@@ -360,9 +354,9 @@
                       $factor1XN1 = 1.2;
                     }
 
-                    $query = "SELECT * FROM " . $tabla . " WHERE lH >= ". $factor1XN ." AND lH <= ". $factor1XN1 ." ORDER BY lH ASC";
+                    $query = "SELECT " . $columna . ",". $columna2 ." FROM " . $tabla . " WHERE lH >= ". $factor1XN ." AND lH <= ". $factor1XN1 ." ORDER BY lH ASC";
 
-                    /*echo "QUERY CORRECCION: " . $query. "<br/>";*/
+                    echo "QUERY CORRECCION: " . $query;
 
                     $pos = 0;
                     $resultSombreado = mysql_query($query,$link);
@@ -372,11 +366,8 @@
                       $totalUsu = mysql_num_rows($resultSombreado);
                       if($totalUsu > 0){
                         while($info = mysql_fetch_assoc($resultSombreado)){
-                            
                             $xn[$pos] = $info[$columna];
                             $xn1[$pos] = $info[$columna2];
-                            /*echo "XN: " .$xn[$pos]."<br/>";
-                            echo "XN1: " .$xn1[$pos]."<br/>";*/
                             $pos++;
                         }
                       }else{
@@ -384,15 +375,13 @@
                       }
                     }
 
-                     //Aplicar funcion para obtener el valor de se
+                    //Aplicar funcion para obtener el valor de se
 
-                     $se = calculoFactorCorreccion($factor1, $factor2SinRedondeo, $columna, $columna2, $factor1XN, $factor1XN1, $xn[0], $xn1[0], $xn[1], $xn1[1]);
-                    
-                     /*echo "SE CORREGIDO: " . $se . "<br/>";*/
+                    $se = calculoFactorCorreccion($factor1, $factor2, $columna, $columna2, $factor1XN, $factor1XN1, $xn[0], $xn1[0], $xn[1], $xn1[1]);
+
                   }
-
                 }else{
-                  if($tipoSombra == "4"){
+                  if($tipoSombreado == "4"){
                     //Ocupar dirección, latitud, factor1 (P/E) y factor2 (W/E)
                     if($norma == "2011")
                       $tabla = "tabla_4_2011_";
@@ -451,7 +440,7 @@
                       }
                     }   
                   }else{
-                    if($tipoSombra == "5"){
+                    if($tipoSombreado == "5"){
                       //Ocupar dirección, latitud, factor1 (L/W)
                       $columna = "";
                       $factor1 = (float)$lParteluces / (float)$wParteluces;
@@ -618,36 +607,8 @@
   }
 
   function calculoFactorCorreccion($y, $x, $xn, $xn1, $yn, $yn1, $a, $b, $c, $d){
-    
-    $xn = str_replace('wH_', '', $xn);
-    $xn1 = str_replace('wH_', '', $xn1);
-    $xn = str_replace('wE_', '', $xn);
-    $xn1 = str_replace('wE_', '', $xn1);
-
-    /*echo "Y: " . $y . "<br/>";
-    echo "X: " . $x . "<br/>";
-    echo "XN: " . $xn . "<br/>";
-    echo "XN1: " . $xn1 . "<br/>";
-    echo "YN: " . $yn . "<br/>";
-    echo "YN1: " . $yn1 . "<br/>";
-    echo "A: " . $a . "<br/>";
-    echo "B: " . $b . "<br/>";
-    echo "C: " . $c . "<br/>";
-    echo "D: " . $d . "<br/>"; */
-    
-    $fx = (float)(($x - $xn) / ($xn1 - $xn));
-    $fy = (float)(($y - $yn) / ($yn1 - $yn));
-    $parte1 = (float)($fx * $fy * ($d - $c - $b + $a));
-    $parte2 = (float)($fx * ($b - $a));
-    $parte3 = (float)($fy * ($c - $a));
-
-    /*echo "PARTE 1: " . $parte1 . "<br/>";
-    echo "PARTE 2: " . $parte2 . "<br/>";
-    echo "PARTE 3: " . $parte3 . "<br/>";*/
-
-    $res = (float) ($parte1 + $parte2 + $parte3 + $a);
-
-    return $res;
+    echo $y . ", " . $x . ", " . $xn . ", " . $xn1 . ", " . $yn . ", " . $yn1 . ", " . $a . ", " . $b . ", " . $c . ", " . $d . ".";
+    return 1;
   }
 
 ?>

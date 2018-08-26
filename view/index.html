@@ -193,7 +193,7 @@
       		          <div class="modal-body">
                         <div style="padding-top: 10px; padding-bottom: 10px;">
                           <center>
-                            <h3 style="color:#769e26x"><a href="#" id="login_login_btn">Inicia Sesión</a> o <a href="#" id="login_register_btn">Regístrate aquí</a></h3>
+                            <h3 style="color:#769e26"><a href="#" id="login_login_btn">Inicia Sesión</a> o <a href="#" id="login_register_btn">Regístrate aquí</a></h3>
                           </center>
                         </div>
   				    		      <input id="login_username" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
@@ -215,7 +215,7 @@
           	       <div class="modal-body">
                      <div style="padding-top: 10px; padding-bottom: 10px;">
                        <center>
-                         <h3 style="color:#769e26x"><a href="#">Recupera Contraseña</a></h3>
+                         <h3 style="color:#769e26"><a href="#">Recupera Contraseña</a></h3>
                        </center>
                      </div>
   		    				     <input id="lost_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
@@ -236,7 +236,7 @@
                   <div class="modal-body">
                     <div style="padding-top: 10px; padding-bottom: 10px;">
                       <center>
-                        <h3 style="color:#769e26x"><a href="#" id="register_register_btn">Regístrate</a></h3>
+                        <h3 style="color:#769e26"><a href="#" id="register_register_btn">Regístrate</a></h3>
                       </center>
                     </div>
   		    				    <input id="register_email" class="form-control" type="text" placeholder="Correo electrónico" required ng-model="usuario.usuario">
@@ -363,15 +363,16 @@
     $(document).ready(function() {
         //Insertamos una acción de visita
         $( "#visita" ).trigger( "click" );
+        $("#welcome-modal").modal("show");
 
-        var mostrarModal = Cookies.get('muestraWelcome');
+        /*var mostrarModal = Cookies.get('muestraWelcome');
 
         console.log("MUESTRA MODAL?: " + mostrarModal);
 
         if(mostrarModal == null || mostrarModal == ""){
           Cookies.set('muestraWelcome', "si", { expires: 365 });
           $("#welcome-modal").modal("show");
-        }
+        }*/
 
 
     });
