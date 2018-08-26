@@ -103,6 +103,10 @@
               }
               if($resultado[$j]["direccionElemento"] == "TechoI"){
                 $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "TechoI", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
+                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
               }
             }
@@ -295,6 +299,7 @@
 
                   if($columna2 == "wH_"){
 
+                    /** Sin factor de corrección **/
 
                     $query = "SELECT " . $columna . " FROM " . $tabla . " WHERE lH >= ". $factor1 . " ORDER BY lH ASC";
 
@@ -388,7 +393,7 @@
 
                      $se = calculoFactorCorreccion($factor1, $factor2SinRedondeo, $columna, $columna2, $factor1XN, $factor1XN1, $xn[0], $xn1[0], $xn[1], $xn1[1]);
                     
-                     /*echo "SE CORREGIDO: " . $se . "<br/>";*/
+                     /*echo "SE SOMBREADO 3: " . $se . "<br/>";*/
                   }
 
                 }else{
@@ -399,6 +404,7 @@
                     else
                       $tabla = "tabla_4_2001_";
                     $columna = "wE_";
+                    $columna2 = "wE_";
                     $factor1 = (float)$pRemetida / (float)$eRemetida;
                     $factor2 = (float)$wRemetida / (float)$eRemetida;
 
@@ -419,37 +425,131 @@
                     if($latitudNum > 28.0 && $latitudNum <= 32.0)
                       $tabla .= "4";
 
+                    $factor2SinRedondeo = $factor2;  
                     $factor2 = round($factor2);
                     
-                    if($factor2 <= 0.5)
+                    if($factor2 <= 0.5){
                       $columna .= "0.5";
-                    if($factor2 > 0.5 && $factor2 <= 1.0)
+                    }
+                    if($factor2 > 0.5 && $factor2 <= 1.0){
+                      $columna .= "0.5";
+                      $columna2 .= "1";
+                    }
+                    if($factor2 > 1.0 && $factor2 <= 2.0){
                       $columna .= "1";
-                    if($factor2 > 1.0 && $factor2 <= 2.0)
-                      $columna .= "2";
-                    if($factor2 > 2.0 && $factor2 <= 4.0)
-                      $columna .= "4";  
-                    if($factor2 > 4.0 && $factor2 <= 6.0)
+                      $columna2 .= "2";
+                    }
+                    if($factor2 > 2.0 && $factor2 <= 4.0){
+                      $columna .= "2";  
+                      $columna2 .= "4";  
+                    }
+                    if($factor2 > 4.0 && $factor2 <= 6.0){
+                      $columna .= "4";
+                      $columna2 .= "6";
+                    }
+                    if($factor2 > 6.0 && $factor2 <= 8.0){
                       $columna .= "6";
-                    if($factor2 > 6.0)
+                      $columna2 .= "8";
+                    }
+                    if($factor2 > 8.0){
                       $columna .= "8";
+                    }
 
-                    $query = "SELECT " . $columna . " FROM " . $tabla . " WHERE pE >= ". $factor1 . " ORDER BY pE ASC";
-                    
-                    $resultSombreado = mysql_query($query,$link);
-                    if($resultSombreado === FALSE){
-                      $resultado["response"] = Constantes::ERROR;
-                    }else{
-                      $totalUsu = mysql_num_rows($resultSombreado);
-                      if($totalUsu > 0){
-                        while($info = mysql_fetch_assoc($resultSombreado)){
-                            $se = $info[$columna];
-                            break;
-                        }
-                      }else{
+                    if($columna2 == "wE_"){
+
+                      /** Sin factor de corrección **/
+
+                      $query = "SELECT " . $columna . " FROM " . $tabla . " WHERE pE >= ". $factor1 . " ORDER BY pE ASC";
+                      
+                      $resultSombreado = mysql_query($query,$link);
+                      if($resultSombreado === FALSE){
                         $resultado["response"] = Constantes::ERROR;
+                      }else{
+                        $totalUsu = mysql_num_rows($resultSombreado);
+                        if($totalUsu > 0){
+                          while($info = mysql_fetch_assoc($resultSombreado)){
+                              $se = $info[$columna];
+                              break;
+                          }
+                        }else{
+                          $resultado["response"] = Constantes::ERROR;
+                        }
+                      }   
+                    }else{
+                      /** Se aplica el factor de corrección **/
+                                          
+                      if($factor1 >= 0.0 && $factor1 <= 0.10){
+                        $factor1XN = 0.0;
+                        $factor1XN1 = 0.10;
                       }
-                    }   
+                      if($factor1 > 0.10 && $factor1 <= 0.20){
+                        $factor1XN = 0.10;
+                        $factor1XN1 = 0.20;
+                      }
+                      if($factor1 > 0.20 && $factor1 <= 0.30){
+                        $factor1XN = 0.20;
+                        $factor1XN1 = 0.30;
+                      }
+                      if($factor1 > 0.30 && $factor1 <= 0.40){
+                        $factor1XN = 0.30;
+                        $factor1XN1 = 0.40;
+                      }
+                      if($factor1 > 0.40 && $factor1 <= 0.50){
+                        $factor1XN = 0.40;
+                        $factor1XN1 = 0.50;
+                      }
+                      if($factor1 > 0.50 && $factor1 <= 0.60){
+                        $factor1XN = 0.50;
+                        $factor1XN1 = 0.60;
+                      }
+                      if($factor1 > 0.60 && $factor1 <= 0.70){
+                        $factor1XN = 0.60;
+                        $factor1XN1 = 0.70;
+                      }
+                      if($factor1 > 0.70 && $factor1 <= 0.80){
+                        $factor1XN = 0.70;
+                        $factor1XN1 = 0.80;
+                      }
+                      if($factor1 > 0.80 && $factor1 <= 1.0){
+                        $factor1XN = 0.80;
+                        $factor1XN1 = 1.0;
+                      }
+                      if($factor1 > 1.0){
+                        $factor1XN = 1.0;
+                        $factor1XN1 = 1.2;
+                      }
+
+                      $query = "SELECT * FROM " . $tabla . " WHERE pE >= ". $factor1XN ." AND pE <= ". $factor1XN1 ." ORDER BY pE ASC";
+
+                      /*echo "QUERY CORRECCION: " . $query. "<br/>";*/
+
+                      $pos = 0;
+                      $resultSombreado = mysql_query($query,$link);
+                      if($resultSombreado === FALSE){
+                        $resultado["response"] = Constantes::ERROR;
+                      }else{
+                        $totalUsu = mysql_num_rows($resultSombreado);
+                        if($totalUsu > 0){
+                          while($info = mysql_fetch_assoc($resultSombreado)){
+                              
+                              $xn[$pos] = $info[$columna];
+                              $xn1[$pos] = $info[$columna2];
+                              /*echo "XN: " .$xn[$pos]."<br/>";
+                              echo "XN1: " .$xn1[$pos]."<br/>";*/
+                              $pos++;
+                          }
+                        }else{
+                          $resultado["response"] = Constantes::ERROR;
+                        }
+                      }
+
+                      //Aplicar funcion para obtener el valor de se
+
+                      $se = calculoFactorCorreccion($factor1, $factor2SinRedondeo, $columna, $columna2, $factor1XN, $factor1XN1, $xn[0], $xn1[0], $xn[1], $xn1[1]);
+
+                      /*echo "SE SOMBREADO 4: " . $se . "<br/>";*/
+
+                    }
                   }else{
                     if($tipoSombra == "5"){
                       //Ocupar dirección, latitud, factor1 (L/W)
@@ -633,7 +733,7 @@
     echo "A: " . $a . "<br/>";
     echo "B: " . $b . "<br/>";
     echo "C: " . $c . "<br/>";
-    echo "D: " . $d . "<br/>"; */
+    echo "D: " . $d . "<br/>";*/
     
     $fx = (float)(($x - $xn) / ($xn1 - $xn));
     $fy = (float)(($y - $yn) / ($yn1 - $yn));
