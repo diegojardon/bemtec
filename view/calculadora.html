@@ -48,7 +48,7 @@
       }
 
       .separadorElementos{
-          width: 70%;
+          width: 90%;
           border-color:#24445A;
           border-top: dotted 1px;
           margin-top: 5px;
@@ -443,12 +443,14 @@
                   </div>
                   <div class="row">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Nombre</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Tipo</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Área</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de M</h5></center>
@@ -461,12 +463,14 @@
                   <hr class="separadorElementos"/>
                   <div class="row" ng-repeat="elemento in app.calculo" ng-if="elemento.idElemento && elemento.direccionElemento == 'Norte' ">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.areaElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center>
@@ -478,9 +482,9 @@
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
-                        <!--<div>
-                          <button type="button" class="btn btn-success" ng-click="">EDITAR</button>
-                        </div>-->
+                        <div>
+                          <button type="button" class="btn btn-success" ng-click="eliminaElemento(elemento.idElemento, 'N')">ELIMINAR</button>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -663,12 +667,14 @@
                   </div>
                   <div class="row">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Nombre</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Tipo</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Área</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de M</h5></center>
@@ -681,12 +687,14 @@
                   <hr class="separadorElementos"/>
                   <div class="row" ng-repeat="elemento in app.calculo" ng-if="elemento.idElemento && elemento.direccionElemento == 'Sur' ">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.areaElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center>
@@ -697,7 +705,11 @@
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
                     </div>
-                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <div>
+                        <button type="button" class="btn btn-success" ng-click="eliminaElemento(elemento.idElemento, 'S')">ELIMINAR</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -878,12 +890,14 @@
                   </div>
                   <div class="row">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Nombre</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Tipo</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Área</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de M</h5></center>
@@ -896,12 +910,14 @@
                   <hr class="separadorElementos"/>
                   <div class="row" ng-repeat="elemento in app.calculo" ng-if="elemento.idElemento && elemento.direccionElemento == 'Este' ">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.areaElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center>
@@ -912,7 +928,11 @@
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
                     </div>
-                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <div>
+                        <button type="button" class="btn btn-success" ng-click="eliminaElemento(elemento.idElemento, 'E')">ELIMINAR</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1093,12 +1113,14 @@
                   </div>
                   <div class="row">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Nombre</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Tipo</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Área</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de M</h5></center>
@@ -1111,12 +1133,14 @@
                   <hr class="separadorElementos"/>
                   <div class="row" ng-repeat="elemento in app.calculo" ng-if="elemento.idElemento && elemento.direccionElemento == 'Oeste' ">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.areaElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center>
@@ -1127,7 +1151,11 @@
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
                     </div>
-                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <div>
+                        <button type="button" class="btn btn-success" ng-click="eliminaElemento(elemento.idElemento, 'O')">ELIMINAR</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1308,12 +1336,14 @@
                   </div>
                   <div class="row">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Nombre</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Tipo</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Área</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de M</h5></center>
@@ -1326,12 +1356,14 @@
                   <hr class="separadorElementos"/>
                   <div class="row" ng-repeat="elemento in app.calculo" ng-if="elemento.idElemento && elemento.direccionElemento == 'Techo' ">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.tipoElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.areaElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center>
@@ -1342,7 +1374,11 @@
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
                     </div>
-                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <div>
+                        <button type="button" class="btn btn-success" ng-click="eliminaElemento(elemento.idElemento, 'T')">ELIMINAR</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1434,12 +1470,14 @@
                   </div>
                   <div class="row">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Nombre</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Tipo</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Área</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">Valor de M</h5></center>
@@ -1452,23 +1490,29 @@
                   <hr class="separadorElementos"/>
                   <div class="row" ng-repeat="elemento in app.calculo" ng-if="elemento.idElemento && elemento.direccionElemento == 'TechoI' ">
                     <br/>
-                    <div class="col-sm-2 col-md-2"></div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.nombreElemento}}</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
-                      <center>
-                          <h5 class="labelCalculadora" ng-if="elemento.tipoElemento != 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5>
-                          <h5 class="labelCalculadora" ng-if="elemento.tipoElemento == 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">--</h5>
-                      </center>
+                      <center><h5 class="labelCalculadora" ng-if="elemento.tipoElemento != 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">Techo Int</h5></center>
                     </div>
                     <div class="col-sm-2 col-md-2">
-                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5></center>
+                      <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.areaElemento}}</h5></center>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                      <center>
+                        <h5 class="labelCalculadora" ng-if="elemento.tipoElemento != 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.mTotal}}</h5>
+                        <h5 class="labelCalculadora" ng-if="elemento.tipoElemento == 'Ventana'" style="padding-top: 7px; padding-bottom: 7px;">--</h5>
+                    </center>
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <center><h5 class="labelCalculadora" style="padding-top: 7px; padding-bottom: 7px;">{{elemento.kTotal}}</h5></center>
                     </div>
-                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-2 col-md-2">
+                      <div>
+                        <button type="button" class="btn btn-success" ng-click="eliminaElemento(elemento.idElemento, 'TI')">ELIMINAR</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

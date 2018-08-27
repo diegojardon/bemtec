@@ -27,5 +27,7 @@
 
 		const ERROR_SESION_EXPIRADA = -501;
 
+		const ERROR_BORRAR_ELEMENTO = -601;
+
 	}
 ?>

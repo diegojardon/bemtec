@@ -361,6 +361,20 @@ app.controller("loginRegisterController", function($scope, $http){
 		});
 	}
 
+	$scope.eliminaElemento = function(idElemento, direccion){
+		console.log("Id a borrar: " + idElemento);
+		$http.post("http://www.bemtec.mx/bemtec/php/borraElemento.php", {'idElemento': idElemento})
+		.success(function(data){
+			console.log("RESPONSE: " + data.response);
+			if(data.response == 0){
+				alert("El elemento fue borrado exitosamente");
+				document.location.href = "calculadora.html?dir="+direccion;
+			}else{
+				alert("El elemento no pudo ser borrado");
+			}
+		});
+	}
+
 	$scope.agregaSistemaConstructivo = function(idElemento, elemento){
 
 		console.log("idElemento selccionado: " + idElemento);
@@ -575,12 +589,14 @@ app.controller("loginRegisterController", function($scope, $http){
 			console.log("RESPONSE RADIACION REF: " + data.gananciaRadiacionRef);
 			console.log("RESPONSE RADIACION PROY: " + data.gananciaRadiacionProy);
 			if(data.response == 0){
-				app.conduccionReferencia = data.gananciaCalorRef;
-				app.conduccionProyectado = data.gananciaCalorProy;
-				app.radiacionReferencia = data.gananciaRadiacionRef;
-				app.radiacionProyectado = data.gananciaRadiacionProy;
-				app.totalReferencia = data.gananciaCalorRef + data.gananciaRadiacionRef;
-				app.totalProyectado	= data.gananciaCalorProy + data.gananciaRadiacionProy;
+				app.conduccionReferencia = data.gananciaCalorRef.toFixed(3);
+				app.conduccionProyectado = data.gananciaCalorProy.toFixed(3);
+				app.radiacionReferencia = data.gananciaRadiacionRef.toFixed(3);
+				app.radiacionProyectado = data.gananciaRadiacionProy.toFixed(3);
+				totalReferencia = parseFloat(data.gananciaCalorRef.toFixed(3)) + parseFloat(data.gananciaRadiacionRef.toFixed(3));
+				totalProyectado = parseFloat(data.gananciaCalorProy.toFixed(3)) + parseFloat(data.gananciaRadiacionProy.toFixed(3));
+				app.totalReferencia = totalReferencia.toFixed(3);
+				app.totalProyectado	= totalProyectado.toFixed(3);
 			}
 		});
 	}
