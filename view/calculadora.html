@@ -173,7 +173,7 @@
               <li id="techoTab" class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab" ><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
               <li id="techoInteriorTab" class="nav-item"><a class="nav-link" href="#techoInterior" aria-controls="techoInterior" role="tab" data-toggle="tab" ><i class="fa fa-stop"></i>&nbsp;Superficie Interior</a></li>
               <li id="calcularTab" class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i>&nbsp;Calcular</a></li>
-
+              <li id="mostrarCalculoTab" class="nav-item"><a class="nav-link" href="http://www.bemtec.mx/bemtec/php/mostrarCalculos.php" target="_blank" aria-controls="calcular" ><i class="fa fa-calculator"></i>&nbsp;Mostrar Calculo</a></li>
             </ul>
 
             <div class="tab-content">
@@ -406,9 +406,14 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2" id="btnCalcularNormalNorte" style="display:block">
                       <div style="padding-top: 32px;">
                         <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoNorte, 'Norte')">CALCULAR K</button>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2" id="btnCalcularVentanaNorte" style="display:none">
+                      <div style="padding-top: 32px;">
+                        <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoNorte, 'Norte')">AGREGAR VENTANA</button>
                       </div>
                     </div>
                     <div class="col-sm-2 col-md-2"></div>
@@ -630,9 +635,14 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2" id="btnCalcularNormalSur" style="display:block">
                       <div style="padding-top: 32px;">
                         <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoSur, 'Sur')">CALCULAR K</button>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2" id="btnCalcularVentanaSur" style="display:none">
+                      <div style="padding-top: 32px;">
+                        <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoSur, 'Sur')">AGREGAR VENTANA</button>
                       </div>
                     </div>
                     <div class="col-sm-2 col-md-2"></div>
@@ -853,9 +863,14 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2" id="btnCalcularNormalEste" style="display:block">
                       <div style="padding-top: 32px;">
                         <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoEste, 'Este')">CALCULAR K</button>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2" id="btnCalcularVentanaEste" style="display:none">
+                      <div style="padding-top: 32px;">
+                        <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoEste, 'Este')">AGREGAR VENTANA</button>
                       </div>
                     </div>
                     <div class="col-sm-2 col-md-2"></div>
@@ -1076,9 +1091,14 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2" id="btnCalcularNormalOeste" style="display:block">
                       <div style="padding-top: 32px;">
                         <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoOeste, 'Oeste')">CALCULAR K</button>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2" id="btnCalcularVentanaOeste" style="display:none">
+                      <div style="padding-top: 32px;">
+                        <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoOeste, 'Oeste')">AGREGAR VENTANA</button>
                       </div>
                     </div>
                     <div class="col-sm-2 col-md-2"></div>
@@ -1209,7 +1229,7 @@
                           <option value="0.64|1.50">Doble 4-16-4 ClaroArgónLowE K=1.50 CS=0.64</option>
                         </select> 
                       </div>
-                      <div class="col-sm-5 col-md-5">
+                      <!--<div class="col-sm-5 col-md-5">
                         <select id="sombraTecho" class="form-control separacion-input" ng-model="elementoTecho.sombra">
                           <option selected value="">Selecciona un tipo de sombra...</option>
                           <option value="1">Sin sombra</option>
@@ -1218,7 +1238,7 @@
                           <option value="4">Ventana remetida</option>
                           <option value="5">Parteluces</option>
                         </select> 
-                      </div>
+                      </div>-->
                   </div>
                   <div class="row">
                     <br/>
@@ -1299,9 +1319,14 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2" id="btnCalcularNormalTecho" style="display:block">
                       <div style="padding-top: 32px;">
                         <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoTecho, 'Techo')">CALCULAR K</button>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2" id="btnCalcularVentanaTecho" style="display:none">
+                      <div style="padding-top: 32px;">
+                        <button type="button" class="btn btn-success" ng-click="agregaElemento(elementoTecho, 'Techo')">AGREGAR TRAGALUZ</button>
                       </div>
                     </div>
                     <div class="col-sm-2 col-md-2"></div>
@@ -1394,7 +1419,7 @@
                       <div class="col-sm-12 col-md-12">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
-                        <input type="radio" name="tipoElementoTechoInterior" ng-model="elementoTechoInterior.tipo" value="Muro" >Techo</input>
+                        <input type="radio" name="tipoElementoTechoInterior" ng-model="elementoTechoInterior.tipo" value="Muro">Superficie Interior</input>
                       </div>
                       <!--<div class="col-sm-4 col-md-4">
                         <img src="images/puerta.png" alt="Puerta" height="130" width="130" class="img-responsive center-block"/>
@@ -1794,9 +1819,13 @@
         if($(this).val()=="Ventana"){
           $('#extrasVentanaNorte').css("display","block");
           $('#selectElementoHomogeneoNorte').css("display","none");
+          $('#btnCalcularNormalNorte').css("display", "none");
+          $('#btnCalcularVentanaNorte').css("display", "block");
         }else{
           $('#extrasVentanaNorte').css("display","none");
           $('#selectElementoHomogeneoNorte').css("display","block");
+          $('#btnCalcularNormalNorte').css("display", "block");
+          $('#btnCalcularVentanaNorte').css("display", "none");
         }
       });
 
@@ -1839,9 +1868,13 @@
         if($(this).val()=="Ventana"){
           $('#extrasVentanaSur').css("display","block");
           $('#selectElementoHomogeneoSur').css("display","none");
+          $('#btnCalcularNormalSur').css("display", "none");
+          $('#btnCalcularVentanaSur').css("display", "block");
         }else{
           $('#extrasVentanaSur').css("display","none");  
           $('#selectElementoHomogeneoSur').css("display","block");
+          $('#btnCalcularNormalSur').css("display", "block");
+          $('#btnCalcularVentanaSur').css("display", "none");
         }
       });
 
@@ -1884,9 +1917,13 @@
         if($(this).val()=="Ventana"){
           $('#extrasVentanaEste').css("display","block");
           $('#selectElementoHomogeneoEste').css("display","none");
+          $('#btnCalcularNormalEste').css("display", "none");
+          $('#btnCalcularVentanaEste').css("display", "block");
         }else{
           $('#extrasVentanaEste').css("display","none");  
           $('#selectElementoHomogeneoEste').css("display","block");
+          $('#btnCalcularNormalEste').css("display", "block");
+          $('#btnCalcularVentanaEste').css("display", "none");
         }
       });
 
@@ -1929,9 +1966,13 @@
         if($(this).val()=="Ventana"){
           $('#extrasVentanaOeste').css("display","block");
           $('#selectElementoHomogeneoOeste').css("display","none");
+          $('#btnCalcularNormalOeste').css("display", "none");
+          $('#btnCalcularVentanaOeste').css("display", "block");
         }else{
           $('#extrasVentanaOeste').css("display","none"); 
           $('#selectElementoHomogeneoOeste').css("display","block"); 
+          $('#btnCalcularNormalOeste').css("display", "block");
+          $('#btnCalcularVentanaOeste').css("display", "none");
         }
       });
 
@@ -1974,9 +2015,13 @@
         if($(this).val()=="Tragaluz"){
           $('#extrasVentanaTecho').css("display","block");
           $('#selectElementoHomogeneoTecho').css("display","none");
+          $('#btnCalcularNormalTecho').css("display", "none");
+          $('#btnCalcularVentanaTecho').css("display", "block");
         }else{
           $('#extrasVentanaTecho').css("display","none"); 
           $('#selectElementoHomogeneoTecho').css("display","block"); 
+          $('#btnCalcularNormalTecho').css("display", "block");
+          $('#btnCalcularVentanaTecho').css("display", "none");
         }
       });
 

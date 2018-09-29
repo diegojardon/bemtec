@@ -40,8 +40,12 @@
             $i++;
         }
 
+        echo "Número Niveles Edificio: " . $numNivelesEdificio . "</br>";
+        echo "Latitud: " . $latitud . "<br/><br/>";
+
         //Obtenemos la suma de áreas para los elementos por orientación
 
+        echo "SUMA DE AREAS PARA LOS ELEMENTOS POR ORIENTACIÓN<br/><br/>";
         $resultAreaTotal = mysql_query("SELECT direccionElemento, sum(areaElemento) AS areaTotal FROM elemento WHERE idCalculo = '".$idCalculo."' GROUP BY direccionElemento",$link);
         if($resultAreaTotal === FALSE){
           $resultado["response"] = Constantes::ERROR;
@@ -53,12 +57,16 @@
             while($info = mysql_fetch_assoc($resultAreaTotal)){
                 $resultado[$i]["direccionElemento"] = $info["direccionElemento"];
                 $resultado[$i]["areaTotal"] = $info["areaTotal"];
+                echo "Direccion Elemento: " . $info["direccionElemento"] . "<br/>";
+                echo "Área Total: " . $info["areaTotal"] . "<br/>";
                 $i++;
             }
 
             $resultadosCalculos = array(0.0, 0.0, 0.0, 0.0);
             $resultadosCalculosTmp = array(0.0, 0.0, 0.0, 0.0);
           
+            echo "INICIO DE CÁLCULOS<br/><br/>";
+
             //Se realizan los cálculos correspondientes
             for($j=0; $j<$i; $j++){
               if($resultado[$j]["direccionElemento"] == "Norte"){
@@ -128,7 +136,7 @@
       }
     }
 
-    echo json_encode($resultado);
+    //echo json_encode($resultado);
 
   }
 
@@ -154,6 +162,8 @@
 
     $result = mysql_query($queryF,$link);
 
+    echo "Direccion: " . $orientacion . "<br/>";
+
     $totalUsu = mysql_num_rows($result);
     if($totalUsu > 0){
         $i=0;
@@ -175,6 +185,11 @@
             $wRemetida = $info["WRemetida"];
             $lParteluces = $info["LParteluces"];
             $wParteluces = $info["WParteluces"];
+
+            echo "Tipo Elemento: " . $tipoElemento . "<br/>";
+            echo "K Total: " . $kTotal . "<br/>";
+            echo "Masivo o Ligero: " . $masivoLigero. "<br/>";
+            echo "Tipo Sombra " . $tipoSombra . "<br/>";
 
             if($norma == "2011"){
               if($tipoElemento == "Ventana"){
@@ -210,6 +225,9 @@
                 //Ocupar dirección, latitud y factor1 (L/H)
                 $columna = "";
                 $factor1 = (float)$lVoladoMas / (float)$hVoladoMas;
+                echo "L: ". $lVoladoMas ."<br/>";
+                echo "H: ". $hVoladoMas ."<br/>";
+                echo "L/H: " . (float)$factor1 ."<br/>";
 
                 if($orientacion == "Norte")
                   $columna = "norte";
@@ -699,16 +717,19 @@
 
             //Se aplican los cálculos para la ganancia de calor (referencia y proyectado)
 
-            /*echo "KTOTAL: ".$kTotal."<br/>";
+            echo "KTOTAL: ".$kTotal."<br/>";
             echo "AREA TOTAL ORIENTACION: ".$areaTotalOrientacion."<br/>";
             echo "FRACCION COMPONENTE: ".$fraccionComponente."<br/>";
             echo "TE: ".$te."<br/>";
-            echo "TI: ".$ti."<br/>";*/
+            echo "TI: ".$ti."<br/>";
+            echo "COLUMNA K: ".$columnaK."<br/>";
+            echo "KPROYECTADO: ".$kProy."<br/><br/>";
          
-
             //Ganancia de calor proyectado
+            echo "Calculo ganancia de calor proyectado: " .$kTotal." * ".$areaTotalOrientacion." * ".$fraccionComponente." * ( ".$te." - ".$ti." )<br/>";
             $resultadosCalculos[0] += ((float)$kTotal * (float)$areaTotalOrientacion * (float)$fraccionComponente * ((float)$te - (float)$ti)); 
             //Ganancia de calor referencia
+            echo "Calculo ganancia de calor referencia: " .$kProy." * ".$areaTotalOrientacion." * ".$fraccionComponente." * ( ".$te." - ".$ti." )<br/>";
             $resultadosCalculos[1] += ((float)$kProy * (float)$areaTotalOrientacion * (float)$fraccionComponente * ((float)$te - (float)$ti));
 
             //Se aplican los cálculos para la ganancia por radiación
@@ -718,8 +739,10 @@
               echo "FG: ".$fg."<br/>";
               echo "SE: ".$se."<br/>";*/
               //Ganancia de calor radiación proyectado
+              echo "Calculo ganancia de calor por radiación proyectado: ".$areaTotalOrientacion." * ".$cs." * ".$fraccionComponente." * ".$fg."<br/>";
               $resultadosCalculos[2] += (float)$areaTotalOrientacion * (float)$cs * (float)$fraccionComponente * (float)$fg;
               //Ganancia de calor radiación referencia
+              echo "Calculo ganancia de calor por radiación referencia: ".$areaTotalOrientacion." * ".$cs." * ".$fg." * ".$se."<br/>";
               $resultadosCalculos[3] += (float)$areaTotalOrientacion * (float)$cs * (float)$fg * (float)$se;
             }
 

@@ -283,10 +283,14 @@ app.controller("loginRegisterController", function($scope, $http){
 			MVentana = 0.0;
 		}
 
+		if(elemento.tipo === "Tragaluz"){
+			elemento.sombra = 1;
+		}
+
 		console.log("CS: " + CS);
 		console.log("KVentana: " + KVentana);
 		console.log("Es homogeneo: " + elemento.esHomogeneoElemento);
-
+		console.log("Sombra: " + elemento.sombra);
 		$http.post("http://www.bemtec.mx/bemtec/php/agregaElemento.php", {
 			'nombreElemento': elemento.nombre,
 			'tipoElemento': elemento.tipo, 
@@ -295,7 +299,7 @@ app.controller("loginRegisterController", function($scope, $http){
 			'areaElemento': elemento.area,
 			'coeficienteSombra': CS,
 			'tipoSombra': elemento.sombra,
-			'LVoladoMas': elemento.LvoladoMas,
+			'LVoladoMas': elemento.LVoladoMas,
 			'HVoladoMas': elemento.HVoladoMas,
 			'AVoladoMas': elemento.AVoladoMas,
 			'LVoladoLimite': elemento.LVoladoLimite,

@@ -945,19 +945,24 @@
         var aislanteNH2 = $("#aislanteNH2").val();
 
         var subtotalMParcial = 1 / parseFloat(mParcial);
-        var subtotalFraccion1 = parseFloat(fraccionNH1) + parseFloat(aislanteNH1);
-        var subtotalFraccion2 = parseFloat(fraccionNH2) + parseFloat(aislanteNH2);
+        //Corrección Cari
+        /*var subtotalFraccion1 = parseFloat(fraccionNH1) + parseFloat(aislanteNH1);
+        var subtotalFraccion2 = parseFloat(fraccionNH2) + parseFloat(aislanteNH2);*/
+
+        var subtotalFraccion1 = parseFloat(fraccionNH1) / (parseFloat(mParcial) + parseFloat(aislanteNH1));
+        var subtotalFraccion2 = parseFloat(fraccionNH2) / (parseFloat(mParcial) + parseFloat(aislanteNH2));
 
         console.log("Subtotal Fraccion 1: " + subtotalFraccion1);
         console.log("Subtotal Fraccion 2: " + subtotalFraccion2);
 
-        var totalM = 1 / (parseFloat(subtotalMParcial) + parseFloat(subtotalFraccion1) + parseFloat(subtotalFraccion2));
+        //var totalM = 1 / (parseFloat(subtotalMParcial) + parseFloat(subtotalFraccion1) + parseFloat(subtotalFraccion2));
+        var totalK = parseFloat(subtotalFraccion1) + parseFloat(subtotalFraccion2);
 
-        $("#mComponentes").val(totalM.toFixed(3));
-        var inverso = 1 / totalM;
+        $("#kComponentes").val(totalK.toFixed(3));
+        var inverso = 1 / totalK;
         if(!isFinite(inverso))
           inverso = 0;
-        $("#kComponentes").val(inverso.toFixed(3));
+        $("#mComponentes").val(inverso.toFixed(3));
 
       });
 
