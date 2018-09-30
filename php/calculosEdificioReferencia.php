@@ -40,8 +40,10 @@
             $i++;
         }
 
+        
         //Obtenemos la suma de áreas para los elementos por orientación
 
+        
         $resultAreaTotal = mysql_query("SELECT direccionElemento, sum(areaElemento) AS areaTotal FROM elemento WHERE idCalculo = '".$idCalculo."' GROUP BY direccionElemento",$link);
         if($resultAreaTotal === FALSE){
           $resultado["response"] = Constantes::ERROR;
@@ -53,61 +55,132 @@
             while($info = mysql_fetch_assoc($resultAreaTotal)){
                 $resultado[$i]["direccionElemento"] = $info["direccionElemento"];
                 $resultado[$i]["areaTotal"] = $info["areaTotal"];
+               
                 $i++;
             }
 
             $resultadosCalculos = array(0.0, 0.0, 0.0, 0.0);
             $resultadosCalculosTmp = array(0.0, 0.0, 0.0, 0.0);
           
+            
             //Se realizan los cálculos correspondientes
             for($j=0; $j<$i; $j++){
               if($resultado[$j]["direccionElemento"] == "Norte"){
-                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Norte", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
-                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Norte", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, "Referencia", 0, $link);
+                //$resultadosCalculos[0] += $resultadosCalculosTmp[0];
                 $resultadosCalculos[1] += $resultadosCalculosTmp[1];
-                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                //$resultadosCalculos[2] += $resultadosCalculosTmp[2];
                 $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
               }
               if($resultado[$j]["direccionElemento"] == "Sur"){
-                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Sur", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
-                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Sur", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, "Referencia", 0, $link);
+                //$resultadosCalculos[0] += $resultadosCalculosTmp[0];
                 $resultadosCalculos[1] += $resultadosCalculosTmp[1];
-                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                //$resultadosCalculos[2] += $resultadosCalculosTmp[2];
                 $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
               }
               if($resultado[$j]["direccionElemento"] == "Este"){
-                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Este", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
-                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Este", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, "Referencia", 0, $link);
+                //$resultadosCalculos[0] += $resultadosCalculosTmp[0];
                 $resultadosCalculos[1] += $resultadosCalculosTmp[1];
-                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                //$resultadosCalculos[2] += $resultadosCalculosTmp[2];
                 $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
               }
               if($resultado[$j]["direccionElemento"] == "Oeste"){
-                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Oeste", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
-                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Oeste", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, "Referencia", 0, $link);
+                //$resultadosCalculos[0] += $resultadosCalculosTmp[0];
                 $resultadosCalculos[1] += $resultadosCalculosTmp[1];
-                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                //$resultadosCalculos[2] += $resultadosCalculosTmp[2];
                 $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
               }
               if($resultado[$j]["direccionElemento"] == "Techo"){
-                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Techo", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
-                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Techo", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, "Referencia", 0, $link);
+                //$resultadosCalculos[0] += $resultadosCalculosTmp[0];
                 $resultadosCalculos[1] += $resultadosCalculosTmp[1];
-                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                //$resultadosCalculos[2] += $resultadosCalculosTmp[2];
                 $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
               }
               if($resultado[$j]["direccionElemento"] == "TechoI"){
-                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "TechoI", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, $link);
-                $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "TechoI", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, "Referencia", 0, $link);
+                //$resultadosCalculos[0] += $resultadosCalculosTmp[0];
                 $resultadosCalculos[1] += $resultadosCalculosTmp[1];
-                $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                //$resultadosCalculos[2] += $resultadosCalculosTmp[2];
                 $resultadosCalculos[3] += $resultadosCalculosTmp[3];
                 continue;
+              }
+            }
+
+
+            $resultAreaTotal = mysql_query("SELECT idElemento, direccionElemento, areaElemento FROM elemento WHERE idCalculo = '".$idCalculo."'",$link);
+            if($resultAreaTotal === FALSE){
+              $resultado["response"] = Constantes::ERROR;
+            }else{
+    
+              $totalUsu = mysql_num_rows($resultAreaTotal);
+              if($totalUsu > 0){
+                $i=0;
+                while($info = mysql_fetch_assoc($resultAreaTotal)){
+                    $resultado[$i]["direccionElemento"] = $info["direccionElemento"];
+                    $resultado[$i]["areaTotal"] = $info["areaElemento"];
+                  
+                    if($resultado[$i]["direccionElemento"] == "Norte"){
+                      $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Norte", $norma, $numNivelesEdificio, $latitud, $resultado[$i]["areaTotal"], $resultadosCalculos, "Proyectado", $info["idElemento"], $link);
+                      $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                      //$resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                      $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                      //$resultadosCalculos[3] += $resultadosCalculosTmp[3];
+                      continue;
+                    }
+                    if($resultado[$i]["direccionElemento"] == "Sur"){
+                      $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Sur", $norma, $numNivelesEdificio, $latitud, $resultado[$i]["areaTotal"], $resultadosCalculos, "Proyectado", $info["idElemento"], $link);
+                      $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                      //$resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                      $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                      //$resultadosCalculos[3] += $resultadosCalculosTmp[3];
+                      continue;
+                    }
+                    if($resultado[$i]["direccionElemento"] == "Este"){
+                      $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Este", $norma, $numNivelesEdificio, $latitud, $resultado[$i]["areaTotal"], $resultadosCalculos, "Proyectado", $info["idElemento"], $link);
+                      $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                      //$resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                      $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                      //$resultadosCalculos[3] += $resultadosCalculosTmp[3];
+                      continue;
+                    }
+                    if($resultado[$i]["direccionElemento"] == "Oeste"){
+                      $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Oeste", $norma, $numNivelesEdificio, $latitud, $resultado[$i]["areaTotal"], $resultadosCalculos, "Proyectado", $info["idElemento"], $link);
+                      $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                      //$resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                      $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                      //$resultadosCalculos[3] += $resultadosCalculosTmp[3];
+                      continue;
+                    }
+                    if($resultado[$i]["direccionElemento"] == "Techo"){
+                      $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Techo", $norma, $numNivelesEdificio, $latitud, $resultado[$i]["areaTotal"], $resultadosCalculos, "Proyectado", $info["idElemento"], $link);
+                      $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                      //$resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                      $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                      //$resultadosCalculos[3] += $resultadosCalculosTmp[3];
+                      continue;
+                    }
+                    if($resultado[$i]["direccionElemento"] == "TechoI"){
+                      $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "TechoI", $norma, $numNivelesEdificio, $latitud, $resultado[$i]["areaTotal"], $resultadosCalculos, "Proyectado", $info["idElemento"], $link);
+                      $resultadosCalculos[0] += $resultadosCalculosTmp[0];
+                      //$resultadosCalculos[1] += $resultadosCalculosTmp[1];
+                      $resultadosCalculos[2] += $resultadosCalculosTmp[2];
+                      //$resultadosCalculos[3] += $resultadosCalculosTmp[3];
+                      continue;
+                    }
+
+
+
+                    $i++;
+                }
               }
             }
 
@@ -144,15 +217,25 @@
    * el parámetro orientación
    * @param resultadosCalculo -- Sirve para almacenar los resultados de los cálculos para edificio
    * de referencia y proyectado
+   * @param tipoCalculo -- Indica si el cálculo es proyectado o de referencia
+   * @param idElemento -- Identificador del elemento
    * @param link -- Variable para conexión con Base de Datos
    */
-  function calculoCalorYRadiacion($idCalculo, $orientacion, $norma, $numNivelesEdificio, $latitud, $areaTotalOrientacion, $resultadosCalculos, $link){
+  function calculoCalorYRadiacion($idCalculo, $orientacion, $norma, $numNivelesEdificio, $latitud, $areaTotalOrientacion, $resultadosCalculos, $tipoCalculo, $idElemento, $link){
 
-    $queryF = "SELECT tipoElemento, kTotal, esMasivoElemento, tipoSombra, coeficienteSombra, LVoladoMas, 
-    HVoladoMas, AVoladoMas, LVoladoLimite, HVoladoLimite, WVoladoLimite, AVoladoLimite, ERemetida,
-    PRemetida, WRemetida, LParteluces, WParteluces FROM elemento WHERE idCalculo = '".$idCalculo."' AND direccionElemento = '".$orientacion."'";
+    if($tipoCalculo == "Referencia"){
+      $queryF = "SELECT tipoElemento, kTotal, esMasivoElemento, tipoSombra, coeficienteSombra, LVoladoMas, 
+      HVoladoMas, AVoladoMas, LVoladoLimite, HVoladoLimite, WVoladoLimite, AVoladoLimite, ERemetida,
+      PRemetida, WRemetida, LParteluces, WParteluces FROM elemento WHERE idCalculo = '".$idCalculo."' AND direccionElemento = '".$orientacion."'";
+    }else{
+      $queryF = "SELECT tipoElemento, kTotal, esMasivoElemento, tipoSombra, coeficienteSombra, LVoladoMas, 
+      HVoladoMas, AVoladoMas, LVoladoLimite, HVoladoLimite, WVoladoLimite, AVoladoLimite, ERemetida,
+      PRemetida, WRemetida, LParteluces, WParteluces FROM elemento WHERE idCalculo = '".$idCalculo."' AND idElemento = '".$idElemento."'";
+    }
 
     $result = mysql_query($queryF,$link);
+
+    
 
     $totalUsu = mysql_num_rows($result);
     if($totalUsu > 0){
@@ -176,14 +259,16 @@
             $lParteluces = $info["LParteluces"];
             $wParteluces = $info["WParteluces"];
 
+            
+
             if($norma == "2011"){
               if($tipoElemento == "Ventana"){
-                $fraccionComponente = 0.9;
+                $fraccionComponente = 0.1;
               }else{
                 if($tipoElemento == "Tragaluz"){
                   $fraccionComponente = 0;
                 }else{
-                  $fraccionComponente = 1.0;
+                  $fraccionComponente = 0.9;
                 }
               }
             }else{
@@ -210,7 +295,7 @@
                 //Ocupar dirección, latitud y factor1 (L/H)
                 $columna = "";
                 $factor1 = (float)$lVoladoMas / (float)$hVoladoMas;
-
+                
                 if($orientacion == "Norte")
                   $columna = "norte";
                 if($orientacion == "Este" || $orientacion == "Oeste")
@@ -692,24 +777,26 @@
                   $te = $info[$columnaTE];
                   $ti = $info["tInterior"];
                   $fg = $info[$columnaFG];
-                  $kProy = $info[$columnaK];
+                  if($tipoElemento == "Ventana"){
+                    $kProy = 5.319;
+                  }else{
+                    $kProy = $info[$columnaK];
+                  }
                 }
               }
             }
 
             //Se aplican los cálculos para la ganancia de calor (referencia y proyectado)
 
-            /*echo "KTOTAL: ".$kTotal."<br/>";
-            echo "AREA TOTAL ORIENTACION: ".$areaTotalOrientacion."<br/>";
-            echo "FRACCION COMPONENTE: ".$fraccionComponente."<br/>";
-            echo "TE: ".$te."<br/>";
-            echo "TI: ".$ti."<br/>";*/
-         
-
-            //Ganancia de calor proyectado
-            $resultadosCalculos[0] += ((float)$kTotal * (float)$areaTotalOrientacion * (float)$fraccionComponente * ((float)$te - (float)$ti)); 
-            //Ganancia de calor referencia
-            $resultadosCalculos[1] += ((float)$kProy * (float)$areaTotalOrientacion * (float)$fraccionComponente * ((float)$te - (float)$ti));
+            if($tipoCalculo != "Referencia"){            
+              //Ganancia de calor proyectado
+            
+              $resultadosCalculos[0] += ((float)$kTotal * (float)$areaTotalOrientacion * ((float)$te - (float)$ti)); 
+            }else{
+              //Ganancia de calor referencia
+           
+              $resultadosCalculos[1] += ((float)$kProy * (float)$areaTotalOrientacion * (float)$fraccionComponente * ((float)$te - (float)$ti));
+            }
 
             //Se aplican los cálculos para la ganancia por radiación
 
@@ -717,10 +804,15 @@
               /*echo "CS: ".$cs."<br/>";
               echo "FG: ".$fg."<br/>";
               echo "SE: ".$se."<br/>";*/
-              //Ganancia de calor radiación proyectado
-              $resultadosCalculos[2] += (float)$areaTotalOrientacion * (float)$cs * (float)$fraccionComponente * (float)$fg;
-              //Ganancia de calor radiación referencia
-              $resultadosCalculos[3] += (float)$areaTotalOrientacion * (float)$cs * (float)$fg * (float)$se;
+              if($tipoCalculo != "Referencia"){
+                //Ganancia de calor radiación proyectado
+                
+                $resultadosCalculos[2] += (float)$areaTotalOrientacion * (float)$cs * (float)$fraccionComponente * (float)$fg;
+              }else{
+                //Ganancia de calor radiación referencia
+              
+                $resultadosCalculos[3] += (float)$areaTotalOrientacion * (float)$cs * (float)$fg * (float)$se;
+              }
             }
 
             /*echo "RESULTADOS CALCULOS [0]: ".$resultadosCalculos[0];

@@ -1605,8 +1605,8 @@
                   <!-- AQUI DEBE IR LA ETIQUETA DE COLOR INDICANDO SI CUMPLE CON LA NORMA O NO -->
                   <center>
                     <br/>
-                    <h5 style="color:#769e26" ng-if="app.totalReferencia <= app.totalProyectado"><strong>SI</strong> cumple con la norma</h5>
-                    <h5 style="color: red" ng-if="app.totalReferencia > app.totalProyectado"><strong>NO</strong> cumple con la norma</h5>
+                    <h5 style="color:#769e26" ng-if="app.totalReferencia > app.totalProyectado"><strong>SI</strong> cumple con la norma</h5>
+                    <h5 style="color: red" ng-if="app.totalReferencia <= app.totalProyectado"><strong>NO</strong> cumple con la norma</h5>
                     <br/>
                     <img src="images/etiqueta_resultado.jpg" height="250" width="250" alt="100" ng-if="app.totalReferencia <= app.totalProyectado"/>
                   </center>
@@ -1780,6 +1780,7 @@
     $(function(){
       $('#municipios').change(function(){
          var selected = $(this).find('option:selected');
+         console.log("LATITUD: " + selected.data('foo'));
          $('#latitud').val(selected.data('foo'));
       }).change();
     });
