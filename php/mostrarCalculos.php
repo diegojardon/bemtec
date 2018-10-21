@@ -280,7 +280,11 @@
                 if($tipoElemento == "Tragaluz"){
                   $fraccionComponente = 0;
                 }else{
-                  $fraccionComponente = 0.9;
+                  if($tipoElemento == "Techo"){
+                    $fraccionComponente = 1.0;
+                  }else{
+                    $fraccionComponente = 0.9;
+                  }
                 }
               }
             }else{
@@ -288,9 +292,13 @@
                 $fraccionComponente = 0.4;
               }else{
                 if($tipoElemento == "Tragaluz"){
-                  $fraccionComponente = 0.4;
+                  $fraccionComponente = 0.05;
                 }else{
-                  $fraccionComponente = 0.6;
+                  if($tipoElemento == "Techo"){
+                    $fraccionComponente = 0.95;
+                  }else{
+                    $fraccionComponente = 0.6;
+                  }
                 }
               }
             }
@@ -795,7 +803,11 @@
                   if($tipoElemento == "Ventana"){
                     $kProy = 5.319;
                   }else{
-                    $kProy = $info[$columnaK];
+                    if($tipoElemento == "Tragaluz"){
+                      $kProy = 5.952;
+                    }else{
+                      $kProy = $info[$columnaK];
+                    }
                   }
                 }
               }
@@ -815,14 +827,14 @@
               //Ganancia de calor proyectado
               $res = ((float)$kTotal * (float)$areaTotalOrientacion * ((float)$te - (float)$ti));
               $resultadosCalculos[0] += $res; 
-              echo "Calculo ganancia de calor proyectado: " .$kTotal." * ".$areaTotalOrientacion." * ( ".$te." - ".$ti." ) = ".$res."<br/><br/>";
-              echo "Acumulado: " .$resultadosCalculos[0]."<br/><br/>";
+              echo "Calculo ganancia de calor por conducción proyectado: " .$kTotal." * ".$areaTotalOrientacion." * ( ".$te." - ".$ti." ) = ".$res."<br/><br/>";
+              echo "Acumulado sumatoria ganancia de calor por conducción proyectado : " .$resultadosCalculos[0]."<br/><br/>";
             }else{
               //Ganancia de calor referencia
               $res = ((float)$kProy * (float)$areaTotalOrientacion * (float)$fraccionComponente * ((float)$te - (float)$ti));
               $resultadosCalculos[1] += $res;
-              echo "Calculo ganancia de calor referencia: " .$kProy." * ".$areaTotalOrientacion." * ".$fraccionComponente." * ( ".$te." - ".$ti." ) = ".$res."<br/><br/>";
-              echo "Acumulado: " .$resultadosCalculos[1]."<br/><br/>";
+              echo "Calculo ganancia de calor por conducción referencia: " .$kProy." * ".$areaTotalOrientacion." * ".$fraccionComponente." * ( ".$te." - ".$ti." ) = ".$res."<br/><br/>";
+              echo "Acumulado sumatoria ganancia de calor por conducción referencia: " .$resultadosCalculos[1]."<br/><br/>";
             }
 
             //Se aplican los cálculos para la ganancia por radiación
@@ -833,16 +845,16 @@
               echo "SE: ".$se."<br/>";*/
               if($tipoCalculo != "Referencia"){
                 //Ganancia de calor radiación proyectado
-                $res = (float)$areaTotalOrientacion * (float)$cs * (float)$fraccionComponente * (float)$fg;
+                $res = (float)$areaTotalOrientacion * (float)$cs * (float)$fg * (float)$se;
                 $resultadosCalculos[2] += $res;
-                echo "Calculo ganancia de calor por radiación proyectado: ".$areaTotalOrientacion." * ".$cs." * ".$fraccionComponente." * ".$fg." = ".$res."<br/><br/>";
-                echo "Acumulado: " .$resultadosCalculos[2]."<br/><br/>";
+                echo "Calculo ganancia de calor por radiación proyectado: ".$areaTotalOrientacion." * ".$cs." * ".$fg." * ".$se." = ".$res."<br/><br/>";
+                echo "Acumulado sumatoria ganancia de calor por radiación proyectado: " .$resultadosCalculos[2]."<br/><br/>";
               }else{
                 //Ganancia de calor radiación referencia
-                $res = (float)$areaTotalOrientacion * (float)$cs * (float)$fg * (float)$se;
+                $res = (float)$areaTotalOrientacion * (float)$cs * (float)$fraccionComponente * (float)$fg;
                 $resultadosCalculos[3] += $res;
-                echo "Calculo ganancia de calor por radiación referencia: ".$areaTotalOrientacion." * ".$cs." * ".$fg." * ".$se." = ".$res."<br/><br/>";
-                echo "Acumulado: " .$resultadosCalculos[3]."<br/><br/>";
+                echo "Calculo ganancia de calor por radiación referencia: ".$areaTotalOrientacion." * ".$cs." * ".$fraccionComponente." * ".$fg." = ".$res."<br/><br/>";
+                echo "Acumulado ganancia de calor por radiación referencia: " .$resultadosCalculos[3]."<br/><br/>";
               }
             }
 

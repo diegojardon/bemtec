@@ -268,7 +268,11 @@
                 if($tipoElemento == "Tragaluz"){
                   $fraccionComponente = 0;
                 }else{
-                  $fraccionComponente = 0.9;
+                  if($tipoElemento == "Techo"){
+                    $fraccionComponente = 1.0;
+                  }else{
+                    $fraccionComponente = 0.9;
+                  }
                 }
               }
             }else{
@@ -276,9 +280,13 @@
                 $fraccionComponente = 0.4;
               }else{
                 if($tipoElemento == "Tragaluz"){
-                  $fraccionComponente = 0.4;
+                  $fraccionComponente = 0.05;
                 }else{
-                  $fraccionComponente = 0.6;
+                  if($tipoElemento == "Techo"){
+                    $fraccionComponente = 0.95;
+                  }else{
+                    $fraccionComponente = 0.6;
+                  }
                 }
               }
             }
@@ -780,7 +788,11 @@
                   if($tipoElemento == "Ventana"){
                     $kProy = 5.319;
                   }else{
-                    $kProy = $info[$columnaK];
+                    if($tipoElemento == "Tragaluz"){
+                      $kProy = 5.952;
+                    }else{
+                      $kProy = $info[$columnaK];
+                    }
                   }
                 }
               }
@@ -807,11 +819,12 @@
               if($tipoCalculo != "Referencia"){
                 //Ganancia de calor radiación proyectado
                 
-                $resultadosCalculos[2] += (float)$areaTotalOrientacion * (float)$cs * (float)$fraccionComponente * (float)$fg;
+                $resultadosCalculos[2] += (float)$areaTotalOrientacion * (float)$cs * (float)$fg * (float)$se;
               }else{
                 //Ganancia de calor radiación referencia
               
-                $resultadosCalculos[3] += (float)$areaTotalOrientacion * (float)$cs * (float)$fg * (float)$se;
+                $resultadosCalculos[3] += (float)$areaTotalOrientacion * (float)$cs * (float)$fraccionComponente * (float)$fg;
+                
               }
             }
 
