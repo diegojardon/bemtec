@@ -63,7 +63,7 @@
             $resultadosCalculosTmp = array(0.0, 0.0, 0.0, 0.0);
           
             
-            //Se realizan los cálculos correspondientes
+            //Se realizan los cálculos correspondientes para Referencia
             for($j=0; $j<$i; $j++){
               if($resultado[$j]["direccionElemento"] == "Norte"){
                 $resultadosCalculosTmp = calculoCalorYRadiacion($idCalculo, "Norte", $norma, $numNivelesEdificio, $latitud, $resultado[$j]["areaTotal"], $resultadosCalculos, "Referencia", 0, $link);
@@ -115,7 +115,7 @@
               }
             }
 
-
+            //Cálculos para Proyectado
             $resultAreaTotal = mysql_query("SELECT idElemento, direccionElemento, areaElemento FROM elemento WHERE idCalculo = '".$idCalculo."'",$link);
             if($resultAreaTotal === FALSE){
               $resultado["response"] = Constantes::ERROR;
@@ -186,10 +186,10 @@
 
             //Se codifica la respuesta
             $resultado["response"] = Constantes::EXITO;
-            $resultado["gananciaCalorRef"] = $resultadosCalculos[0];
-            $resultado["gananciaCalorProy"] = $resultadosCalculos[1];
-            $resultado["gananciaRadiacionRef"] = $resultadosCalculos[2];
-            $resultado["gananciaRadiacionProy"] = $resultadosCalculos[3];
+            $resultado["gananciaCalorProy"] = $resultadosCalculos[0];
+            $resultado["gananciaCalorRef"] = $resultadosCalculos[1];
+            $resultado["gananciaRadiacionProy"] = $resultadosCalculos[2];
+            $resultado["gananciaRadiacionRef"] = $resultadosCalculos[3];
 
           }else{
             $resultado["response"] = Constantes::ERROR;
@@ -240,6 +240,8 @@
     $totalUsu = mysql_num_rows($result);
     if($totalUsu > 0){
         $i=0;
+        $muroPuertaProcesadaRef = false;
+        $ventanaProcesadaRef = false;
         while($info = mysql_fetch_assoc($result)){
             $tipoElemento = $info["tipoElemento"];
             $kTotal = $info["kTotal"];
@@ -259,7 +261,22 @@
             $lParteluces = $info["LParteluces"];
             $wParteluces = $info["WParteluces"];
 
-            
+            //Validar que solamente se procese una vez para referencia muro y puerta y ventana
+            if($tipoCalculo == "Referencia"){
+              if($tipoElemento == "Ventana" || $tipoElemento == "Tragaluz"){
+                if($ventanaProcesadaRef == true)
+                  continue;
+                else
+                  $ventanaProcesadaRef = true;
+              }else{
+                if($tipoElemento == "Muro" || $tipoElemento == "Puerta"){
+                  if($muroPuertaProcesadaRef == true)
+                    continue;
+                  else
+                    $muroPuertaProcesadaRef = true;
+                } 
+              }
+            }            
 
             if($norma == "2011"){
               if($tipoElemento == "Ventana"){
@@ -834,6 +851,7 @@
             echo "RESULTADOS CALCULOS [3]: ".$resultadosCalculos[3];*/
 
             $i++;
+
         }
     }
     return $resultadosCalculos;

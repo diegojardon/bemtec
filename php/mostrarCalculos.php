@@ -195,10 +195,10 @@
 
             //Se codifica la respuesta
             $resultado["response"] = Constantes::EXITO;
-            $resultado["gananciaCalorRef"] = $resultadosCalculos[0];
-            $resultado["gananciaCalorProy"] = $resultadosCalculos[1];
-            $resultado["gananciaRadiacionRef"] = $resultadosCalculos[2];
-            $resultado["gananciaRadiacionProy"] = $resultadosCalculos[3];
+            $resultado["gananciaCalorProy"] = $resultadosCalculos[0];
+            $resultado["gananciaCalorRef"] = $resultadosCalculos[1];
+            $resultado["gananciaRadiacionProy"] = $resultadosCalculos[2];
+            $resultado["gananciaRadiacionRef"] = $resultadosCalculos[3];
 
           }else{
             $resultado["response"] = Constantes::ERROR;
@@ -232,6 +232,7 @@
    */
   function calculoCalorYRadiacion($idCalculo, $orientacion, $norma, $numNivelesEdificio, $latitud, $areaTotalOrientacion, $resultadosCalculos, $tipoCalculo, $idElemento, $link){
 
+    //REVISAR CUANDO ES REFERENCIA QUE SE JUNTEN TODOS LOS MUROS Y PUERTAS EN UNA MISMA Y TODAS LAS VENTANAS EN OTRA
     if($tipoCalculo == "Referencia"){
       $queryF = "SELECT tipoElemento, kTotal, esMasivoElemento, tipoSombra, coeficienteSombra, LVoladoMas, 
       HVoladoMas, AVoladoMas, LVoladoLimite, HVoladoLimite, WVoladoLimite, AVoladoLimite, ERemetida,
@@ -247,8 +248,11 @@
     echo "Direccion: " . $orientacion . "<br/>";
 
     $totalUsu = mysql_num_rows($result);
+    echo "Total de elementos: " . $totalUsu . "<br/>";
     if($totalUsu > 0){
         $i=0;
+        $muroPuertaProcesadaRef = 0;
+        $ventanaProcesadaRef = 0;
         while($info = mysql_fetch_assoc($result)){
             $tipoElemento = $info["tipoElemento"];
             $kTotal = $info["kTotal"];
@@ -267,6 +271,31 @@
             $wRemetida = $info["WRemetida"];
             $lParteluces = $info["LParteluces"];
             $wParteluces = $info["WParteluces"];
+
+             //Validar que solamente se procese una vez para referencia muro y puerta y ventana
+             if($tipoCalculo == "Referencia"){
+              if($tipoElemento == "Ventana" || $tipoElemento == "Tragaluz"){
+                //echo "VALOR VENTANA PROCESADA:" .$ventanaProcesadaRef."<br/>";
+                if($ventanaProcesadaRef == 1){
+                  //echo "ENTRA A CONTINUE <br/>";
+                  continue;
+                }else{
+                  //echo "ENTRA A ELSE Y CAMBIA VALOR PARA VENTANA <br/>";
+                  $ventanaProcesadaRef = 1;
+                }
+              }else{
+                if($tipoElemento == "Muro" || $tipoElemento == "Puerta"){
+                  //echo "VALOR MURO PROCESADO:" .$muroPuertaProcesadaRef."<br/>";
+                  if($muroPuertaProcesadaRef == 1){
+                    //echo "ENTRA A CONTINUE <br/>";
+                    continue;
+                  }else{
+                    //echo "ENTRA A ELSE Y CAMBIA VALOR PARA MURO <br/>";
+                    $muroPuertaProcesadaRef = 1;
+                  }
+                } 
+              }
+            } 
 
             echo "Tipo Elemento: " . $tipoElemento . "<br/>";
             echo "K Total: " . $kTotal . "<br/>";
@@ -761,7 +790,9 @@
               if($nivelesEdificio <= 3){
                 $query .="kMenor3 ";
                 $columnaK = "kMenor3";
+                echo "Niveles edificio menor o igual a 3<br/>";
               }else{
+                echo "Niveles edificio mayor a 3<br/>";
                 if($orientacion == "Techo" || $orientacion == "TechoI"){
                   $query .= "kMayor3Techo";
                   $columnaK = "kMayor3Techo";

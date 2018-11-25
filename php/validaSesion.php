@@ -26,6 +26,8 @@
 			$resultado["estatusUsuario"] = $_SESSION['estatusUsuario'];
 			$resultado["nombreNormaEnergetica"] = $_SESSION['nombreNormaEnergetica'];
 			$resultado["areaElemento"] = $_SESSION['areaElemento'];
+			$resultado["datosGenerales"] = $_SESSION['datosGenerales'];
+			$resultado["ultimaDireccion"] = $_SESSION['direccionElemento'];
 		}
 	}
 

@@ -65,6 +65,7 @@
 			$resultado["normaEnergetica"] = $normaEnergetica;
 			$resultado["tipoElemento"] = $tipoElemento;
 			$resultado["direccionElemento"] = $direccionElemento;
+			
 
 			$_SESSION["esHomogeneo"] = $esHomogeneoElemento;
 			$_SESSION["nombreElemento"] = $nombreElemento;

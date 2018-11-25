@@ -11,7 +11,32 @@ app.controller("loginRegisterController", function($scope, $http){
 		app.usuarioUsuario = data.usuarioUsuario;
 		app.estatusUsuario = data.estatusUsuario;
 		app.nombreNormaEnergetica = data.nombreNormaEnergetica;
+		app.datosGenerales = data.datosGenerales;
+		app.ultimaDireccion = data.ultimaDireccion;
+		console.log("ULTIMA DIRECCION ELEMENTO AGREGADO: " + app.ultimaDireccion)
 		$("#areaOculta").val(data.areaElemento);
+
+		//Ocultar pestañas de acuerdo a etapa del cálculo
+		if(app.datosGenerales == 'ok'){
+			$('#datosGeneralesTab').css("display", "none");
+			$('#norteTab').css("display", "block");
+			$('#surTab').css("display", "block");
+			$('#esteTab').css("display", "block");
+			$('#oesteTab').css("display", "block");
+			$('#techoTab').css("display", "block");
+			$('#techoInteriorTab').css("display", "block");
+			$('#calcularTab').css("display", "block");
+		}else{
+			$('#datosGeneralesTab').css("display", "block");
+			$('#norteTab').css("display", "none");
+			$('#surTab').css("display", "none");
+			$('#esteTab').css("display", "none");
+			$('#oesteTab').css("display", "none");
+			$('#techoTab').css("display", "none");
+			$('#techoInteriorTab').css("display", "none");
+			$('#calcularTab').css("display", "none");
+		}
+
 		console.log("AREA EN SESION: " + $("#areaOculta").val());
 		if(app.sesion == 0){
 			/*alert("Es necesario que inicies sesión para visualizar el contenido completo");

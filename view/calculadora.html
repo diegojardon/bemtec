@@ -165,14 +165,30 @@
           <div id="default-tab">
 
             <ul class="nav nav-tabs" role="tablist">
-              <li class="nav-item"><a class="nav-link active show" href="#datosGenerales" aria-controls="datosGenerales" role="tab" data-toggle="tab" aria-selected="true"><i class="fa fa-book"></i>&nbsp;Datos Generales</a></li>
-              <li id="norteTab" class="nav-item"><a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab" ><i class="fa fa-arrow-up"></i>&nbsp;Norte</a></li>
-              <li id="surTab" class="nav-item"><a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab" ><i class="fa fa-arrow-down"></i>&nbsp;Sur</a></li>
-              <li id="esteTab" class="nav-item"><a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab" ><i class="fa fa-arrow-right"></i>&nbsp;Este</a></li>
-              <li id="oesteTab" class="nav-item"><a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab" ><i class="fa fa-arrow-left"></i>&nbsp;Oeste</a></li>
-              <li id="techoTab" class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab" ><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
-              <li id="techoInteriorTab" class="nav-item"><a class="nav-link" href="#techoInterior" aria-controls="techoInterior" role="tab" data-toggle="tab" ><i class="fa fa-stop"></i>&nbsp;Superficie Interior</a></li>
-              <li id="calcularTab" class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i>&nbsp;Calcular</a></li>
+              <li id="datosGeneralesTab" class="nav-item">
+                <a class="nav-link active show" href="#datosGenerales" aria-controls="datosGenerales" role="tab" data-toggle="tab" aria-selected="true"><i class="fa fa-book"></i>&nbsp;Datos Generales</a>
+              </li>
+              <li id="norteTab" class="nav-item">
+                <a class="nav-link" href="#norte" aria-controls="norte" role="tab" data-toggle="tab" ><i class="fa fa-arrow-up"></i>&nbsp;Norte</a>
+              </li>
+              <li id="surTab" class="nav-item">
+                <a class="nav-link" href="#sur" aria-controls="sur" role="tab" data-toggle="tab" ><i class="fa fa-arrow-down"></i>&nbsp;Sur</a>
+              </li>
+              <li id="esteTab" class="nav-item">
+                <a class="nav-link" href="#este" aria-controls="este" role="tab" data-toggle="tab" ><i class="fa fa-arrow-right"></i>&nbsp;Este</a>
+              </li>
+              <li id="oesteTab" class="nav-item">
+                <a class="nav-link" href="#oeste" aria-controls="oeste" role="tab" data-toggle="tab" ><i class="fa fa-arrow-left"></i>&nbsp;Oeste</a>
+              </li>
+              <li id="techoTab" class="nav-item">
+                <a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab" ><i class="fa fa-square-o"></i>&nbsp;Techo</a>
+              </li>
+              <li id="techoInteriorTab" class="nav-item">
+                <a class="nav-link" href="#techoInterior" aria-controls="techoInterior" role="tab" data-toggle="tab" ><i class="fa fa-stop"></i>&nbsp;Superficie Interior</a>
+              </li>
+              <li id="calcularTab" class="nav-item">
+                <a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i>&nbsp;Calcular</a>
+              </li>
               <!--<li id="mostrarCalculoTab" class="nav-item"><a class="nav-link" href="http://www.bemtec.mx/bemtec/php/mostrarCalculos.php" target="_blank" aria-controls="calcular" ><i class="fa fa-calculator"></i>&nbsp;Mostrar Calculo</a></li>-->
             </ul>
 
@@ -192,8 +208,8 @@
                     <br/>
                     <input type="text" class="form-control separacion-input" id="nombre" placeholder="Nombre" required ng-model="calculo.nombrePropietario"/>
                     <input type="text" class="form-control separacion-input" id="direccion" placeholder="Dirección" required ng-model="calculo.direccionPropietario"/>
-                    <input type="text" class="form-control separacion-input" id="ciudad" placeholder="Código Postal" required ng-model="calculo.cpPropietario"/>
-                    <input type="text" class="form-control separacion-input" id="telefono" placeholder="Teléfono" required ng-model="calculo.telefonoPropietario"/>
+                    <input type="text" class="form-control separacion-input" id="ciudad" placeholder="Código Postal" maxlength="5" required ng-model="calculo.cpPropietario"/>
+                    <input type="text" class="form-control separacion-input" id="telefono" placeholder="Teléfono" maxlength="10" required ng-model="calculo.telefonoPropietario"/>
                   </div>
                   <div class="col-sm-1 col-md-1"></div>
                   <div class="col-sm-4 col-md-4">
@@ -274,7 +290,7 @@
                   <div class="col-sm-2 col-md-2"></div>
                   <div class="col-sm-8 col-md-8">
                     <center>
-                      <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                      <h5 style="padding-bottom: 50px">Selecciona un elemento en dirección Norte</h5>
                       <div class="col-sm-4 col-md-4">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
@@ -503,7 +519,7 @@
                   <div class="col-sm-2 col-md-2"></div>
                   <div class="col-sm-8 col-md-8">
                     <center>
-                      <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                      <h5 style="padding-bottom: 50px">Selecciona un elemento en dirección Sur</h5>
                       <div class="col-sm-4 col-md-4">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
@@ -731,7 +747,7 @@
                   <div class="col-sm-2 col-md-2"></div>
                   <div class="col-sm-8 col-md-8">
                     <center>
-                      <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                      <h5 style="padding-bottom: 50px">Selecciona un elemento en dirección Este</h5>
                       <div class="col-sm-4 col-md-4">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
@@ -959,7 +975,7 @@
                   <div class="col-sm-2 col-md-2"></div>
                   <div class="col-sm-8 col-md-8">
                     <center>
-                      <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                      <h5 style="padding-bottom: 50px">Selecciona un elemento en dirección Oeste</h5>
                       <div class="col-sm-4 col-md-4">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
@@ -1187,7 +1203,7 @@
                   <div class="col-sm-2 col-md-2"></div>
                   <div class="col-sm-8 col-md-8">
                     <center>
-                      <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                      <h5 style="padding-bottom: 50px">Selecciona un elemento para Techo</h5>
                       <div class="col-sm-6 col-md-6">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
@@ -1415,7 +1431,7 @@
                   <div class="col-sm-2 col-md-2"></div>
                   <div class="col-sm-8 col-md-8">
                     <center>
-                      <h5 style="padding-bottom: 50px">Selecciona un elemento</h5>
+                      <h5 style="padding-bottom: 50px">Selecciona un elemento para Techo Interior</h5>
                       <div class="col-sm-12 col-md-12">
                         <img src="images/muro.png" alt="Muro" height="130" width="130" class="img-responsive center-block"/>
                         <br/>
@@ -1605,8 +1621,8 @@
                   <!-- AQUI DEBE IR LA ETIQUETA DE COLOR INDICANDO SI CUMPLE CON LA NORMA O NO -->
                   <center>
                     <br/>
-                    <h5 style="color:red" ng-if="app.totalReferencia > app.totalProyectado"><strong>NO</strong> cumple con la norma</h5>
-                    <h5 style="color:#769e26" ng-if="app.totalReferencia <= app.totalProyectado"><strong>SI</strong> cumple con la norma</h5>
+                    <h5 style="color:red" ng-if="app.totalReferencia < app.totalProyectado"><strong>NO</strong> cumple con la norma</h5>
+                    <h5 style="color:#769e26" ng-if="app.totalReferencia >= app.totalProyectado"><strong>SI</strong> cumple con la norma</h5>
                     <br/>
                     <img src="images/etiqueta_resultado.jpg" height="250" width="250" alt="100" ng-if="app.totalReferencia <= app.totalProyectado"/>
                   </center>
@@ -1795,7 +1811,10 @@
         }
       }
 
+      console.log("OBTUVE DIRECCION DE BARRA: " + direccion);
+
       if(direccion == "N"){
+        console.log("MUESTRO TAB NORTE");
         $('.nav-tabs a[href="#norte"]').tab('show');
       }
       if(direccion == "S"){
