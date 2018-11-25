@@ -42,6 +42,7 @@
 
       if($result === TRUE){
         $resultado["response"] = Constantes::EXITO;
+        $_SESSION['datosGenerales']='ok';
       }else{
         $resultado["response"] = Constantes::ERROR;
       }

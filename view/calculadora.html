@@ -173,7 +173,7 @@
               <li id="techoTab" class="nav-item"><a class="nav-link" href="#techo" aria-controls="techo" role="tab" data-toggle="tab" ><i class="fa fa-square-o"></i>&nbsp;Techo</a></li>
               <li id="techoInteriorTab" class="nav-item"><a class="nav-link" href="#techoInterior" aria-controls="techoInterior" role="tab" data-toggle="tab" ><i class="fa fa-stop"></i>&nbsp;Superficie Interior</a></li>
               <li id="calcularTab" class="nav-item"><a class="nav-link" href="#calcular" aria-controls="calcular" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i>&nbsp;Calcular</a></li>
-              <li id="mostrarCalculoTab" class="nav-item"><a class="nav-link" href="http://www.bemtec.mx/bemtec/php/mostrarCalculos.php" target="_blank" aria-controls="calcular" ><i class="fa fa-calculator"></i>&nbsp;Mostrar Calculo</a></li>
+              <!--<li id="mostrarCalculoTab" class="nav-item"><a class="nav-link" href="http://www.bemtec.mx/bemtec/php/mostrarCalculos.php" target="_blank" aria-controls="calcular" ><i class="fa fa-calculator"></i>&nbsp;Mostrar Calculo</a></li>-->
             </ul>
 
             <div class="tab-content">
@@ -1605,8 +1605,8 @@
                   <!-- AQUI DEBE IR LA ETIQUETA DE COLOR INDICANDO SI CUMPLE CON LA NORMA O NO -->
                   <center>
                     <br/>
-                    <h5 style="color:#769e26" ng-if="app.totalReferencia > app.totalProyectado"><strong>SI</strong> cumple con la norma</h5>
-                    <h5 style="color: red" ng-if="app.totalReferencia <= app.totalProyectado"><strong>NO</strong> cumple con la norma</h5>
+                    <h5 style="color:red" ng-if="app.totalReferencia > app.totalProyectado"><strong>NO</strong> cumple con la norma</h5>
+                    <h5 style="color:#769e26" ng-if="app.totalReferencia <= app.totalProyectado"><strong>SI</strong> cumple con la norma</h5>
                     <br/>
                     <img src="images/etiqueta_resultado.jpg" height="250" width="250" alt="100" ng-if="app.totalReferencia <= app.totalProyectado"/>
                   </center>

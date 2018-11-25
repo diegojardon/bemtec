@@ -242,13 +242,28 @@ app.controller("loginRegisterController", function($scope, $http){
 
 	$scope.actualizaCalculo = function(calculo, idEstado, ciudad){
 
-		//console.log("DATOS CIUDAD: " + ciudad);
+		if(calculo == null){
+			alert("Debes de completar todos los datos para avanzar");
+			return;
+		}
+
+		if(calculo.nombrePropietario == null || idEstado == null|| ciudad == null ||
+		   calculo.direccionPropietario == null || calculo.cpPropietario == null || 
+		   calculo.telefonoPropietario == null || calculo.nombreEdificio == null ||
+		   calculo.direccionEdificio == null || calculo.numNiveles == null){
+			alert("Debes de llenar todos los datos para avanzar");
+			return;
+		}
+
+		var numNiveles = parseInt(calculo.numNiveles);
+		
+		if(numNiveles < 1){
+			alert("No pueden existir niveles menores a 1");
+			return;
+		}
 
 		var idCiudad = ciudad.substring(0, ciudad.indexOf("|"));
 		var latitudEdificio = ciudad.substring(ciudad.indexOf("|") + 1);
-
-		//console.log("idCiudad: " + idCiudad);
-		//console.log("latitud: " + latitudEdificio);
 
 		$http.post("http://www.bemtec.mx/bemtec/php/actualizaCalculo.php", {'nombrePropietario': calculo.nombrePropietario, 'direccionPropietario': calculo.direccionPropietario,
 		'cpPropietario': calculo.cpPropietario, 'telefonoPropietario': calculo.telefonoPropietario, 'nombreEdificio': calculo.nombreEdificio, 'direccionEdificio': calculo.direccionEdificio,
@@ -258,6 +273,7 @@ app.controller("loginRegisterController", function($scope, $http){
 			if(data.response == 0){
 					//Redirigir a pantalla para confirmación del código recibido por correo
 					alert("Datos guardados exitosamente");
+					document.location.href = "calculadora.html?dir=N";
 			}else{
 				alert("Error! No se pudo guardar la información del cálculo.");
 				$scope.mensaje = "Error! No se pudo guardar la información del cálculo.";
